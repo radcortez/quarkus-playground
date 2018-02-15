@@ -33,7 +33,7 @@ public class BookResource {
     private BookBean bookBean;
 
     @GET
-    @Path("/{id : \\d+}")
+    @Path("/{id}")
     public Response findById(@PathParam("id") final Long id) {
         return bookBean.findById(id)
                        .map(Response::ok)
@@ -49,7 +49,10 @@ public class BookResource {
     @POST
     public Response create(final Book book, @Context UriInfo uriInfo) {
         final Book created = bookBean.create(book);
-        final URI createdURI = uriInfo.getBaseUriBuilder().path(String.valueOf(created.getId())).build();
+        final URI createdURI = uriInfo.getBaseUriBuilder()
+                                      .path("books/{id}")
+                                      .resolveTemplate("id", created.getId())
+                                      .build();
         return Response.created(createdURI).build();
     }
 
