@@ -83,6 +83,7 @@
           <version>${plugin.tomee.version}</version>
           <configuration>
             <libs>
+              <!-- Hibernate -->
               <lib>remove:openjpa-</lib>
               <lib>org.hibernate:hibernate-core:5.2.0.Final</lib>
               <lib>org.hibernate.common:hibernate-commons-annotations:5.0.1.Final</lib>
@@ -91,6 +92,10 @@
               <lib>org.javassist:javassist:3.18.1-GA</lib>
               <lib>com.fasterxml:classmate:1.1.0</lib>
               <lib>antlr:antlr:2.7.7</lib>
+
+              <!-- MicroProfile -->
+              <lib>org.eclipse.microprofile.config:microprofile-config-api:1.2</lib>
+              <lib>org.apache.geronimo.config:geronimo-config-impl:${dependency.config.version}</lib>
             </libs>
             <systemVariables>
               <javax.persistence.provider>

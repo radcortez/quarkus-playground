@@ -21,6 +21,11 @@
       <plugin>
         <groupId>org.apache.tomee.maven</groupId>
         <artifactId>tomee-maven-plugin</artifactId>
+        <configuration>
+          <tomeeHttpPort>8081</tomeeHttpPort>
+          <tomeeAjpPort>8109</tomeeAjpPort>
+          <tomeeShutdownPort>8105</tomeeShutdownPort>
+        </configuration>
       </plugin>
     </plugins>
   </build>
