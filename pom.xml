@@ -23,6 +23,8 @@
 
     <dependency.microprofile.version>1.3</dependency.microprofile.version>
     <dependency.javaee.version>7.0</dependency.javaee.version>
+
+    <dependency.config.version>1.0</dependency.config.version>
     <dependency.cxf.version>3.2.2</dependency.cxf.version>
     <dependency.johnzon.version>1.0.0</dependency.johnzon.version>
   </properties>
@@ -119,6 +121,13 @@
         <artifactId>javaee-api</artifactId>
         <version>${dependency.javaee.version}</version>
         <scope>provided</scope>
+      </dependency>
+
+      <!-- MP Configuration Implementation -->
+      <dependency>
+        <groupId>org.apache.geronimo.config</groupId>
+        <artifactId>geronimo-config-impl</artifactId>
+        <version>${dependency.config.version}</version>
       </dependency>
 
       <!-- MP JAX-RS Client Implementation -->

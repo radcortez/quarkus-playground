@@ -1,5 +1,6 @@
 package com.radcortez.microprofile.samples.clients.simulator;
 
+import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 
 import javax.json.Json;
@@ -13,10 +14,14 @@ import static javax.ws.rs.core.Response.Status.OK;
 
 public class BookServiceClient {
     public static void main(String[] args) throws MalformedURLException {
-        final URL bookServiceUrl = new URL("http://localhost:8080/book-api");
+        final String bookServiceTargetUrl =
+                ConfigProvider.getConfig()
+                              .getOptionalValue("BOOK_TARGET_URL", String.class)
+                              .orElse("http://localhost:8080/book-api");
+
         final BookService bookService =
                 RestClientBuilder.newBuilder()
-                                 .baseUrl(bookServiceUrl)
+                                 .baseUrl(new URL(bookServiceTargetUrl))
                                  .build(BookService.class);
 
         final JsonObject book = Json.createObjectBuilder()
