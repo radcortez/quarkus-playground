@@ -14,6 +14,10 @@
   <packaging>war</packaging>
   <name>Samples Microprofile - Services - Book API</name>
 
+  <properties>
+    <listening.port>8080</listening.port>
+  </properties>
+
   <build>
     <finalName>${project.artifactId}</finalName>
 
@@ -21,6 +25,14 @@
       <plugin>
         <groupId>org.apache.tomee.maven</groupId>
         <artifactId>tomee-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <skip>false</skip>
+        </configuration>
       </plugin>
     </plugins>
   </build>

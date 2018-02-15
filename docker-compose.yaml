@@ -1,0 +1,18 @@
+version: '2'
+services:
+
+    number-api:
+        image: radcortez/mp-samples/number-api:default
+        container_name: number-api
+        ports:
+            - 8081:8081
+
+    book-api:
+        image: radcortez/mp-samples/book-api:default
+        container_name: book-api
+        ports:
+            - 8080:8080
+        depends_on:
+          - number-api
+        environment:
+          - NUMBER_TARGET_URL=http://number-api:8081/number-api/numbers/generate

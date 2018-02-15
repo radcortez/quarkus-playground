@@ -14,6 +14,10 @@
   <packaging>war</packaging>
   <name>Samples Microprofile - Services - Number API</name>
 
+  <properties>
+    <listening.port>8081</listening.port>
+  </properties>
+
   <build>
     <finalName>${project.artifactId}</finalName>
 
@@ -22,9 +26,17 @@
         <groupId>org.apache.tomee.maven</groupId>
         <artifactId>tomee-maven-plugin</artifactId>
         <configuration>
-          <tomeeHttpPort>8081</tomeeHttpPort>
+          <tomeeHttpPort>${listening.port}</tomeeHttpPort>
           <tomeeAjpPort>8109</tomeeAjpPort>
           <tomeeShutdownPort>8105</tomeeShutdownPort>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <skip>false</skip>
         </configuration>
       </plugin>
     </plugins>
