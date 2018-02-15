@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.radcortez.microprofile.samples</groupId>
+  <artifactId>parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Samples Microprofile</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <version.java>1.8</version.java>
+    <version.javaee>7.0</version.javaee>
+    <version.tomee>7.0.4</version.tomee>
+
+    <plugin.clean.version>3.0.0</plugin.clean.version>
+    <plugin.compiler.version>3.7.0</plugin.compiler.version>
+    <plugin.war.version>3.1.0</plugin.war.version>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>${plugin.clean.version}</version>
+          <configuration>
+            <filesets>
+              <fileset>
+                <directory>.distribution</directory>
+              </fileset>
+            </filesets>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${plugin.compiler.version}</version>
+          <configuration>
+            <source>${version.java}</source>
+            <target>${version.java}</target>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>${plugin.war.version}</version>
+          <configuration>
+            <archive>
+              <manifest>
+                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              </manifest>
+              <manifestEntries>
+                <Date>${maven.build.timestamp}</Date>
+                <Specification-Title>${project.name}</Specification-Title>
+                <Specification-Version>${project.version}</Specification-Version>
+                <Implementation-Title>${project.name}</Implementation-Title>
+                <Implementation-Version>${project.version}</Implementation-Version>
+              </manifestEntries>
+            </archive>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.tomee.maven</groupId>
+          <artifactId>tomee-maven-plugin</artifactId>
+          <version>${version.tomee}</version>
+          <configuration>
+            <libs>
+              <lib>remove:openjpa-</lib>
+              <lib>org.hibernate:hibernate-core:5.2.0.Final</lib>
+              <lib>org.hibernate.common:hibernate-commons-annotations:5.0.1.Final</lib>
+              <lib>org.jboss.logging:jboss-logging:3.3.0.Final</lib>
+              <lib>dom4j:dom4j:1.6.1</lib>
+              <lib>org.javassist:javassist:3.18.1-GA</lib>
+              <lib>com.fasterxml:classmate:1.1.0</lib>
+              <lib>antlr:antlr:2.7.7</lib>
+            </libs>
+            <systemVariables>
+              <javax.persistence.provider>
+                org.hibernate.jpa.HibernatePersistenceProvider
+              </javax.persistence.provider>
+              <tomee.jpa.factory.lazy>true</tomee.jpa.factory.lazy>
+              <openejb.jaxrs.providers.auto>true</openejb.jaxrs.providers.auto>
+            </systemVariables>
+          </configuration>
+          <executions>
+            <execution>
+              <id>executable-jar</id>
+              <goals>
+                <goal>exec</goal>
+              </goals>
+              <phase>package</phase>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-api</artifactId>
+        <version>${version.javaee}</version>
+        <scope>provided</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <modules>
+    <module>services</module>
+  </modules>
+</project>
