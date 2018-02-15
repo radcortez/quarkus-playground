@@ -6,16 +6,12 @@
 
   <parent>
     <groupId>com.radcortez.microprofile.samples</groupId>
-    <artifactId>parent</artifactId>
+    <artifactId>clients</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>services</artifactId>
-  <packaging>pom</packaging>
-  <name>Samples Microprofile - Services</name>
+  <artifactId>simulator</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>Samples Microprofile - Clients - Simulator</name>
 
-  <modules>
-    <module>number-api</module>
-    <module>book-api</module>
-  </modules>
 </project>

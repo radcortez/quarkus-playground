@@ -10,12 +10,11 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>services</artifactId>
+  <artifactId>clients</artifactId>
   <packaging>pom</packaging>
-  <name>Samples Microprofile - Services</name>
+  <name>Samples Microprofile - Clients</name>
 
   <modules>
-    <module>number-api</module>
-    <module>book-api</module>
+    <module>simulator</module>
   </modules>
 </project>
