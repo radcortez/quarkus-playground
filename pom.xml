@@ -28,9 +28,26 @@
     <dependency.config.version>1.0</dependency.config.version>
     <dependency.cxf.version>3.2.2</dependency.cxf.version>
     <dependency.johnzon.version>1.0.0</dependency.johnzon.version>
+    <dependency.safeguard.version>1.0</dependency.safeguard.version>
 
     <listening.port/>
   </properties>
+
+<!--
+  <repositories>
+    <repository>
+      <id>apache</id>
+      <name>Apache Repository</name>
+      <url>https://repository.apache.org/content/repositories/releases/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+-->
 
   <build>
     <pluginManagement>
@@ -96,9 +113,15 @@
               <lib>com.fasterxml:classmate:1.1.0</lib>
               <lib>antlr:antlr:2.7.7</lib>
 
-              <!-- MicroProfile -->
+              <!-- MicroProfile Config-->
               <lib>org.eclipse.microprofile.config:microprofile-config-api:1.2</lib>
               <lib>org.apache.geronimo.config:geronimo-config-impl:${dependency.config.version}</lib>
+
+              <!-- MicroProfile Fault Tolerance -->
+              <lib>org.eclipse.microprofile.fault-tolerance:microprofile-fault-tolerance-api:1.0</lib>
+              <lib>org.apache.geronimo.safeguard:safeguard-api:${dependency.safeguard.version}</lib>
+              <lib>org.apache.geronimo.safeguard:safeguard-impl:${dependency.safeguard.version}</lib>
+              <lib>net.jodah:failsafe:1.0.4</lib>
             </libs>
             <systemVariables>
               <javax.persistence.provider>
@@ -106,6 +129,11 @@
               </javax.persistence.provider>
               <tomee.jpa.factory.lazy>true</tomee.jpa.factory.lazy>
               <openejb.jaxrs.providers.auto>true</openejb.jaxrs.providers.auto>
+
+              <!-- For CDI Beans on Fault Tolerance to be added into the WebApp context -->
+              <tomee.webapp.classloader.enrichment.prefixes>
+                safeguard-impl
+              </tomee.webapp.classloader.enrichment.prefixes>
             </systemVariables>
           </configuration>
           <executions>
@@ -217,6 +245,19 @@
         <groupId>org.apache.johnzon</groupId>
         <artifactId>johnzon-core</artifactId>
         <version>${dependency.johnzon.version}</version>
+      </dependency>
+
+      <!-- MP Fault Tolerance Implementation -->
+      <dependency>
+        <groupId>org.apache.geronimo.safeguard</groupId>
+        <artifactId>safeguard-api</artifactId>
+        <version>${dependency.safeguard.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.geronimo.safeguard</groupId>
+        <artifactId>safeguard-impl</artifactId>
+        <version>${dependency.safeguard.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

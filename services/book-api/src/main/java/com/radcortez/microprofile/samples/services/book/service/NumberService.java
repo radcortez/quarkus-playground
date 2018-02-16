@@ -1,6 +1,8 @@
 package com.radcortez.microprofile.samples.services.book.service;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
+import org.eclipse.microprofile.faulttolerance.Fallback;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -35,6 +37,8 @@ public class NumberService {
         client.close();
     }
 
+    @CircuitBreaker
+    @Fallback(NumberFallbackHandler.class)
     public String getNumber() {
         final Response response = numberApi.request().get();
 
