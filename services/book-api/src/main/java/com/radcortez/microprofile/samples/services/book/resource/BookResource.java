@@ -69,7 +69,7 @@ public class BookResource {
     }
 
     @DELETE
-    @Path("/{id : \\d+}")
+    @Path("/{id}")
     public Response delete(@PathParam("id") final Long id) {
         bookBean.deleteById(id);
         return noContent().build();

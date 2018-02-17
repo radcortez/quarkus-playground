@@ -11,29 +11,30 @@
   </parent>
 
   <artifactId>simulator</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
   <name>Samples Microprofile - Clients - Simulator</name>
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.tomee.maven</groupId>
+        <artifactId>tomee-maven-plugin</artifactId>
+        <configuration>
+          <tomeeHttpPort>9080</tomeeHttpPort>
+          <tomeeAjpPort>9009</tomeeAjpPort>
+          <tomeeShutdownPort>9005</tomeeShutdownPort>
+          <args>"-Dcom.radcortez.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://localhost:8080/book-api"</args>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
   <dependencies>
     <dependency>
-      <groupId>org.apache.geronimo.config</groupId>
-      <artifactId>geronimo-config-impl</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.cxf</groupId>
-      <artifactId>cxf-rt-rs-mp-client</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.johnzon</groupId>
-      <artifactId>johnzon-core</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>javax.ws.rs</groupId>
-      <artifactId>javax.ws.rs-api</artifactId>
-      <version>2.1</version>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
     </dependency>
   </dependencies>
 

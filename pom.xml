@@ -33,22 +33,6 @@
     <listening.port/>
   </properties>
 
-<!--
-  <repositories>
-    <repository>
-      <id>apache</id>
-      <name>Apache Repository</name>
-      <url>https://repository.apache.org/content/repositories/releases/</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
--->
-
   <build>
     <pluginManagement>
       <plugins>
@@ -122,6 +106,10 @@
               <lib>org.apache.geronimo.safeguard:safeguard-api:${dependency.safeguard.version}</lib>
               <lib>org.apache.geronimo.safeguard:safeguard-impl:${dependency.safeguard.version}</lib>
               <lib>net.jodah:failsafe:1.0.4</lib>
+
+              <!-- MicroProfile Rest Client -->
+              <lib>org.eclipse.microprofile.rest.client:microprofile-rest-client-api:1.0</lib>
+              <lib>org.apache.cxf:cxf-rt-rs-mp-client:${dependency.cxf.version}</lib>
             </libs>
             <systemVariables>
               <javax.persistence.provider>
