@@ -16,5 +16,6 @@
 
   <modules>
     <module>simulator</module>
+    <module>standalone</module>
   </modules>
 </project>

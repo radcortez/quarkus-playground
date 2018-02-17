@@ -1,4 +1,4 @@
-package com.radcortez.microprofile.samples.clients.simulator;
+package com.radcortez.microprofile.samples.clients.standalone;
 
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
