@@ -1,18 +1,26 @@
 version: '2'
 services:
 
-    number-api:
-        image: radcortez/mp-samples/number-api:default
-        container_name: number-api
-        ports:
-            - 8081:8081
+  number-api:
+    image: radcortez/mp-samples/number-api:default
+    container_name: number-api
+    ports:
+      - 8081:8081
 
-    book-api:
-        image: radcortez/mp-samples/book-api:default
-        container_name: book-api
-        ports:
-            - 8080:8080
-        depends_on:
-          - number-api
-        environment:
-          - NUMBER_TARGET_URL=http://number-api:8081/number-api/numbers/generate
+  book-api:
+    image: radcortez/mp-samples/book-api:default
+    container_name: book-api
+    ports:
+        - 8080:8080
+    environment:
+      - NUMBER_TARGET_URL=http://number-api:8081/number-api/numbers/generate
+    depends_on:
+      - number-api
+
+  simulator:
+    image: radcortez/mp-samples/simulator:default
+    environment:
+      - "CATALINA_OPTS=-Dcom.radcortez.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://book-api:8080/book-api"
+    depends_on:
+      - number-api
+      - book-api

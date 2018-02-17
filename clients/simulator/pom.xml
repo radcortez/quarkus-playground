@@ -14,6 +14,10 @@
   <packaging>war</packaging>
   <name>Samples Microprofile - Clients - Simulator</name>
 
+  <properties>
+    <listening.port>9080</listening.port>
+  </properties>
+
   <build>
     <finalName>${project.artifactId}</finalName>
 
@@ -22,10 +26,18 @@
         <groupId>org.apache.tomee.maven</groupId>
         <artifactId>tomee-maven-plugin</artifactId>
         <configuration>
-          <tomeeHttpPort>9080</tomeeHttpPort>
+          <tomeeHttpPort>${listening.port}</tomeeHttpPort>
           <tomeeAjpPort>9009</tomeeAjpPort>
           <tomeeShutdownPort>9005</tomeeShutdownPort>
           <args>"-Dcom.radcortez.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://localhost:8080/book-api"</args>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <skip>false</skip>
         </configuration>
       </plugin>
     </plugins>
