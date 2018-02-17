@@ -1,5 +1,6 @@
 package com.radcortez.microprofile.samples.clients.simulator;
 
+import com.github.javafaker.Faker;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -20,6 +21,9 @@ public class BookScenarioInvoker extends ScenarioInvoker {
     @RestClient
     private BookService bookService;
 
+    @Inject
+    private Faker faker;
+
     @Override
     protected List<Supplier<Response>> getEndpoints() {
         final List<Supplier<Response>> endpoints = new ArrayList<>();
@@ -37,16 +41,20 @@ public class BookScenarioInvoker extends ScenarioInvoker {
 
     private JsonObject createBook() {
         return Json.createObjectBuilder()
-                   .add("author", "Roberto Cortez")
-                   .add("title", "Awesome Book")
-                   .add("year", 2018)
-                   .add("genre", "Tech")
+                   .add("author", faker.book().author())
+                   .add("title", faker.book().title())
+                   .add("year", faker.number().numberBetween(1900, 2017))
+                   .add("genre", faker.book().genre())
                    .build();
     }
 
     private Long getRandomBook() {
         final JsonArray all = bookService.findAll().readEntity(JsonArray.class);
-        final JsonObject object = all.getJsonObject((int) (Math.random() * all.size()));
-        return object.getJsonNumber("id").longValue();
+        if (!all.isEmpty()) {
+            final JsonObject object = all.getJsonObject((int) (Math.random() * all.size()));
+            return object.getJsonNumber("id").longValue();
+        } else {
+            return 0L;
+        }
     }
 }
