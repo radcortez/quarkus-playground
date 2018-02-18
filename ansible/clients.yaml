@@ -1,0 +1,18 @@
+---
+- hosts: grom
+  gather_facts: no
+  remote_user: pirate
+  become: yes
+  become_method: sudo
+
+  tasks:
+  - name: Deploy Simulator
+    docker_container:
+      name: simulator
+      image: docker-registry:5000/radcortez/mp-samples/simulator:rpi
+      state: started
+      restart: yes
+      pull: true
+      env:
+        CATALINA_OPTS: "-Dcom.radcortez.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://pi-grom-database:8080/book-api"
+    when: (inventory_hostname == "pi-grom-server-02")

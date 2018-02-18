@@ -11,7 +11,7 @@ services:
     image: radcortez/mp-samples/book-api:default
     container_name: book-api
     ports:
-        - 8080:8080
+      - 8080:8080
     environment:
       - NUMBER_TARGET_URL=http://number-api:8081/number-api/numbers/generate
     depends_on:

@@ -142,7 +142,7 @@
           <configuration>
             <verbose>true</verbose>
             <skip>true</skip>
-            <registry>docker-registry:5000</registry>
+            <registry>localhost:5000</registry>
             <pullRegistry>docker.io</pullRegistry>
             <images>
               <image>
