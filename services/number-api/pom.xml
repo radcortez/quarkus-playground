@@ -18,6 +18,32 @@
     <listening.port>8081</listening.port>
   </properties>
 
+  <dependencies>
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.microprofile</groupId>
+      <artifactId>microprofile</artifactId>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.opentracing</groupId>
+      <artifactId>opentracing-api</artifactId>
+      <version>0.31.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.microprofile-ext.openapi-ext</groupId>
+      <artifactId>swagger-ui</artifactId>
+      <version>1.0.1</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+
   <build>
     <finalName>${project.artifactId}</finalName>
 

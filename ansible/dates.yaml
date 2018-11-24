@@ -1,0 +1,18 @@
+---
+- hosts: all
+  gather_facts: no
+  remote_user: pirate
+  become: yes
+  become_method: sudo
+
+  tasks:
+  - name: Check Date
+    set_fact:
+      date="{{lookup('pipe','date \"+%Y-%m-%d %H:%M:%S\"')}}"
+      timezone="{{lookup('pipe','date \"+%Z\"')}}"
+
+  - name: Print Date
+    debug: msg="{{date}} {{timezone}}"
+
+  - name: Set Date
+    shell: 'sudo timedatectl set-ntp 0 && sudo timedatectl set-timezone "Europe/London" && sudo timedatectl set-time "{{date}}" && sudo timedatectl set-ntp 1'

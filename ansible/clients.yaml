@@ -9,7 +9,7 @@
   - name: Deploy Simulator
     docker_container:
       name: simulator
-      image: docker-registry:5000/radcortez/mp-samples/simulator:rpi
+      image: docker-repo:5000/radcortez/mp-samples/simulator:rpi
       state: started
       restart: yes
       pull: true

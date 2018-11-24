@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response;
 @Path("numbers")
 @Produces(MediaType.TEXT_PLAIN)
 public class NumberResource {
+
     @GET
     @Path("generate")
     public Response generate() {

@@ -11,6 +11,10 @@
 
   <name>Samples Microprofile</name>
 
+  <prerequisites>
+    <maven>3.0</maven>
+  </prerequisites>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -19,11 +23,12 @@
     <plugin.clean.version>3.0.0</plugin.clean.version>
     <plugin.compiler.version>3.7.0</plugin.compiler.version>
     <plugin.war.version>3.1.0</plugin.war.version>
-    <plugin.tomee.version>7.0.4</plugin.tomee.version>
+    <plugin.tomee.version>8.0.0-M1</plugin.tomee.version>
     <plugin.docker.version>0.24.0</plugin.docker.version>
 
+    <dependency.tomee.version>${plugin.tomee.version}</dependency.tomee.version>
     <dependency.microprofile.version>1.3</dependency.microprofile.version>
-    <dependency.javaee.version>7.0</dependency.javaee.version>
+    <dependency.javaee.version>8.0</dependency.javaee.version>
 
     <dependency.config.version>1.0</dependency.config.version>
     <dependency.cxf.version>3.2.2</dependency.cxf.version>
@@ -86,6 +91,8 @@
           <artifactId>tomee-maven-plugin</artifactId>
           <version>${plugin.tomee.version}</version>
           <configuration>
+            <tomeeVersion>${dependency.tomee.version}</tomeeVersion>
+            <tomeeClassifier>microprofile</tomeeClassifier>
             <libs>
               <!-- Hibernate -->
               <lib>remove:openjpa-</lib>
@@ -96,20 +103,6 @@
               <lib>org.javassist:javassist:3.18.1-GA</lib>
               <lib>com.fasterxml:classmate:1.1.0</lib>
               <lib>antlr:antlr:2.7.7</lib>
-
-              <!-- MicroProfile Config-->
-              <lib>org.eclipse.microprofile.config:microprofile-config-api:1.2</lib>
-              <lib>org.apache.geronimo.config:geronimo-config-impl:${dependency.config.version}</lib>
-
-              <!-- MicroProfile Fault Tolerance -->
-              <lib>org.eclipse.microprofile.fault-tolerance:microprofile-fault-tolerance-api:1.0</lib>
-              <lib>org.apache.geronimo.safeguard:safeguard-api:${dependency.safeguard.version}</lib>
-              <lib>org.apache.geronimo.safeguard:safeguard-impl:${dependency.safeguard.version}</lib>
-              <lib>net.jodah:failsafe:1.0.4</lib>
-
-              <!-- MicroProfile Rest Client -->
-              <lib>org.eclipse.microprofile.rest.client:microprofile-rest-client-api:1.0</lib>
-              <lib>org.apache.cxf:cxf-rt-rs-mp-client:${dependency.cxf.version}</lib>
             </libs>
             <systemVariables>
               <javax.persistence.provider>
@@ -212,6 +205,14 @@
         <artifactId>javaee-api</artifactId>
         <version>${dependency.javaee.version}</version>
         <scope>provided</scope>
+      </dependency>
+
+      <!-- MP BOM -->
+      <dependency>
+        <groupId>org.eclipse.microprofile</groupId>
+        <artifactId>microprofile</artifactId>
+        <version>${dependency.microprofile.version}</version>
+        <type>pom</type>
       </dependency>
 
       <!-- MP Configuration Implementation -->
