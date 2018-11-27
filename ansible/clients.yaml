@@ -15,4 +15,4 @@
       pull: true
       env:
         CATALINA_OPTS: "-Dcom.radcortez.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://pi-grom-database:8080/book-api"
-    when: (inventory_hostname == "pi-grom-server-02")
+    when: (inventory_hostname == "pi-grom-load-balancer")
