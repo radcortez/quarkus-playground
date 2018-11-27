@@ -48,6 +48,8 @@ http://localhost:8081/number-api/metrics/application/generateIsbnTimed
 
 = all
 
+
+```
 @ApplicationScoped
 @Path("numbers")
 @Produces(MediaType.TEXT_PLAIN)
@@ -69,3 +71,4 @@ public class NumberResource {
         return Response.ok(Math.random()).build();
     }
 }
+```
