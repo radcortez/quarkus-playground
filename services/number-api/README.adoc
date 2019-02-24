@@ -69,3 +69,7 @@ public class NumberResource {
         return Response.ok(Math.random()).build();
     }
 }
+
+= Reporter demo
+
+Go on http://localhost:8081/number-api/geronimo/microprofile/reporter/index.html
