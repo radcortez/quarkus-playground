@@ -1,8 +1,7 @@
 package com.radcortez.microprofile.samples.services.book.service;
 
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
-import org.eclipse.microprofile.faulttolerance.Fallback;
+import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
+import static javax.ws.rs.core.Response.Status.OK;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -14,8 +13,10 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
-import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
-import static javax.ws.rs.core.Response.Status.OK;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
+import org.eclipse.microprofile.faulttolerance.Fallback;
+import org.eclipse.microprofile.opentracing.ClientTracingRegistrar;
 
 @ApplicationScoped
 public class NumberService {
@@ -28,7 +29,7 @@ public class NumberService {
 
     @PostConstruct
     private void init() {
-        client = ClientBuilder.newClient();
+        client = ClientTracingRegistrar.configure(ClientBuilder.newBuilder()).build();
         numberApi = client.target(numberApiTargetUrl);
     }
 
