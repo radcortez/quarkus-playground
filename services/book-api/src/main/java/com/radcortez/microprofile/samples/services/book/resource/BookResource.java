@@ -33,8 +33,8 @@ public class BookResource {
 
     @GET
     @Path("/{id}")
-    @Metered
-    @Timed
+    @Metered(reusable = true)
+    @Timed(reusable = true)
     public Response findById(@PathParam("id") final Long id) {
         return bookBean.findById(id)
                 .map(Response::ok)
@@ -43,15 +43,15 @@ public class BookResource {
     }
 
     @GET
-    @Metered
-    @Timed
+    @Metered(reusable = true)
+    @Timed(reusable = true)
     public Response findAll() {
         return ok(bookBean.findAll()).build();
     }
 
     @POST
-    @Metered
-    @Timed
+    @Metered(reusable = true)
+    @Timed(reusable = true)
     public Response create(final Book book, @Context UriInfo uriInfo) {
         final String number = numberService.getNumber();
         book.setIsbn(number);
@@ -65,16 +65,16 @@ public class BookResource {
     }
 
     @PUT
-    @Metered
-    @Timed
+    @Metered(reusable = true)
+    @Timed(reusable = true)
     public Response update(final Book book) {
         return ok(bookBean.update(book)).build();
     }
 
     @DELETE
     @Path("/{id}")
-    @Metered
-    @Timed
+    @Metered(reusable = true)
+    @Timed(reusable = true)
     public Response delete(@PathParam("id") final Long id) {
         bookBean.deleteById(id);
         return noContent().build();
