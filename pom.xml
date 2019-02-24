@@ -118,14 +118,6 @@
               <!-- we upgraded opentracing impl but tomee is not yet ready for it -->
               <org.apache.geronimo.microprofile.opentracing.common.microprofile.server.GeronimoOpenTracingFeature.activated>false</org.apache.geronimo.microprofile.opentracing.common.microprofile.server.GeronimoOpenTracingFeature.activated>
 
-              <!-- don't monitor meta endpoints otherwise the demo is too messy -->
-              <geronimo.opentracing.server.filter.request.skip.org.apache.geronimo.microprofile.openapi.jaxrs.OpenAPIEndpoint>true</geronimo.opentracing.server.filter.request.skip.org.apache.geronimo.microprofile.openapi.jaxrs.OpenAPIEndpoint>
-              <geronimo.opentracing.server.filter.request.skip.org.apache.geronimo.microprofile.metrics.jaxrs.MetricsEndpoints>true</geronimo.opentracing.server.filter.request.skip.org.apache.geronimo.microprofile.metrics.jaxrs.MetricsEndpoints>
-              <geronimo.opentracing.server.filter.request.skip.org.apache.geronimo.microprofile.metrics.jaxrs.CdiMetricsEndpoints>true</geronimo.opentracing.server.filter.request.skip.org.apache.geronimo.microprofile.metrics.jaxrs.CdiMetricsEndpoints>
-              <geronimo.opentracing.server.filter.request.skip.org.apache.geronimo.microprofile.impl.health.jaxrs.HealthChecksEndpoint>true</geronimo.opentracing.server.filter.request.skip.org.apache.geronimo.microprofile.impl.health.jaxrs.HealthChecksEndpoint>
-              <geronimo.opentracing.server.filter.request.skip.org.apache.geronimo.microprofile.reporter.storage.front.ReporterEndpoints>true</geronimo.opentracing.server.filter.request.skip.org.apache.geronimo.microprofile.reporter.storage.front.ReporterEndpoints>
-              <geronimo.opentracing.server.filter.request.skip.org.microprofileext.openapi.swaggerui.OpenApiUiService>true</geronimo.opentracing.server.filter.request.skip.org.microprofileext.openapi.swaggerui.OpenApiUiService>
-
               <!-- For CDI Beans on Fault Tolerance to be added into the WebApp context -->
               <tomee.webapp.classloader.enrichment.prefixes>
                 safeguard-impl
