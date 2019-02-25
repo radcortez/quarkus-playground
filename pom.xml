@@ -103,6 +103,10 @@
               <lib>org.javassist:javassist:3.18.1-GA</lib>
               <lib>com.fasterxml:classmate:1.1.0</lib>
               <lib>antlr:antlr:2.7.7</lib>
+              <!-- upgrade geronimo opentracing -->
+              <lib>remove:geronimo-opentracing</lib>
+              <li>org.apache.geronimo:geronimo-opentracing-common:1.0.2-SNAPSHOT</li>
+              <li>org.apache.geronimo:geronimo-opentracing:1.0.2-SNAPSHOT</li>
             </libs>
             <systemVariables>
               <javax.persistence.provider>
@@ -110,6 +114,9 @@
               </javax.persistence.provider>
               <tomee.jpa.factory.lazy>true</tomee.jpa.factory.lazy>
               <openejb.jaxrs.providers.auto>true</openejb.jaxrs.providers.auto>
+
+              <!-- we upgraded opentracing impl but tomee is not yet ready for it -->
+              <org.apache.geronimo.microprofile.opentracing.common.microprofile.server.GeronimoOpenTracingFeature.activated>false</org.apache.geronimo.microprofile.opentracing.common.microprofile.server.GeronimoOpenTracingFeature.activated>
 
               <!-- For CDI Beans on Fault Tolerance to be added into the WebApp context -->
               <tomee.webapp.classloader.enrichment.prefixes>
