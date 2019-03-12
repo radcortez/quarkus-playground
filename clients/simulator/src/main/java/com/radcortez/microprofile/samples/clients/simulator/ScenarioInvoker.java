@@ -25,10 +25,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 public abstract class ScenarioInvoker implements Runnable {
     private boolean execute;
     private WeightedRandomResult<Supplier<Response>> endpointsToExecute;
+    private Logger logger;
 
     protected abstract List<Supplier<Response>> getEndpoints();
 
@@ -37,6 +39,7 @@ public abstract class ScenarioInvoker implements Runnable {
         getEndpoints();
         this.execute = true;
         this.endpointsToExecute = new WeightedRandomResult<>(getEndpoints());
+        this.logger = Logger.getLogger(getClass().getName());
     }
 
     @Override
@@ -44,7 +47,7 @@ public abstract class ScenarioInvoker implements Runnable {
         while (execute) {
             try {
                 final Response response = endpointsToExecute.get().get();
-                System.out.println(response.getStatus());
+                logger.info("Simulator got a new HTTP response: " + response.getStatus());
                 sleep();
             } catch (final Exception e) {
                 e.printStackTrace();

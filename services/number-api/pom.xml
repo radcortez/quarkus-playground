@@ -68,7 +68,7 @@
           <tomeeHttpPort>${listening.port}</tomeeHttpPort>
           <tomeeAjpPort>8109</tomeeAjpPort>
           <tomeeShutdownPort>8105</tomeeShutdownPort>
-          <systemVariables>
+          <systemVariables combine.children="append">
             <openejb.classloader.forced-load>org.apache.geronimo.microprofile.reporter.</openejb.classloader.forced-load>
           </systemVariables>
         </configuration>
