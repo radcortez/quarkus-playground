@@ -72,3 +72,8 @@ public class NumberResource {
     }
 }
 ```
+}
+
+= Reporter demo
+
+Go on http://localhost:8081/number-api/geronimo/microprofile/reporter/index.html
