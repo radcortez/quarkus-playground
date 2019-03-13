@@ -12,7 +12,7 @@ services:
   #
 
   number-api:
-    image: radcortez/mp-samples/number-api:default
+    image: microprofile/mp-samples/number-api:default
     container_name: number-api
     ports:
       - 8081:8081
@@ -24,7 +24,7 @@ services:
         -Dgeronimo.opentracing.span.converter.zipkin.http.bulkSendInterval=5000
 
   book-api:
-    image: radcortez/mp-samples/book-api:default
+    image: microprofile/mp-samples/book-api:default
     container_name: book-api
     ports:
       - 8080:8080
@@ -39,12 +39,12 @@ services:
       - number-api
 
   simulator:
-    image: radcortez/mp-samples/simulator:default
+    image: microprofile/mp-samples/simulator:default
     ports:
       - 9080:9080
     environment:
       - CATALINA_OPTS= >-
-        -Dcom.radcortez.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://book-api:8080/book-api
+        -Dcom.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://book-api:8080/book-api
         -Dgeronimo.opentracing.zipkin.serviceName=simulator
         -Dgeronimo.opentracing.span.converter.zipkin.sender=http
         -Dgeronimo.opentracing.span.converter.zipkin.http.collector=http://zipkin:9411/api/v2/spans

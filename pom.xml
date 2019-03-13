@@ -4,7 +4,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.radcortez.microprofile.samples</groupId>
+  <groupId>com.microprofile.samples</groupId>
   <artifactId>mp-samples-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -146,7 +146,7 @@
             <pullRegistry>docker.io</pullRegistry>
             <images>
               <image>
-                <name>radcortez/mp-samples/${project.artifactId}:rpi</name>
+                <name>microprofile/mp-samples/${project.artifactId}:rpi</name>
                 <alias>rpi</alias>
                 <build>
                   <from>maxleiko/armhf-alpine-java</from>
@@ -172,7 +172,7 @@
                 </run>
               </image>
               <image>
-                <name>radcortez/mp-samples/${project.artifactId}:default</name>
+                <name>microprofile/mp-samples/${project.artifactId}:default</name>
                 <build>
                   <from>openjdk:8-jre</from>
                   <ports>

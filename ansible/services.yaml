@@ -10,18 +10,18 @@
   - name: Deploy Number API
     docker_container:
       name: number-api
-      image: docker-registry:5000/radcortez/mp-samples/number-api:rpi
+      image: docker-repo:5000/microprofile/mp-samples/number-api:rpi
       state: started
       restart: yes
       pull: true
       ports:
        - "8081:8081"
-    when: (inventory_hostname == "pi-grom-server-01")
+    when: (inventory_hostname == "pi-grom-server-01") or (inventory_hostname == "pi-grom-server-02")
 
   - name: Deploy Book API
     docker_container:
       name: book-api
-      image: docker-registry:5000/radcortez/mp-samples/book-api:rpi
+      image: docker-repo:5000/microprofile/mp-samples/book-api:rpi
       state: started
       restart: yes
       pull: true

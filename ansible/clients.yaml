@@ -9,10 +9,10 @@
   - name: Deploy Simulator
     docker_container:
       name: simulator
-      image: docker-repo:5000/radcortez/mp-samples/simulator:rpi
+      image: docker-repo:5000/microprofile/mp-samples/simulator:rpi
       state: started
       restart: yes
       pull: true
       env:
-        CATALINA_OPTS: "-Dcom.radcortez.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://pi-grom-database:8080/book-api"
+        CATALINA_OPTS: "-Dcom.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://pi-grom-database:8080/book-api"
     when: (inventory_hostname == "pi-grom-load-balancer")
