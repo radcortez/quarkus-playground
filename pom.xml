@@ -105,13 +105,11 @@
               <lib>antlr:antlr:2.7.7</lib>
               <!-- upgrade geronimo opentracing -->
               <lib>remove:geronimo-opentracing</lib>
-              <li>org.apache.geronimo:geronimo-opentracing-common:1.0.2-SNAPSHOT</li>
-              <li>org.apache.geronimo:geronimo-opentracing:1.0.2-SNAPSHOT</li>
+              <li>org.apache.geronimo:geronimo-opentracing-common:1.0.2</li>
+              <li>org.apache.geronimo:geronimo-opentracing:1.0.2</li>
             </libs>
             <systemVariables>
-              <javax.persistence.provider>
-                org.hibernate.jpa.HibernatePersistenceProvider
-              </javax.persistence.provider>
+              <javax.persistence.provider>org.hibernate.jpa.HibernatePersistenceProvider</javax.persistence.provider>
               <tomee.jpa.factory.lazy>true</tomee.jpa.factory.lazy>
               <openejb.jaxrs.providers.auto>true</openejb.jaxrs.providers.auto>
 
@@ -119,9 +117,7 @@
               <org.apache.geronimo.microprofile.opentracing.common.microprofile.server.GeronimoOpenTracingFeature.activated>false</org.apache.geronimo.microprofile.opentracing.common.microprofile.server.GeronimoOpenTracingFeature.activated>
 
               <!-- For CDI Beans on Fault Tolerance to be added into the WebApp context -->
-              <tomee.webapp.classloader.enrichment.prefixes>
-                safeguard-impl
-              </tomee.webapp.classloader.enrichment.prefixes>
+              <tomee.webapp.classloader.enrichment.prefixes>safeguard-impl</tomee.webapp.classloader.enrichment.prefixes>
             </systemVariables>
           </configuration>
           <executions>
