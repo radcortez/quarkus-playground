@@ -18,7 +18,7 @@ grep -q docker-repo /etc/hosts || {
 ( cd ~/.docker-repo &&
       openssl req -newkey rsa:4096 -nodes -sha256 -keyout docker-repo.key \
             -x509 -days 365 -out docker-repo.crt \
-            -subj "/C=US/ST=LA/L=Santa Monica/O=Tomitribe/OU=IT/CN=docker-repo"
+            -subj "/C=US/ST=LA/L=California/O=MyCompany/OU=IT/CN=docker-repo"
 )
 
 # Start the registry
