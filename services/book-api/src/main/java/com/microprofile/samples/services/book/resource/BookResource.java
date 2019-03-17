@@ -1,12 +1,15 @@
 package com.microprofile.samples.services.book.resource;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static javax.ws.rs.core.Response.Status.NOT_FOUND;
-import static javax.ws.rs.core.Response.noContent;
-import static javax.ws.rs.core.Response.ok;
-import static javax.ws.rs.core.Response.status;
-
-import java.net.URI;
+import com.microprofile.samples.services.book.entity.Book;
+import com.microprofile.samples.services.book.persistence.BookBean;
+import com.microprofile.samples.services.book.service.NumberService;
+import org.eclipse.microprofile.metrics.annotation.Metered;
+import org.eclipse.microprofile.metrics.annotation.Timed;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.opentracing.Traced;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -21,12 +24,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import com.microprofile.samples.services.book.persistence.BookBean;
-import com.microprofile.samples.services.book.service.NumberService;
-import com.microprofile.samples.services.book.entity.Book;
-import org.eclipse.microprofile.metrics.annotation.Metered;
-import org.eclipse.microprofile.metrics.annotation.Timed;
-import org.eclipse.microprofile.opentracing.Traced;
+import java.net.URI;
+
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.Response.Status.NOT_FOUND;
+import static javax.ws.rs.core.Response.noContent;
+import static javax.ws.rs.core.Response.ok;
+import static javax.ws.rs.core.Response.status;
 
 @ApplicationScoped
 @Path("books")
@@ -44,6 +48,8 @@ public class BookResource {
     @Path("/{id}")
     @Metered(name = "com.microprofile.samples.services.book.resource.BookResource.findById_meter")
     @Timed(name = "com.microprofile.samples.services.book.resource.BookResource.findById_timer")
+    @Operation(summary = "Find a Book by Id")
+    @APIResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = Book.class))})
     public Response findById(@PathParam("id") final Long id) {
         return bookBean.findById(id)
                 .map(Response::ok)
@@ -87,5 +93,11 @@ public class BookResource {
     public Response delete(@PathParam("id") final Long id) {
         bookBean.deleteById(id);
         return noContent().build();
+    }
+
+    @GET
+    @Path("number")
+    public Response number() {
+        return Response.ok(numberService.getNumber()).build();
     }
 }
