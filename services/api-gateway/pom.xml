@@ -12,8 +12,26 @@
   <artifactId>api-gateway</artifactId>
   <name>Samples Microprofile - Services - API Gateway</name>
 
+  <properties>
+    <listening.port>8080</listening.port>
+  </properties>
+
   <build>
+    <finalName>${project.artifactId}</finalName>
+
     <plugins>
+      <plugin>
+        <groupId>org.apache.tomee.maven</groupId>
+        <artifactId>tomee-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <skip>false</skip>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>com.tomitribe.tribestream.maven</groupId>
         <artifactId>tribestream-maven-plugin</artifactId>

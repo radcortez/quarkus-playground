@@ -12,6 +12,12 @@ services:
   #
 
   number-api:
+    image: microprofile/mp-samples/api-gateway:default
+    container_name: api-gateway
+    ports:
+      - 8888:8888
+
+  number-api:
     image: microprofile/mp-samples/number-api:default
     container_name: number-api
     ports:

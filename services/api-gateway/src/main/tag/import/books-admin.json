@@ -15,24 +15,24 @@
   "name": "Movies admin",
   "roles": [
     {
-      "displayName": "movies-api-connection",
-      "name": "movies-api-connection",
-      "id": "movies-api-connection"
+      "displayName": "books-api-connection",
+      "name": "books-api-connection",
+      "id": "books-api-connection"
     },
     {
-      "displayName": "Permission to administrate this Movies API Connection",
-      "name": "api_api-connection.movies-api-connection",
-      "id": "api_api-connection.movies-api-connection"
+      "displayName": "Permission to administrate this Books API Connection",
+      "name": "api_api-connection.books-api-connection",
+      "id": "api_api-connection.books-api-connection"
     }
   ],
   "groups": [],
   "type": "CLIENT",
   "tags": [],
   "sourceType": "ACCOUNT",
-  "id": "movies-admin",
+  "id": "books-admin",
   "sourceRef": {
     "id": "gateway-accounts"
   },
   "email": "admin@superbiz.io",
-  "username": "movies-admin"
+  "username": "books-admin"
 }

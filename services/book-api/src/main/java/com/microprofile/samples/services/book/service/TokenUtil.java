@@ -2,6 +2,7 @@ package com.microprofile.samples.services.book.service;
 
 import java.io.InputStream;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -26,6 +27,7 @@ import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.microprofile.jwt.Claims;
 
 /**
@@ -69,6 +71,22 @@ public class TokenUtil {
         return (JSONObject) parser.parse(content);
     }
 
+    public static JSONObject headerOfToken(final String token) throws Exception {
+        if (StringUtils.isEmpty(token)) {
+            throw new IllegalArgumentException("Token can't be null.");
+        }
+
+        final String[] parts = token.split(".");
+        if (parts.length != 3) {
+            throw new IllegalArgumentException("Invalid token format. Should have 3 parts but had only " + parts.length);
+        }
+
+        final byte[] decodedHeader = Base64.getDecoder().decode(parts[0]);
+
+        final JSONParser parser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
+        return (JSONObject) parser.parse(new String(decodedHeader, StandardCharsets.UTF_8));
+    }
+
     /**
      * Utility method to generate a JWT string from a JSON resource file that is signed by the privateKey-pkcs1.pem
      * test resource key, possibly with invalid fields.
@@ -99,7 +117,7 @@ public class TokenUtil {
      * Utility method to generate a JWT string from a JSON resource file that is signed by the privateKey-pkcs1.pem
      * test resource key, possibly with invalid fields.
      *
-     * @param jwtContent   - the JSON Payload for the JWT
+     * @param jwtContent    - the JSON Payload for the JWT
      * @param invalidClaims - the set of claims that should be added with invalid values to test failure modes
      * @param timeClaims    - used to return the exp, iat, auth_time claims
      * @return the JWT string
