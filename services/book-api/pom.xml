@@ -25,11 +25,6 @@
       <plugin>
         <groupId>org.apache.tomee.maven</groupId>
         <artifactId>tomee-maven-plugin</artifactId>
-        <configuration>
-          <systemVariables combine.children="append">
-            <openejb.classloader.forced-load>org.apache.geronimo.microprofile.reporter.</openejb.classloader.forced-load>
-          </systemVariables>
-        </configuration>
       </plugin>
 
       <plugin>
@@ -47,71 +42,11 @@
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
     </dependency>
+
     <dependency>
       <groupId>org.eclipse.microprofile</groupId>
       <artifactId>microprofile</artifactId>
       <type>pom</type>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.microprofile-ext.openapi-ext</groupId>
-      <artifactId>swagger-ui</artifactId>
-      <version>1.0.1</version>
-      <scope>runtime</scope>
-    </dependency>
-
-    <dependency> <!-- note we need to upgrade geronimo opentracing to have span UI -->
-      <groupId>org.apache.geronimo</groupId>
-      <artifactId>geronimo-microprofile-reporter</artifactId>
-      <version>1.0.1</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.webjars.bower</groupId>
-      <artifactId>chart.js</artifactId>
-      <version>2.7.3</version>
-      <scope>runtime</scope>
-    </dependency>
-
-    <!-- todo: drop -->
-    <dependency>
-      <groupId>org.eclipse.microprofile.opentracing</groupId>
-      <artifactId>microprofile-opentracing-api</artifactId>
-      <version>1.1</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.geronimo</groupId>
-      <artifactId>geronimo-opentracing</artifactId>
-      <version>1.0.2</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.opentracing</groupId>
-      <artifactId>opentracing-api</artifactId>
-      <version>0.31.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomee</groupId>
-      <artifactId>tomee-microprofile-webapp</artifactId>
-      <version>8.0.0-M1</version>
-      <scope>provided</scope>
-      <type>pom</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomee</groupId>
-      <artifactId>openejb-cxf-rs</artifactId>
-      <version>8.0.0-M1</version>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.geronimo</groupId>
-      <artifactId>geronimo-metrics</artifactId>
-      <version>1.0.1</version>
-      <scope>provided</scope>
     </dependency>
   </dependencies>
 

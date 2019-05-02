@@ -1,5 +1,7 @@
 package com.microprofile.samples.services.book.entity;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,15 +9,22 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
+@Schema(description = "The Book")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id")
     @SequenceGenerator(name = "id", sequenceName = "id")
+    @Schema(description = "The id of the Book")
     private Long id;
+    @Schema(description = "The author of the Book")
     private String author;
+    @Schema(description = "The title of the Book")
     private String title;
+    @Schema(description = "The year of the Book")
     private Integer year;
+    @Schema(description = "The genre of the Book")
     private String genre;
+    @Schema(description = "The isbn of the Book")
     private String isbn;
 
     public Book() {

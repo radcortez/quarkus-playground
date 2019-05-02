@@ -23,12 +23,13 @@
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
     </dependency>
+
     <dependency>
       <groupId>org.eclipse.microprofile</groupId>
       <artifactId>microprofile</artifactId>
       <type>pom</type>
-      <scope>provided</scope>
     </dependency>
+
     <dependency>
       <groupId>io.opentracing</groupId>
       <artifactId>opentracing-api</artifactId>
@@ -49,6 +50,7 @@
       <version>1.0.1</version>
       <scope>runtime</scope>
     </dependency>
+
     <dependency>
       <groupId>org.webjars.bower</groupId>
       <artifactId>chart.js</artifactId>
