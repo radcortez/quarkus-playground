@@ -57,6 +57,19 @@
       <version>2.7.3</version>
       <scope>runtime</scope>
     </dependency>
+
+    <dependency>
+      <groupId>com.nimbusds</groupId>
+      <artifactId>nimbus-jose-jwt</artifactId>
+      <version>${dependency.nimbus-jose-jwt.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomee</groupId>
+      <artifactId>mp-jwt</artifactId>
+      <version>${dependency.tomee.version}</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <build>

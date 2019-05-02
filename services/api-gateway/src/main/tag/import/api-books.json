@@ -1,0 +1,16 @@
+//api/http/
+{
+  "displayName": null,
+  "description": null,
+  "tags": [],
+  "pool": {
+    "enabledProtocols": [
+      "ALL"
+    ],
+    "enabledCipherSuites": [
+      "ALL"
+    ]
+  },
+  "name": "Books API Connection",
+  "endpoint": "http://localhost:8080"
+}

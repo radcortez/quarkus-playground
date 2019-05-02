@@ -34,8 +34,10 @@
     <dependency.cxf.version>3.2.2</dependency.cxf.version>
     <dependency.johnzon.version>1.0.0</dependency.johnzon.version>
     <dependency.safeguard.version>1.0</dependency.safeguard.version>
+    <dependency.jwt.version>1.0</dependency.jwt.version>
 
     <listening.port/>
+    <dependency.nimbus-jose-jwt.version>4.23</dependency.nimbus-jose-jwt.version>
   </properties>
 
   <build>
@@ -233,6 +235,20 @@
         <artifactId>johnzon-core</artifactId>
         <version>${dependency.johnzon.version}</version>
       </dependency>
+
+      <dependency>
+        <groupId>com.nimbusds</groupId>
+        <artifactId>nimbus-jose-jwt</artifactId>
+        <version>${dependency.nimbus-jose-jwt.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomee</groupId>
+        <artifactId>mp-jwt</artifactId>
+        <version>${dependency.tomee.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
@@ -250,4 +266,5 @@
     <module>services</module>
     <module>clients</module>
   </modules>
+
 </project>

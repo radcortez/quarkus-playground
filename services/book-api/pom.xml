@@ -48,6 +48,19 @@
       <artifactId>microprofile</artifactId>
       <type>pom</type>
     </dependency>
+
+    <dependency>
+      <groupId>com.nimbusds</groupId>
+      <artifactId>nimbus-jose-jwt</artifactId>
+      <version>${dependency.nimbus-jose-jwt.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomee</groupId>
+      <artifactId>mp-jwt</artifactId>
+      <version>${dependency.tomee.version}</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
 </project>
