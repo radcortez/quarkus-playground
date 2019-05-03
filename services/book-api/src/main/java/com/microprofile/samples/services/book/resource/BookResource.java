@@ -143,7 +143,7 @@ public class BookResource {
     }
 
     private String toIdentityString() {
-        if (jwtPrincipal == null) {
+        if (jwtPrincipal == null || jwtPrincipal.getName() == null) {
             return "no authenticated user.";
         }
 

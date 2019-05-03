@@ -23,7 +23,7 @@
     <plugin.clean.version>3.0.0</plugin.clean.version>
     <plugin.compiler.version>3.7.0</plugin.compiler.version>
     <plugin.war.version>3.1.0</plugin.war.version>
-    <plugin.tomee.version>8.0.0-M2</plugin.tomee.version>
+    <plugin.tomee.version>8.0.0-SNAPSHOT</plugin.tomee.version>
     <plugin.docker.version>0.24.0</plugin.docker.version>
 
     <dependency.tomee.version>${plugin.tomee.version}</dependency.tomee.version>
@@ -123,6 +123,9 @@
                 <goal>exec</goal>
               </goals>
               <phase>package</phase>
+              <configuration>
+                <attach>false</attach>
+              </configuration>
             </execution>
           </executions>
         </plugin>
@@ -203,7 +206,6 @@
         <groupId>javax</groupId>
         <artifactId>javaee-api</artifactId>
         <version>${dependency.javaee.version}</version>
-        <scope>provided</scope>
       </dependency>
 
       <!-- MP BOM -->
@@ -212,7 +214,6 @@
         <artifactId>microprofile</artifactId>
         <version>${dependency.microprofile.version}</version>
         <type>pom</type>
-        <scope>provided</scope>
       </dependency>
 
       <!-- MP Configuration Implementation -->
@@ -240,13 +241,11 @@
         <groupId>com.nimbusds</groupId>
         <artifactId>nimbus-jose-jwt</artifactId>
         <version>${dependency.nimbus-jose-jwt.version}</version>
-        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.apache.tomee</groupId>
         <artifactId>mp-jwt</artifactId>
         <version>${dependency.tomee.version}</version>
-        <scope>provided</scope>
       </dependency>
 
     </dependencies>

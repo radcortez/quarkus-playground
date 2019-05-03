@@ -13,6 +13,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.eclipse.microprofile.opentracing.Traced;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -44,11 +45,12 @@ public class NumberResource {
     @APIResponses({
             @APIResponse(responseCode = "200", description = "Successful, returning the value")
     })
+    @RolesAllowed("number-api")
     public Response generate() {
 
         // this uses the information in the JWT
         // after it gets validated, we'll get the "username" claim injected directly
-        logger.info(String.format("User %s called Number API.", username));
+        logger.info(String.format("User `%s` called Number API.", username.getValue()));
 
         return Response.ok(Math.random()).build();
     }

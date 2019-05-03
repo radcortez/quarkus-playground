@@ -2,15 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+
+  <modelVersion>4.0.0</modelVersion>
+
   <parent>
-    <artifactId>services</artifactId>
     <groupId>com.microprofile.samples</groupId>
+    <artifactId>services</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <modelVersion>4.0.0</modelVersion>
 
   <artifactId>api-gateway</artifactId>
   <name>Samples Microprofile - Services - API Gateway</name>
+  <packaging>war</packaging>
 
   <properties>
     <listening.port>8080</listening.port>
@@ -18,11 +22,22 @@
 
   <build>
     <finalName>${project.artifactId}</finalName>
-
     <plugins>
       <plugin>
         <groupId>org.apache.tomee.maven</groupId>
         <artifactId>tomee-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>executable-jar</id>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <skipCurrentProject>true</skipCurrentProject>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
