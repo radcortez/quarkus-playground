@@ -18,6 +18,11 @@
       "displayName": "create",
       "name": "create",
       "id": "create"
+    },
+    {
+      "displayName": "number-api",
+      "name": "number-api",
+      "id": "number-api"
     }
   ],
   "credentials": {
