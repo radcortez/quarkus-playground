@@ -22,12 +22,14 @@
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>org.eclipse.microprofile</groupId>
       <artifactId>microprofile</artifactId>
       <type>pom</type>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
@@ -44,18 +46,16 @@
       <scope>runtime</scope>
     </dependency>
 
-    <dependency> <!-- note we need to upgrade geronimo opentracing to have span UI -->
-      <groupId>org.apache.geronimo</groupId>
-      <artifactId>geronimo-microprofile-reporter</artifactId>
-      <version>1.0.1</version>
-      <scope>runtime</scope>
-    </dependency>
-
     <dependency>
-      <groupId>org.webjars.bower</groupId>
-      <artifactId>chart.js</artifactId>
-      <version>2.7.3</version>
-      <scope>runtime</scope>
+      <groupId>com.nimbusds</groupId>
+      <artifactId>nimbus-jose-jwt</artifactId>
+      <version>${dependency.nimbus-jose-jwt.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomee</groupId>
+      <artifactId>mp-jwt</artifactId>
+      <version>${dependency.tomee.version}</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 

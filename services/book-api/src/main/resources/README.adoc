@@ -1,0 +1,5 @@
+Only public key is required to validate an incoming JWT.
+
+In order to make it easier to run and test, the NumberService actually build a signed token without calling the API Gateway.
+So we need the private key to sign the token.
+When everything is wired up so we call the API gateway, we can delete the private keys.

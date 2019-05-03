@@ -1,0 +1,9 @@
+//api/settings/bulk/write
+{
+  "settings": [
+    {
+      "key": "com.tomitribe.tribestream.container.service.Policies.keyPairDefaultSize",
+      "value": "2048"
+    }
+  ]
+}

@@ -23,7 +23,7 @@
     <plugin.clean.version>3.0.0</plugin.clean.version>
     <plugin.compiler.version>3.7.0</plugin.compiler.version>
     <plugin.war.version>3.1.0</plugin.war.version>
-    <plugin.tomee.version>8.0.0-M2</plugin.tomee.version>
+    <plugin.tomee.version>8.0.0-SNAPSHOT</plugin.tomee.version>
     <plugin.docker.version>0.24.0</plugin.docker.version>
 
     <dependency.tomee.version>${plugin.tomee.version}</dependency.tomee.version>
@@ -33,8 +33,11 @@
     <dependency.config.version>1.0</dependency.config.version>
     <dependency.cxf.version>3.2.2</dependency.cxf.version>
     <dependency.johnzon.version>1.0.0</dependency.johnzon.version>
+    <dependency.safeguard.version>1.0</dependency.safeguard.version>
+    <dependency.jwt.version>1.0</dependency.jwt.version>
 
     <listening.port/>
+    <dependency.nimbus-jose-jwt.version>4.23</dependency.nimbus-jose-jwt.version>
   </properties>
 
   <build>
@@ -108,9 +111,7 @@
               <li>org.apache.geronimo:geronimo-opentracing:1.0.2</li>
             </libs>
             <systemVariables>
-              <javax.persistence.provider>
-                org.hibernate.jpa.HibernatePersistenceProvider
-              </javax.persistence.provider>
+              <javax.persistence.provider>org.hibernate.jpa.HibernatePersistenceProvider</javax.persistence.provider>
               <tomee.jpa.factory.lazy>true</tomee.jpa.factory.lazy>
               <openejb.jaxrs.providers.auto>true</openejb.jaxrs.providers.auto>
             </systemVariables>
@@ -122,6 +123,9 @@
                 <goal>exec</goal>
               </goals>
               <phase>package</phase>
+              <configuration>
+                <attach>false</attach>
+              </configuration>
             </execution>
           </executions>
         </plugin>
@@ -202,7 +206,6 @@
         <groupId>javax</groupId>
         <artifactId>javaee-api</artifactId>
         <version>${dependency.javaee.version}</version>
-        <scope>provided</scope>
       </dependency>
 
       <!-- MP BOM -->
@@ -211,7 +214,6 @@
         <artifactId>microprofile</artifactId>
         <version>${dependency.microprofile.version}</version>
         <type>pom</type>
-        <scope>provided</scope>
       </dependency>
 
       <!-- MP Configuration Implementation -->
@@ -234,6 +236,18 @@
         <artifactId>johnzon-core</artifactId>
         <version>${dependency.johnzon.version}</version>
       </dependency>
+
+      <dependency>
+        <groupId>com.nimbusds</groupId>
+        <artifactId>nimbus-jose-jwt</artifactId>
+        <version>${dependency.nimbus-jose-jwt.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomee</groupId>
+        <artifactId>mp-jwt</artifactId>
+        <version>${dependency.tomee.version}</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
@@ -251,4 +265,5 @@
     <module>services</module>
     <module>clients</module>
   </modules>
+
 </project>
