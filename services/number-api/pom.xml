@@ -51,11 +51,18 @@
       <artifactId>nimbus-jose-jwt</artifactId>
       <version>${dependency.nimbus-jose-jwt.version}</version>
     </dependency>
+
     <dependency>
       <groupId>org.apache.tomee</groupId>
       <artifactId>mp-jwt</artifactId>
       <version>${dependency.tomee.version}</version>
       <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-dbutils</groupId>
+      <artifactId>commons-dbutils</artifactId>
+      <version>1.7</version>
     </dependency>
   </dependencies>
 

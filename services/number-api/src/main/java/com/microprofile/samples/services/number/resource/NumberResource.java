@@ -1,7 +1,7 @@
 package com.microprofile.samples.services.number.resource;
 
-import java.util.logging.Logger;
-
+import org.eclipse.microprofile.config.ConfigProvider;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.jwt.Claim;
 import org.eclipse.microprofile.jwt.ClaimValue;
 import org.eclipse.microprofile.metrics.MetricUnits;
@@ -21,6 +21,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.logging.Logger;
 
 @ApplicationScoped
 @Path("numbers")
@@ -28,15 +29,18 @@ import javax.ws.rs.core.Response;
 @Traced
 @Tag(name = "ISBN resource", description = "Generate an ISBN number for a book.")
 public class NumberResource {
-
     private final Logger logger = Logger.getLogger(NumberResource.class.getName());
+
+    @Inject
+    @ConfigProperty(name = "generation.prefix", defaultValue = "UN")
+    private GenerationPrefix prefix;
 
     @Inject
     @Claim("username")
     private ClaimValue<String> username;
 
     @GET
-    @Path("generate")
+    @Path("/generate")
     @Metered(description = "Metrics for ISBN random generation")
     @Timed(description = "Metrics to monitor the times of generate ISBN method.",
             unit = MetricUnits.MILLISECONDS,
@@ -52,6 +56,16 @@ public class NumberResource {
         // after it gets validated, we'll get the "username" claim injected directly
         logger.info(String.format("User `%s` called Number API.", username.getValue()));
 
-        return Response.ok(Math.random()).build();
+        return Response.ok(number()).build();
+    }
+
+    @GET
+    @Path("/generate/guest")
+    public Response generateGuest() {
+        return Response.ok(number()).build();
+    }
+
+    private String number() {
+        return prefix.toString() + "-" +(int) Math.floor((Math.random() * 9999999)) + 1;
     }
 }
