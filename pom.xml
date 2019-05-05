@@ -107,8 +107,8 @@
               <lib>antlr:antlr:2.7.7</lib>
               <!-- upgrade geronimo opentracing -->
               <lib>remove:geronimo-opentracing</lib>
-              <li>org.apache.geronimo:geronimo-opentracing-common:1.0.2</li>
-              <li>org.apache.geronimo:geronimo-opentracing:1.0.2</li>
+              <li>org.apache.geronimo:geronimo-opentracing-common:1.0.3-SNAPSHOT</li>
+              <li>org.apache.geronimo:geronimo-opentracing:1.0.3-SNAPSHOT</li>
             </libs>
             <systemVariables>
               <javax.persistence.provider>org.hibernate.jpa.HibernatePersistenceProvider</javax.persistence.provider>
