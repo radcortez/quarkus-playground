@@ -23,7 +23,7 @@
     <plugin.clean.version>3.0.0</plugin.clean.version>
     <plugin.compiler.version>3.7.0</plugin.compiler.version>
     <plugin.war.version>3.1.0</plugin.war.version>
-    <plugin.tomee.version>8.0.0-M2</plugin.tomee.version>
+    <plugin.tomee.version>8.0.0-SNAPSHOT</plugin.tomee.version>
     <plugin.docker.version>0.24.0</plugin.docker.version>
 
     <dependency.tomee.version>${plugin.tomee.version}</dependency.tomee.version>
@@ -104,8 +104,8 @@
               <lib>antlr:antlr:2.7.7</lib>
               <!-- upgrade geronimo opentracing -->
               <lib>remove:geronimo-opentracing</lib>
-              <li>org.apache.geronimo:geronimo-opentracing-common:1.0.2</li>
-              <li>org.apache.geronimo:geronimo-opentracing:1.0.2</li>
+              <li>org.apache.geronimo:geronimo-opentracing-common:1.0.3-SNAPSHOT</li>
+              <li>org.apache.geronimo:geronimo-opentracing:1.0.3-SNAPSHOT</li>
             </libs>
             <systemVariables>
               <javax.persistence.provider>
