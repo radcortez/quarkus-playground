@@ -14,5 +14,11 @@
       restart: yes
       pull: true
       env:
-        CATALINA_OPTS: "-Dcom.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://pi-grom-database:8080/book-api"
+        CATALINA_OPTS: >-
+          -Dcom.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://pi-grom-database:8080/book-api
+          -Dgeronimo.opentracing.zipkin.serviceName=simulator
+          -Dgeronimo.opentracing.span.converter.zipkin.sender=http
+          -Dgeronimo.opentracing.span.converter.zipkin.http.collector=http://docker-repo:9411/api/v2/spans
+          -Dgeronimo.opentracing.span.converter.zipkin.http.bulkSendInterval=5000
+          -Dgeronimo.opentracing.span.converter.zipkin.http.useV2=true
     when: (inventory_hostname == "pi-grom-load-balancer")
