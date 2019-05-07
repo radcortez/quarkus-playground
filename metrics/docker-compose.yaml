@@ -1,0 +1,86 @@
+version: '2'
+services:
+  #
+  # Will start the application (2 services + injector) and
+  # Monitoring infra (zipkin + prometheus/grafana)
+  # Go on http://localhost:9411/zipkin/ and http://localhost:9090/ or http://localhost:3000/
+  # to see number-api service monitoring data
+  #
+
+  #
+  # Application
+  #
+
+  number-api:
+    image: microprofile/mp-samples/api-gateway:default
+    container_name: api-gateway
+    ports:
+      - 8888:8888
+
+  number-api:
+    image: microprofile/mp-samples/number-api:default
+    container_name: number-api
+    ports:
+      - 8081:8081
+    environment:
+      - CATALINA_OPTS= >-
+        -Dgeronimo.opentracing.zipkin.serviceName=number-api
+        -Dgeronimo.opentracing.span.converter.zipkin.sender=http
+        -Dgeronimo.opentracing.span.converter.zipkin.http.collector=http://zipkin:9411/api/v2/spans
+        -Dgeronimo.opentracing.span.converter.zipkin.http.bulkSendInterval=5000
+        -Dgeronimo.opentracing.span.converter.zipkin.http.useV2=true
+        -Dgeronimo.metrics.jaxrs.acceptedHosts=number-api,localhost
+
+  book-api:
+    image: microprofile/mp-samples/book-api:default
+    container_name: book-api
+    ports:
+      - 8080:8080
+    environment:
+      - NUMBER_TARGET_URL=http://number-api:8081/number-api/numbers/generate
+      - CATALINA_OPTS= >-
+        -Dgeronimo.opentracing.zipkin.serviceName=book-api
+        -Dgeronimo.opentracing.span.converter.zipkin.sender=http
+        -Dgeronimo.opentracing.span.converter.zipkin.http.collector=http://zipkin:9411/api/v2/spans
+        -Dgeronimo.opentracing.span.converter.zipkin.http.bulkSendInterval=5000
+        -Dgeronimo.opentracing.span.converter.zipkin.http.useV2=true
+        -Dgeronimo.metrics.jaxrs.acceptedHosts=book-api,localhost
+    depends_on:
+      - number-api
+
+  simulator:
+    image: microprofile/mp-samples/simulator:default
+    ports:
+      - 9080:9080
+    environment:
+      - CATALINA_OPTS= >-
+        -Dcom.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://book-api:8080/book-api
+        -Dgeronimo.opentracing.zipkin.serviceName=simulator
+        -Dgeronimo.opentracing.span.converter.zipkin.sender=http
+        -Dgeronimo.opentracing.span.converter.zipkin.http.collector=http://zipkin:9411/api/v2/spans
+        -Dgeronimo.opentracing.span.converter.zipkin.http.bulkSendInterval=5000
+        -Dgeronimo.opentracing.span.converter.zipkin.http.useV2=true
+        -Dgeronimo.metrics.jaxrs.acceptedHosts=simulator,localhost
+    depends_on:
+      - number-api
+      - book-api
+
+  #
+  # Prometheus (metrics)
+  #
+
+  grafana:
+    image: grafana/grafana
+    ports:
+    - "3000:3000"
+    depends_on:
+    - prometheus
+
+  prometheus:
+    image: quay.io/prometheus/prometheus:v2.0.0
+    container_name: prometheus
+    volumes:
+    - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command: "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
+    ports:
+    - 9090:9090
