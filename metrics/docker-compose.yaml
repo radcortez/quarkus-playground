@@ -23,7 +23,7 @@ services:
         -Dgeronimo.opentracing.span.converter.zipkin.http.collector=http://zipkin:9411/api/v2/spans
         -Dgeronimo.opentracing.span.converter.zipkin.http.bulkSendInterval=5000
         -Dgeronimo.opentracing.span.converter.zipkin.http.useV2=true
-        -Dgeronimo.metrics.jaxrs.acceptedHosts=number-api
+        -Dgeronimo.metrics.jaxrs.acceptedHosts=number-api,localhost
 
   book-api:
     image: microprofile/mp-samples/book-api:default
@@ -38,7 +38,7 @@ services:
         -Dgeronimo.opentracing.span.converter.zipkin.http.collector=http://zipkin:9411/api/v2/spans
         -Dgeronimo.opentracing.span.converter.zipkin.http.bulkSendInterval=5000
         -Dgeronimo.opentracing.span.converter.zipkin.http.useV2=true
-        -Dgeronimo.metrics.jaxrs.acceptedHosts=book-api
+        -Dgeronimo.metrics.jaxrs.acceptedHosts=book-api,localhost
     depends_on:
       - number-api
 
@@ -54,7 +54,7 @@ services:
         -Dgeronimo.opentracing.span.converter.zipkin.http.collector=http://zipkin:9411/api/v2/spans
         -Dgeronimo.opentracing.span.converter.zipkin.http.bulkSendInterval=5000
         -Dgeronimo.opentracing.span.converter.zipkin.http.useV2=true
-        -Dgeronimo.metrics.jaxrs.acceptedHosts=simulator
+        -Dgeronimo.metrics.jaxrs.acceptedHosts=simulator,localhost
     depends_on:
       - number-api
       - book-api
@@ -72,6 +72,7 @@ services:
 
   prometheus:
     image: quay.io/prometheus/prometheus:v2.0.0
+    container_name: prometheus
     volumes:
     - ./prometheus.yml:/etc/prometheus/prometheus.yml
     command: "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
