@@ -3,8 +3,12 @@ package com.microprofile.samples.services.book.service;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.eclipse.microprofile.faulttolerance.Asynchronous;
+import org.eclipse.microprofile.faulttolerance.Bulkhead;
 import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
 import org.eclipse.microprofile.faulttolerance.Fallback;
+import org.eclipse.microprofile.faulttolerance.Retry;
+import org.eclipse.microprofile.faulttolerance.Timeout;
 import org.eclipse.microprofile.opentracing.ClientTracingRegistrar;
 
 import javax.annotation.PostConstruct;
@@ -17,12 +21,12 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 import static javax.ws.rs.core.Response.Status.OK;
-
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 @ApplicationScoped
 public class NumberService {
@@ -44,8 +48,6 @@ public class NumberService {
         client.close();
     }
 
-    @CircuitBreaker
-    @Fallback(NumberFallbackHandler.class)
     public String getNumber() {
         final Response response = numberApi
                 .request()
@@ -57,6 +59,47 @@ public class NumberService {
         }
 
         throw new WebApplicationException(INTERNAL_SERVER_ERROR);
+    }
+
+
+    @Fallback(NumberFallbackHandler.class)
+    public String getNumberWithFallback() {
+        return getNumber();
+    }
+
+    static AtomicInteger retries = new AtomicInteger(0);
+
+    @CircuitBreaker(successThreshold = 2, requestVolumeThreshold = 4, failureRatio = 0.75, delay = 30000)
+    @Retry(maxRetries = 5, delay = 1000, jitter = 0, retryOn = RuntimeException.class)
+    public String getNumberWithRetry() {
+        if (retries.getAndAdd(1) < 5) {
+            System.out.println("Try " + retries);
+        } else {
+            retries.set(0);
+        }
+
+        return getNumber();
+    }
+
+    @Timeout(value = 500)
+    public String getNumberWithTimeout() {
+        return getNumber();
+    }
+
+    static AtomicInteger executions = new AtomicInteger(0);
+
+    @Bulkhead(value = 3)
+    public String getNumberWithBulkhead() {
+        final int execution = executions.addAndGet(1);
+
+        try {
+            System.out.println("Execution " + execution);
+            TimeUnit.SECONDS.sleep(30);
+        } catch (final InterruptedException e) {
+
+        }
+
+        return getNumber();
     }
 
     // generate a token locally instead of calling the IDP to get a real token.

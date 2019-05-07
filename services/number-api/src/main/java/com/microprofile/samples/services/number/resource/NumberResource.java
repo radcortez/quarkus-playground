@@ -22,6 +22,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 @ApplicationScoped
@@ -74,6 +75,12 @@ public class NumberResource {
     }
 
     private String number() {
+        try {
+            TimeUnit.MILLISECONDS.sleep(1000);
+        } catch (final InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return prefix.toString() + "-" +(int) Math.floor((Math.random() * 9999999)) + 1;
     }
 }

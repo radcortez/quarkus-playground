@@ -15,12 +15,10 @@ import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.opentracing.Traced;
-import sun.rmi.runtime.Log;
 
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -49,7 +47,6 @@ import static javax.ws.rs.core.Response.status;
 @Produces(APPLICATION_JSON)
 @Traced
 public class BookResource {
-
     private static final Logger LOGGER = Logger.getLogger(BookResource.class.getName());
 
     @Inject
@@ -137,9 +134,32 @@ public class BookResource {
     }
 
     @GET
-    @Path("number")
+    @Path("/number")
     public Response number() {
         return Response.ok(numberService.getNumber()).build();
+    }
+
+    @GET
+    @Path("/number/fallback")
+    public Response numberFallback() {
+        return Response.ok(numberService.getNumberWithFallback()).build();
+    }
+
+    @GET
+    @Path("/number/retry")
+    public Response numberRetry() {
+        return Response.ok(numberService.getNumberWithRetry()).build();
+    }
+
+    @GET
+    @Path("/number/timeout")
+    public Response numberTimeout() {
+        return Response.ok(numberService.getNumberWithTimeout()).build();
+    }@GET
+
+    @Path("/number/bulkhead")
+    public Response numberBulkehad() {
+        return Response.ok(numberService.getNumberWithBulkhead()).build();
     }
 
     private String toIdentityString() {
