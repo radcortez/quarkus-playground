@@ -22,6 +22,8 @@ services:
         -Dgeronimo.opentracing.span.converter.zipkin.sender=http
         -Dgeronimo.opentracing.span.converter.zipkin.http.collector=http://zipkin:9411/api/v2/spans
         -Dgeronimo.opentracing.span.converter.zipkin.http.bulkSendInterval=5000
+        -Dgeronimo.opentracing.span.converter.zipkin.http.useV2=true
+        -Dgeronimo.metrics.jaxrs.acceptedHosts=number-api
 
   book-api:
     image: microprofile/mp-samples/book-api:default
@@ -35,6 +37,8 @@ services:
         -Dgeronimo.opentracing.span.converter.zipkin.sender=http
         -Dgeronimo.opentracing.span.converter.zipkin.http.collector=http://zipkin:9411/api/v2/spans
         -Dgeronimo.opentracing.span.converter.zipkin.http.bulkSendInterval=5000
+        -Dgeronimo.opentracing.span.converter.zipkin.http.useV2=true
+        -Dgeronimo.metrics.jaxrs.acceptedHosts=book-api
     depends_on:
       - number-api
 
@@ -49,28 +53,11 @@ services:
         -Dgeronimo.opentracing.span.converter.zipkin.sender=http
         -Dgeronimo.opentracing.span.converter.zipkin.http.collector=http://zipkin:9411/api/v2/spans
         -Dgeronimo.opentracing.span.converter.zipkin.http.bulkSendInterval=5000
+        -Dgeronimo.opentracing.span.converter.zipkin.http.useV2=true
+        -Dgeronimo.metrics.jaxrs.acceptedHosts=simulator
     depends_on:
       - number-api
       - book-api
-
-  #
-  # OpenTracing
-  #
-
-  zipkin-storage:
-    image: openzipkin/zipkin-mysql
-    container_name: mysql
-
-  zipkin:
-    image: openzipkin/zipkin
-    container_name: zipkin
-    environment:
-    - STORAGE_TYPE=mysql
-    - MYSQL_HOST=mysql
-    ports:
-    - 9411:9411
-    depends_on:
-    - zipkin-storage
 
   #
   # Prometheus (metrics)
