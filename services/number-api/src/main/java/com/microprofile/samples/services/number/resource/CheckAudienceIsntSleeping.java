@@ -16,8 +16,10 @@ public class CheckAudienceIsntSleeping implements HealthCheck {
     private Random random = new Random(System.nanoTime());
 
     public HealthCheckResponse call() {
-
         return new HealthCheckResponse() {
+
+            final State state = random.nextBoolean() ? State.UP : State.DOWN;
+
             @Override
             public String getName() {
                 return "Audience";
@@ -25,12 +27,7 @@ public class CheckAudienceIsntSleeping implements HealthCheck {
 
             @Override
             public State getState() {
-                if (random.nextBoolean()) {
-                    return State.UP;
-
-                } else {
-                    return State.DOWN;
-                }
+                return state;
             }
 
             @Override
