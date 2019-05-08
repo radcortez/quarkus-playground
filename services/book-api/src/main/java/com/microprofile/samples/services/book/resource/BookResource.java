@@ -123,7 +123,7 @@ public class BookResource {
         LOGGER.info("create: " + toIdentityString());
         try {
             return requests.time(() -> {
-                final String number = numberService.getNumber();
+                final String number = numberService.getNumberWithFallback();
                 book.setIsbn(number);
 
                 final Book created = bookBean.create(book);
