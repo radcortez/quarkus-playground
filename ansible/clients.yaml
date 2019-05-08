@@ -13,6 +13,8 @@
       state: started
       restart: yes
       pull: true
+      ports:
+        - "9080:9080"
       env:
         CATALINA_OPTS: >-
           -Dcom.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://pi-grom-database:8080/book-api
