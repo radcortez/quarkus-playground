@@ -13,6 +13,8 @@
       state: started
       restart: yes
       pull: true
+      ports:
+        - "9080:9080"
       env:
         CATALINA_OPTS: >-
           -Dcom.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://pi-grom-database:8080/book-api
@@ -21,4 +23,5 @@
           -Dgeronimo.opentracing.span.converter.zipkin.http.collector=http://docker-repo:9411/api/v2/spans
           -Dgeronimo.opentracing.span.converter.zipkin.http.bulkSendInterval=5000
           -Dgeronimo.opentracing.span.converter.zipkin.http.useV2=true
+          -Dgeronimo.metrics.jaxrs.acceptedHosts=localhost,pi-grom-load-balancer,pi-grom-server-01,pi-grom-server-01,pi-grom-database
     when: (inventory_hostname == "pi-grom-load-balancer")
