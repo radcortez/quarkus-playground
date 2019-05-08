@@ -30,6 +30,10 @@ If you run that command multiple times, then you get a different number.
 
 = Health check
 
+http://localhost:8081/number-api/health
+
+= Open API
+
 http://localhost:8081/number-api/openapi.json
 
 = Metrics
@@ -77,3 +81,13 @@ public class NumberResource {
 = Reporter demo
 
 Go on http://localhost:8081/number-api/geronimo/microprofile/reporter/index.html
+
+= API Gateway
+
+http://localhost:8888/tag/dashboard
+
+Get a token from the gateway with Alex's credentials
+
+`curl -X POST -d "grant_type=password&username=alex&password=password" http://localhost:8888/oauth2/token`
+
+No client_id/client_secret here for simplicity reasons

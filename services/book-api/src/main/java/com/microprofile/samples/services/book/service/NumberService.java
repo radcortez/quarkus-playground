@@ -1,15 +1,11 @@
 package com.microprofile.samples.services.book.service;
 
-import net.minidev.json.JSONObject;
-import net.minidev.json.parser.JSONParser;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-import org.eclipse.microprofile.faulttolerance.Asynchronous;
-import org.eclipse.microprofile.faulttolerance.Bulkhead;
-import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
-import org.eclipse.microprofile.faulttolerance.Fallback;
-import org.eclipse.microprofile.faulttolerance.Retry;
-import org.eclipse.microprofile.faulttolerance.Timeout;
-import org.eclipse.microprofile.opentracing.ClientTracingRegistrar;
+import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
+import static javax.ws.rs.core.Response.Status.OK;
+
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -21,12 +17,15 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
-import static javax.ws.rs.core.Response.Status.OK;
+import net.minidev.json.JSONObject;
+import net.minidev.json.parser.JSONParser;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.eclipse.microprofile.faulttolerance.Bulkhead;
+import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
+import org.eclipse.microprofile.faulttolerance.Fallback;
+import org.eclipse.microprofile.faulttolerance.Retry;
+import org.eclipse.microprofile.faulttolerance.Timeout;
+import org.eclipse.microprofile.opentracing.ClientTracingRegistrar;
 
 @ApplicationScoped
 public class NumberService {
@@ -129,7 +128,10 @@ public class NumberService {
             return TokenUtil.generateTokenString(jwtContent, null, new HashMap<>());
 
         } catch (final Exception e) {
-            return ""; // definitely not what we want in real world because it's going to fail
+            // definitely not what we want in real world because it's going to fail
+            // but again, this is to run the full setup more easily. In real world, we would anyway
+            // call a gateway to get a valid token
+            return "";
         }
     }
 }

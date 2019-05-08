@@ -57,7 +57,7 @@ public abstract class ScenarioInvoker implements Runnable {
 
     private void sleep() {
         try {
-            TimeUnit.MILLISECONDS.sleep(1000); // TODO - Externalize
+            TimeUnit.MILLISECONDS.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
