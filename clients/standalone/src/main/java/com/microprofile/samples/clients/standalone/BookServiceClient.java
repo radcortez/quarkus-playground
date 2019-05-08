@@ -1,6 +1,8 @@
 package com.microprofile.samples.clients.standalone;
 
 import com.github.javafaker.Faker;
+import org.apache.johnzon.jaxrs.ConfigurableJohnzonProvider;
+import org.apache.johnzon.jaxrs.JohnzonProvider;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 
@@ -26,14 +28,15 @@ public class BookServiceClient {
         final BookService bookService =
                 RestClientBuilder.newBuilder()
                                  .baseUrl(new URL(bookServiceTargetUrl))
+                                 .register(JohnzonProvider.class)
                                  .build(BookService.class);
 
-        final JsonObject book = Json.createObjectBuilder()
-                                    .add("author", faker.book().author())
-                                    .add("title", faker.book().title())
-                                    .add("year", faker.number().numberBetween(1900, 2019))
-                                    .add("genre", faker.book().genre())
-                                    .build();
+        final Book book = Book.builder()
+                .author(faker.book().author())
+                .title(faker.book().title())
+                .year(faker.number().numberBetween(1900, 2019))
+                .genre(faker.book().genre())
+                .build();
 
         final Response response = bookService.create(book);
         if (CREATED.getStatusCode() == response.getStatus()) {

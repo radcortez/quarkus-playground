@@ -23,10 +23,19 @@
       <groupId>org.apache.johnzon</groupId>
       <artifactId>johnzon-core</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.apache.johnzon</groupId>
+      <artifactId>johnzon-jaxrs</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-rt-rs-mp-client</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
     </dependency>
 
     <!-- The CXF Client requires JAX-RS 2.1, but MP 1.3 is for JAX-RS 2.0 -->

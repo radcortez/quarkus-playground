@@ -236,6 +236,11 @@
         <artifactId>johnzon-core</artifactId>
         <version>${dependency.johnzon.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.apache.johnzon</groupId>
+        <artifactId>johnzon-jaxrs</artifactId>
+        <version>${dependency.johnzon.version}</version>
+      </dependency>
 
       <dependency>
         <groupId>com.nimbusds</groupId>
@@ -246,6 +251,12 @@
         <groupId>org.apache.tomee</groupId>
         <artifactId>mp-jwt</artifactId>
         <version>${dependency.tomee.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.16.16</version>
       </dependency>
 
     </dependencies>
