@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 @RequestScoped
 public class NumberFallbackHandler implements FallbackHandler<String> {
-    private static final Logger LOGGER = Logger.getLogger(BookResource.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(NumberFallbackHandler.class.getName());
 
     @Override
     public String handle(final ExecutionContext context) {
