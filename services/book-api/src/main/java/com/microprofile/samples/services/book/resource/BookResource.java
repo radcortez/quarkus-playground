@@ -197,7 +197,7 @@ public class BookResource {
 
     @GET
     @Path("/number/bulkhead")
-    public Response numberBulkehad() {
+    public Response numberBulkhead() {
         return Response.ok(numberService.getNumberWithBulkhead()).build();
     }
 
