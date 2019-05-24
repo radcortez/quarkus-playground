@@ -34,7 +34,7 @@ public class NumberResource {
     private final Logger logger = Logger.getLogger(NumberResource.class.getName());
 
     @Inject
-    @ConfigProperty(name = "generation.prefix", defaultValue = "UN")
+    @ConfigProperty(name = "GENERATION_PREFIX", defaultValue = "UN")
     private GenerationPrefix prefix;
 
     @Inject

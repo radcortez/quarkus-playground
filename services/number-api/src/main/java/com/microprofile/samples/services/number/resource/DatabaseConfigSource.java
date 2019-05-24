@@ -26,7 +26,7 @@ public class DatabaseConfigSource implements ConfigSource {
 
     @Override
     public int getOrdinal() {
-        return 500;
+        return 200;
     }
 
     @Override
