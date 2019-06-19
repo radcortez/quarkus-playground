@@ -109,6 +109,11 @@
               <lib>remove:geronimo-opentracing</lib>
               <li>org.apache.geronimo:geronimo-opentracing-common:1.0.3-SNAPSHOT</li>
               <li>org.apache.geronimo:geronimo-opentracing:1.0.3-SNAPSHOT</li>
+              <!-- upgrade geronimo openapi impl -->
+              <lib>remove:geronimo-openapi</lib>
+              <lib>remove:microprofile-openapi</lib>
+              <lib>org.apache.geronimo:geronimo-openapi-impl:1.0.10-SNAPSHOT</lib>
+              <lib>org.eclipse.microprofile.openapi:microprofile-openapi-api:1.1.2</lib>
             </libs>
             <systemVariables>
               <javax.persistence.provider>org.hibernate.jpa.HibernatePersistenceProvider</javax.persistence.provider>

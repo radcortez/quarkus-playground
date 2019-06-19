@@ -95,7 +95,7 @@ public class NumberService {
             System.out.println("Execution " + execution);
             TimeUnit.SECONDS.sleep(30);
         } catch (final InterruptedException e) {
-
+            // no-op
         }
 
         return getNumber();
