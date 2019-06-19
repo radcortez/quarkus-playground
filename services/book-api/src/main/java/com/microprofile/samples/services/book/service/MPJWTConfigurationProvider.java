@@ -23,7 +23,7 @@ import java.util.Optional;
 
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
-import org.apache.tomee.microprofile.jwt.config.JWTAuthContextInfo;
+import org.apache.tomee.microprofile.jwt.config.JWTAuthConfiguration;
 
 @Dependent
 public class MPJWTConfigurationProvider {
@@ -31,7 +31,7 @@ public class MPJWTConfigurationProvider {
     public static final String ISSUED_BY = "/oauth2/token";
 
     @Produces
-    Optional<JWTAuthContextInfo> getOptionalContextInfo() throws Exception {
+    Optional<JWTAuthConfiguration> getOptionalContextInfo() throws Exception {
 
         byte[] encodedBytes = TokenUtil.readPublicKey("/publicKey.pem").getEncoded();
 
@@ -39,13 +39,13 @@ public class MPJWTConfigurationProvider {
         final KeyFactory kf = KeyFactory.getInstance("RSA");
         final RSAPublicKey pk = (RSAPublicKey) kf.generatePublic(spec);
 
-        JWTAuthContextInfo contextInfo =  JWTAuthContextInfo.authContextInfo(pk,ISSUED_BY);
+        JWTAuthConfiguration contextInfo = JWTAuthConfiguration.authContextInfo(pk, ISSUED_BY);
 
         return Optional.of(contextInfo);
     }
 
     @Produces
-    JWTAuthContextInfo getContextInfo() throws Exception {
+    JWTAuthConfiguration getContextInfo() throws Exception {
         return getOptionalContextInfo().get();
     }
 }
