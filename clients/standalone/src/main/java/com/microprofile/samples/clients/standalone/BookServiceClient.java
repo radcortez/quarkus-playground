@@ -1,12 +1,10 @@
 package com.microprofile.samples.clients.standalone;
 
 import com.github.javafaker.Faker;
-import org.apache.johnzon.jaxrs.ConfigurableJohnzonProvider;
 import org.apache.johnzon.jaxrs.JohnzonProvider;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 
-import javax.json.Json;
 import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 import java.net.MalformedURLException;
