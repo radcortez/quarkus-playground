@@ -5,6 +5,10 @@ import org.eclipse.microprofile.health.HealthCheck;
 import org.eclipse.microprofile.health.HealthCheckResponse;
 
 import javax.enterprise.context.ApplicationScoped;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
@@ -19,6 +23,7 @@ public class CheckAudienceIsntSleeping implements HealthCheck {
         return new HealthCheckResponse() {
 
             final State state = random.nextBoolean() ? State.UP : State.DOWN;
+            final Date dateTime = new Date();
 
             @Override
             public String getName() {
@@ -32,7 +37,16 @@ public class CheckAudienceIsntSleeping implements HealthCheck {
 
             @Override
             public Optional<Map<String, Object>> getData() {
-                return Optional.empty();
+                // let's say, if everyone is awake, we don't need extra data
+                if (State.UP.equals(state)) {
+                    return Optional.empty();
+                }
+
+                // else we send back some more information to diagnose
+                final Map<String, Object> data = new HashMap<>();
+                data.put("current-time", dateTime);
+                data.put("country", "USA");
+                return Optional.of(data);
             }
         };
 

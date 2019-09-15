@@ -23,7 +23,7 @@
     <plugin.clean.version>3.0.0</plugin.clean.version>
     <plugin.compiler.version>3.7.0</plugin.compiler.version>
     <plugin.war.version>3.1.0</plugin.war.version>
-    <plugin.tomee.version>8.0.0-M3</plugin.tomee.version>
+    <plugin.tomee.version>8.0.0</plugin.tomee.version>
     <plugin.docker.version>0.24.0</plugin.docker.version>
 
     <dependency.tomee.version>${plugin.tomee.version}</dependency.tomee.version>
@@ -282,5 +282,18 @@
     <module>services</module>
     <module>clients</module>
   </modules>
+
+  <repositories>
+    <repository>
+      <id>tomee-8.0.0-staging</id>
+      <url>https://repository.apache.org/content/repositories/orgapachetomee-1147/</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>tomee-8.0.0-plugin-staging</id>
+      <url>https://repository.apache.org/content/repositories/orgapachetomee-1147/</url>
+    </pluginRepository>
+  </pluginRepositories>
 
 </project>
