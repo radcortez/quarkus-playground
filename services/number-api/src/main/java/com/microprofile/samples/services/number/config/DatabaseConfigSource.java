@@ -39,7 +39,7 @@ public class DatabaseConfigSource implements ConfigSource {
             final ResultSet names = query.executeQuery();
 
             while (names.next()) {
-                properties.put(names.getString(0), names.getString(1));
+                properties.put(names.getString(1), names.getString(2));
             }
 
             DbUtils.closeQuietly(names);

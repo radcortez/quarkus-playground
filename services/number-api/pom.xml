@@ -42,7 +42,7 @@
     <dependency>
       <groupId>org.microprofile-ext.openapi-ext</groupId>
       <artifactId>swagger-ui</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.2</version>
       <scope>runtime</scope>
     </dependency>
   </dependencies>
@@ -51,6 +51,29 @@
     <finalName>${project.artifactId}</finalName>
 
     <plugins>
+      <plugin>
+        <groupId>org.apache.geronimo</groupId>
+        <artifactId>geronimo-openapi-maven-plugin</artifactId>
+        <version>1.0.11</version>
+        <executions>
+          <execution>
+            <id>generate-openapi.json</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>openapi.json</goal>
+            </goals>
+            <configuration>
+              <output>${project.build.outputDirectory}/META-INF/openapi.json</output>
+              <prettify>true</prettify>
+              <application>com.microprofile.samples.services.number.NumberApplication</application>
+              <endpointClasses>
+                <endpointClass>com.microprofile.samples.services.number.resource.NumberApi</endpointClass>
+              </endpointClasses>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.tomee.maven</groupId>
         <artifactId>tomee-maven-plugin</artifactId>

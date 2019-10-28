@@ -273,19 +273,8 @@
         <artifactId>lombok</artifactId>
         <version>1.16.16</version>
       </dependency>
-
     </dependencies>
   </dependencyManagement>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.eclipse.microprofile</groupId>
-      <artifactId>microprofile</artifactId>
-      <version>${dependency.microprofile.version}</version>
-      <type>pom</type>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
 
   <modules>
     <module>services</module>
