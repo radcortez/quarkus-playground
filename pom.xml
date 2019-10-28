@@ -109,10 +109,19 @@
               <lib>remove:geronimo-opentracing</lib>
               <li>org.apache.geronimo:geronimo-opentracing-common:1.0.3-SNAPSHOT</li>
               <li>org.apache.geronimo:geronimo-opentracing:1.0.3-SNAPSHOT</li>
+              <!-- upgrade johnzon -->
+              <lib>remove:johnzon-core</lib>
+              <lib>remove:johnzon-jaxrs</lib>
+              <lib>remove:johnzon-jsonb</lib>
+              <lib>remove:johnzon-mapper</lib>
+              <lib>org.apache.johnzon:johnzon-core:1.2.1</lib>
+              <lib>org.apache.johnzon:johnzon-jaxrs:1.2.1</lib>
+              <lib>org.apache.johnzon:johnzon-jsonb:1.2.1</lib>
+              <lib>org.apache.johnzon:johnzon-mapper:1.2.1</lib>
               <!-- upgrade geronimo openapi impl -->
               <lib>remove:geronimo-openapi</lib>
               <lib>remove:microprofile-openapi</lib>
-              <lib>org.apache.geronimo:geronimo-openapi-impl:1.0.10</lib>
+              <lib>org.apache.geronimo:geronimo-openapi-impl:1.0.11</lib>
               <lib>org.eclipse.microprofile.openapi:microprofile-openapi-api:1.1.2</lib>
             </libs>
             <systemVariables>

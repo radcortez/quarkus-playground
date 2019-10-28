@@ -1,4 +1,4 @@
-package com.microprofile.samples.services.number.resource;
+package com.microprofile.samples.services.number.config;
 
 import org.apache.commons.dbutils.DbUtils;
 import org.eclipse.microprofile.config.spi.ConfigSource;

@@ -20,16 +20,16 @@
 
   <dependencies>
     <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
       <groupId>org.eclipse.microprofile</groupId>
       <artifactId>microprofile</artifactId>
       <type>pom</type>
       <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-dbutils</groupId>
+      <artifactId>commons-dbutils</artifactId>
+      <version>1.7</version>
     </dependency>
 
     <dependency>
@@ -45,38 +45,6 @@
       <version>1.0.1</version>
       <scope>runtime</scope>
     </dependency>
-
-    <!--<dependency> 
-      <groupId>org.apache.geronimo</groupId>
-      <artifactId>geronimo-microprofile-reporter</artifactId>
-      <version>1.0.1</version>
-      <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.webjars.bower</groupId>
-      <artifactId>chart.js</artifactId>
-      <version>2.7.3</version>
-      <scope>runtime</scope>
-    </dependency>-->
-    <dependency>
-      <groupId>com.nimbusds</groupId>
-      <artifactId>nimbus-jose-jwt</artifactId>
-      <version>${dependency.nimbus-jose-jwt.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.tomee</groupId>
-      <artifactId>mp-jwt</artifactId>
-      <version>${dependency.tomee.version}</version>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>commons-dbutils</groupId>
-      <artifactId>commons-dbutils</artifactId>
-      <version>1.7</version>
-    </dependency>
   </dependencies>
 
   <build>
@@ -88,11 +56,6 @@
         <artifactId>tomee-maven-plugin</artifactId>
         <configuration>
           <tomeeHttpPort>${listening.port}</tomeeHttpPort>
-          <tomeeAjpPort>8109</tomeeAjpPort>
-          <tomeeShutdownPort>8105</tomeeShutdownPort>
-          <systemVariables combine.children="append">
-            <openejb.classloader.forced-load>org.apache.geronimo.microprofile.reporter.</openejb.classloader.forced-load>
-          </systemVariables>
         </configuration>
       </plugin>
 

@@ -1,1 +1,1 @@
-com.microprofile.samples.services.number.resource.GenerationPrefixConverter
+com.microprofile.samples.services.number.config.GenerationPrefixConverter
