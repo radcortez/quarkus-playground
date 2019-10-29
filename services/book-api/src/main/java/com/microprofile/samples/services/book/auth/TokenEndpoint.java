@@ -12,6 +12,7 @@ import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -25,12 +26,17 @@ public class TokenEndpoint {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response token(@HeaderParam("Authorization") final String authorization, final Form form) {
         final BasicAuthCredentials credentials = BasicAuthCredentials.createCredentialsFromHeader(authorization);
-
-        final MultivaluedMap<String, String> parameters = form.asMap();
-        final Set<String> groups = Stream.of(parameters.getFirst("scope").split(" ")).collect(Collectors.toSet());
-
-        final String accessToken = generateTokenString(credentials.getUsername(), groups);
+        final String accessToken = generateTokenString(credentials.getUsername(), getGroups(form));
         return Response.ok(Token.token(accessToken)).build();
+    }
+
+    private Set<String> getGroups(final Form form) {
+        final MultivaluedMap<String, String> parameters = form.asMap();
+        final String scope = parameters.getFirst("scope");
+        if (scope == null) {
+            return new HashSet<>();
+        }
+        return Stream.of(scope.split(" ")).collect(Collectors.toSet());
     }
 
     @AllArgsConstructor(staticName = "token")

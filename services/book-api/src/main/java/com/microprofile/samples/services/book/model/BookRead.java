@@ -11,16 +11,39 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @Schema
 public class BookRead {
-    @Schema
+    @Schema(
+        description = "The id of the book",
+        example = "1"
+    )
     private Long id;
-    @Schema
+
+    @Schema(
+        description = "The author of the book",
+        example = "Roberto Cortez"
+    )
     private String author;
-    @Schema
+
+    @Schema(
+        description = "The title of the book",
+        example = "MicroProfile in Action"
+    )
     private String title;
-    @Schema
+
+    @Schema(
+        description = "The publishing year of the book",
+        example = "2020"
+    )
     private Integer year;
-    @Schema
+
+    @Schema(
+        description = "The genre of the book",
+        example = "Tech"
+    )
     private String genre;
-    @Schema
+
+    @Schema(
+        description = "The ISBN of the book",
+        example = "ISBN-123456789"
+    )
     private String isbn;
 }

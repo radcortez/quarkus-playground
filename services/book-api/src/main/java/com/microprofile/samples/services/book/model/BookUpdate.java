@@ -11,15 +11,30 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Getter(onMethod_ = {@Schema(hidden = true)})
 @Data
 
-@Schema
+@Schema(description = "The book to update")
 public class BookUpdate {
-    @Schema
+    @Schema(
+        description = "The author of the book",
+        example = "Roberto Cortez"
+    )
     private String author;
-    @Schema
+
+    @Schema(
+        description = "The title of the book",
+        example = "MicroProfile in Action"
+    )
     private String title;
-    @Schema
+
+    @Schema(
+        description = "The publishing year of the book",
+        example = "2020"
+    )
     private Integer year;
-    @Schema
+
+    @Schema(
+        description = "The genre of the book",
+        example = "Tech"
+    )
     private String genre;
 
     public Book toBook() {

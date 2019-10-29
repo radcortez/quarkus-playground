@@ -6,7 +6,6 @@ import com.microprofile.samples.services.book.model.BookRead;
 import com.microprofile.samples.services.book.model.BookUpdate;
 import com.microprofile.samples.services.book.persistence.BookRepository;
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
