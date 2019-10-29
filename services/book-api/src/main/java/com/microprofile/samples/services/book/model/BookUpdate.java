@@ -10,10 +10,16 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @NoArgsConstructor
 @Getter(onMethod_ = {@Schema(hidden = true)})
 @Data
+
+@Schema
 public class BookUpdate {
+    @Schema
     private String author;
+    @Schema
     private String title;
+    @Schema
     private Integer year;
+    @Schema
     private String genre;
 
     public Book toBook() {
