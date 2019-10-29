@@ -17,6 +17,5 @@
   <modules>
     <module>number-api</module>
     <module>book-api</module>
-    <module>api-gateway</module>
   </modules>
 </project>
