@@ -12,7 +12,7 @@ import java.util.Optional;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
 
 @ApplicationScoped
-@Transactional(SUPPORTS)
+@Transactional
 public class BookRepository {
     @Inject
     private EntityManager entityManager;

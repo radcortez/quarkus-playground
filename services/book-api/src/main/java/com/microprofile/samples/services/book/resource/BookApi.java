@@ -9,7 +9,10 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -28,6 +31,8 @@ import static org.eclipse.microprofile.openapi.annotations.enums.SchemaType.STRI
 @Path("books")
 @Consumes(APPLICATION_JSON)
 @Produces(APPLICATION_JSON)
+@Tag(name = "Book API")
+@SecurityRequirement(name = "oauth2", scopes = {"admin"})
 public interface BookApi {
     @GET
     @Path("/{id}")
@@ -58,6 +63,7 @@ public interface BookApi {
     Response get();
 
     @POST
+    @RolesAllowed("admin")
     @Operation(
         operationId = "CreateBook",
         summary = "Create a new Book"
@@ -78,6 +84,7 @@ public interface BookApi {
 
     @PUT
     @Path("/{id}")
+    @RolesAllowed("admin")
     @Operation(
         operationId = "UpdateBook",
         summary = "Update an existent Book"
@@ -96,6 +103,7 @@ public interface BookApi {
 
     @DELETE
     @Path("/{id}")
+    @RolesAllowed("admin")
     @Operation(
         operationId = "DeleteBook",
         summary = "Delete an existent Book"

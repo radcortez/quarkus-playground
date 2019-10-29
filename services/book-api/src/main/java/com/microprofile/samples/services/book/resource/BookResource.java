@@ -5,8 +5,10 @@ import com.microprofile.samples.services.book.model.BookCreate;
 import com.microprofile.samples.services.book.model.BookRead;
 import com.microprofile.samples.services.book.model.BookUpdate;
 import com.microprofile.samples.services.book.persistence.BookRepository;
+import org.eclipse.microprofile.jwt.JsonWebToken;
+import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
@@ -17,12 +19,15 @@ import static java.util.stream.Collectors.toList;
 import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static javax.ws.rs.core.Response.created;
 
-@ApplicationScoped
+@RequestScoped
 public class BookResource implements BookApi {
     @Context
     UriInfo uriInfo;
     @Inject
     BookRepository bookRepository;
+
+    @Inject
+    JsonWebToken jsonWebToken;
 
     @Override
     public Response get(final Long id) {
