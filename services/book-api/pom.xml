@@ -126,6 +126,16 @@
       <artifactId>quarkus-smallrye-jwt</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-rest-client</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-fault-tolerance</artifactId>
+    </dependency>
+
     <!-- For Token Generation only -->
     <dependency>
       <groupId>com.nimbusds</groupId>

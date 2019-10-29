@@ -12,7 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("numbers")
+@Path("/numbers")
 @Produces(MediaType.TEXT_PLAIN)
 @Tag(name = "Number Resource")
 public interface NumberApi {
