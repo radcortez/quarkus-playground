@@ -5,7 +5,7 @@ import com.microprofile.samples.services.book.model.BookCreate;
 import com.microprofile.samples.services.book.model.BookRead;
 import com.microprofile.samples.services.book.model.BookUpdate;
 import com.microprofile.samples.services.book.persistence.BookRepository;
-import org.eclipse.microprofile.jwt.JsonWebToken;
+import com.microprofile.samples.services.book.tracer.TraceLog;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -25,9 +25,6 @@ public class BookResource implements BookApi {
     @Inject
     BookRepository bookRepository;
 
-    @Inject
-    JsonWebToken jsonWebToken;
-
     @Override
     public Response get(final Long id) {
         return bookRepository.find(id)
@@ -36,7 +33,6 @@ public class BookResource implements BookApi {
                              .orElse(Response.status(NOT_FOUND))
                              .build();
     }
-
 
     @Override
     public Response get() {
@@ -49,6 +45,7 @@ public class BookResource implements BookApi {
     }
 
     @Override
+    @TraceLog
     public Response create(final BookCreate bookCreate) {
         return bookRepository.create(bookCreate.toBook())
                              .map(Book::toBookRead)
@@ -59,6 +56,7 @@ public class BookResource implements BookApi {
     }
 
     @Override
+    @TraceLog
     public Response update(final Long id, final BookUpdate bookUpdate) {
         return bookRepository.update(id, bookUpdate.toBook())
                              .map(Book::toBookRead)
@@ -69,6 +67,7 @@ public class BookResource implements BookApi {
     }
 
     @Override
+    @TraceLog
     public Response delete(final Long id) {
         return bookRepository.delete(id)
                              .map(book -> Response.noContent())

@@ -136,6 +136,11 @@
       <artifactId>quarkus-smallrye-fault-tolerance</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-opentracing</artifactId>
+    </dependency>
+
     <!-- For Token Generation only -->
     <dependency>
       <groupId>com.nimbusds</groupId>
