@@ -285,17 +285,4 @@
     <module>clients</module>
   </modules>
 
-  <repositories>
-    <repository>
-      <id>tomee-8.0.0-staging</id>
-      <url>https://repository.apache.org/content/repositories/orgapachetomee-1147/</url>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>tomee-8.0.0-plugin-staging</id>
-      <url>https://repository.apache.org/content/repositories/orgapachetomee-1147/</url>
-    </pluginRepository>
-  </pluginRepositories>
-
 </project>
