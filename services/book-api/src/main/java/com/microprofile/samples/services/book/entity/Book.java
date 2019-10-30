@@ -45,6 +45,6 @@ public class Book {
     }
 
     public BookRead toBookRead() {
-        return BookMapper.INSTANCE.toUserRead(this);
+        return BookMapper.INSTANCE.toBookRead(this);
     }
 }

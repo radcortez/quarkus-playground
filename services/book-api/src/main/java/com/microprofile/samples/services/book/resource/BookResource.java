@@ -1,5 +1,6 @@
 package com.microprofile.samples.services.book.resource;
 
+import com.microprofile.samples.services.book.client.IsbnGenerator;
 import com.microprofile.samples.services.book.entity.Book;
 import com.microprofile.samples.services.book.model.BookCreate;
 import com.microprofile.samples.services.book.model.BookRead;
@@ -24,6 +25,8 @@ public class BookResource implements BookApi {
     UriInfo uriInfo;
     @Inject
     BookRepository bookRepository;
+    @Inject
+    IsbnGenerator isbnGenerator;
 
     @Override
     public Response get(final Long id) {
@@ -47,7 +50,7 @@ public class BookResource implements BookApi {
     @Override
     @TraceLog
     public Response create(final BookCreate bookCreate) {
-        return bookRepository.create(bookCreate.toBook())
+        return bookRepository.create(isbnGenerator.generateIsbn(bookCreate.toBook()))
                              .map(Book::toBookRead)
                              .map(book -> created(
                                  uriInfo.getRequestUriBuilder().path("{id}").build(book.getId())).entity(book))

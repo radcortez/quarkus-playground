@@ -13,7 +13,7 @@ import org.mapstruct.factory.Mappers;
 public interface BookMapper {
     BookMapper INSTANCE = Mappers.getMapper(BookMapper.class);
 
-    BookRead toUserRead(Book book);
+    BookRead toBookRead(Book book);
 
     Book toBook(BookCreate bookCreate);
 
