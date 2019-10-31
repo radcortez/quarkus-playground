@@ -29,7 +29,7 @@
           <tomeeHttpPort>${listening.port}</tomeeHttpPort>
           <tomeeAjpPort>9009</tomeeAjpPort>
           <tomeeShutdownPort>9005</tomeeShutdownPort>
-          <args>"-Dcom.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://localhost:8080/book-api"</args>
+          <args>"-Dcom.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://localhost:8080/"</args>
         </configuration>
       </plugin>
 
@@ -45,8 +45,27 @@
 
   <dependencies>
     <dependency>
-      <groupId>javax</groupId>
+      <groupId>org.apache.tomee</groupId>
       <artifactId>javaee-api</artifactId>
+      <version>8.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.microprofile</groupId>
+      <artifactId>microprofile</artifactId>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.johnzon</groupId>
+      <artifactId>johnzon-jsonb</artifactId>
       <scope>provided</scope>
     </dependency>
 
@@ -54,13 +73,6 @@
       <groupId>com.github.javafaker</groupId>
       <artifactId>javafaker</artifactId>
       <version>0.16</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.eclipse.microprofile.opentracing</groupId>
-      <artifactId>microprofile-opentracing-api</artifactId>
-      <version>1.1</version>
-      <scope>provided</scope>
     </dependency>
   </dependencies>
 
