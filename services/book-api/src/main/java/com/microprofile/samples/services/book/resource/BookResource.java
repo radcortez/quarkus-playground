@@ -6,6 +6,9 @@ import com.microprofile.samples.services.book.model.BookRead;
 import com.microprofile.samples.services.book.model.BookUpdate;
 import com.microprofile.samples.services.book.persistence.BookRepository;
 import com.microprofile.samples.services.book.tracer.TraceLog;
+import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.Metered;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -46,6 +49,9 @@ public class BookResource implements BookApi {
 
     @Override
     @TraceLog
+    @Counted(name = "booksCreationCount")
+    @Metered(name = "booksCreationMeter")
+    @Timed(name = "booksCreationTime")
     public Response create(final BookCreate bookCreate) {
         return bookRepository.create(bookCreate.toBook())
                              .map(Book::toBookRead)
@@ -57,6 +63,9 @@ public class BookResource implements BookApi {
 
     @Override
     @TraceLog
+    @Counted(name = "booksUpdateCount")
+    @Metered(name = "booksUpdateMeter")
+    @Timed(name = "booksUpdateTime")
     public Response update(final Long id, final BookUpdate bookUpdate) {
         return bookRepository.update(id, bookUpdate.toBook())
                              .map(Book::toBookRead)
@@ -68,6 +77,9 @@ public class BookResource implements BookApi {
 
     @Override
     @TraceLog
+    @Counted(name = "booksDeleteCount")
+    @Metered(name = "booksDeleteMeter")
+    @Timed(name = "booksDeleteTime")
     public Response delete(final Long id) {
         return bookRepository.delete(id)
                              .map(book -> Response.noContent())
