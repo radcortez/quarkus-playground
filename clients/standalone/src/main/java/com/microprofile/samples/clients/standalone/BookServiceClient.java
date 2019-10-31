@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static com.microprofile.samples.clients.standalone.OAuthCredentials.oauthCredentials;
 import static javax.ws.rs.core.Response.Status.CREATED;
 import static javax.ws.rs.core.Response.Status.OK;
 
@@ -21,12 +22,12 @@ public class BookServiceClient {
         final String bookServiceTargetUrl =
                 ConfigProvider.getConfig()
                               .getOptionalValue("BOOK_TARGET_URL", String.class)
-                              .orElse("http://localhost:8080/book-api");
+                              .orElse("http://localhost:8080/");
 
         final BookService bookService =
                 RestClientBuilder.newBuilder()
                                  .baseUrl(new URL(bookServiceTargetUrl))
-                                 .register(JohnzonProvider.class)
+                                 .register(oauthCredentials("naruto", "", "client_credentials", "admin"))
                                  .build(BookService.class);
 
         final Book book = Book.builder()

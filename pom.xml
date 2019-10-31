@@ -37,7 +37,7 @@
     <dependency.microprofile.version>2.0.1</dependency.microprofile.version>
     <dependency.config.version>1.0</dependency.config.version>
     <dependency.cxf.version>3.2.2</dependency.cxf.version>
-    <dependency.johnzon.version>1.0.0</dependency.johnzon.version>
+    <dependency.johnzon.version>1.2.1</dependency.johnzon.version>
     <dependency.safeguard.version>1.0</dependency.safeguard.version>
     <dependency.jwt.version>1.0</dependency.jwt.version>
 
@@ -275,6 +275,11 @@
       <dependency>
         <groupId>org.apache.johnzon</groupId>
         <artifactId>johnzon-jaxrs</artifactId>
+        <version>${dependency.johnzon.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.johnzon</groupId>
+        <artifactId>johnzon-jsonb</artifactId>
         <version>${dependency.johnzon.version}</version>
       </dependency>
     </dependencies>

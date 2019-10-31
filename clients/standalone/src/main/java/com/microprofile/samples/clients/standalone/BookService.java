@@ -1,6 +1,7 @@
 package com.microprofile.samples.clients.standalone;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import org.apache.johnzon.jaxrs.JohnzonProvider;
+import org.eclipse.microprofile.rest.client.annotation.RegisterProvider;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -11,9 +12,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+
 @Path("/books")
 @Consumes(APPLICATION_JSON)
 @Produces(APPLICATION_JSON)
+@RegisterProvider(JohnzonProvider.class)
+@RegisterProvider(OAuthAuthenticator.class)
 public interface BookService {
     @GET
     Response findAll();
