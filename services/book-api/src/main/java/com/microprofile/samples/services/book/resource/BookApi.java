@@ -46,6 +46,7 @@ public interface BookApi {
     @APIResponse(responseCode = "404", ref = "notFound")
     @APIResponse(responseCode = "500", ref = "internalError")
     Response get(
+        @PathParam("id")
         @Parameter(ref = "bookId", schema = @Schema(type = STRING))
         Long id);
 

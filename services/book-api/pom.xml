@@ -146,6 +146,11 @@
       <artifactId>quarkus-smallrye-opentracing</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-reactive-messaging</artifactId>
+    </dependency>
+
     <!-- For Token Generation only -->
     <dependency>
       <groupId>com.nimbusds</groupId>

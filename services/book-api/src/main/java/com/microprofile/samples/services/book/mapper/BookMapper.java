@@ -20,6 +20,5 @@ public interface BookMapper {
     Book toBook(BookUpdate bookUpdate);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "isbn", ignore = true)
     Book toBook(Book source, @MappingTarget Book target);
 }
