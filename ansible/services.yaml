@@ -10,7 +10,7 @@
   - name: Deploy Number API
     docker_container:
       name: number-api
-      image: docker-repo:5000/microprofile/mp-samples/number-api:rpi
+      image: docker-registry:5000/microprofile/mp-samples/number-api:rpi
       state: started
       restart: yes
       pull: true
@@ -18,18 +18,14 @@
        - "8081:8081"
       env:
         CATALINA_OPTS: >-
-          -Dgeronimo.opentracing.zipkin.serviceName=number-api
-          -Dgeronimo.opentracing.span.converter.zipkin.sender=http
-          -Dgeronimo.opentracing.span.converter.zipkin.http.collector=http://docker-repo:9411/api/v2/spans
-          -Dgeronimo.opentracing.span.converter.zipkin.http.bulkSendInterval=5000
-          -Dgeronimo.opentracing.span.converter.zipkin.http.useV2=true
+          -Dgeronimo.opentracing.span.converter.zipkin.http.collector=http://docker-registry:9411/api/v2/spans
           -Dgeronimo.metrics.jaxrs.acceptedHosts=localhost,pi-grom-load-balancer,pi-grom-server-01,pi-grom-server-02,pi-grom-database
     when: (inventory_hostname == "pi-grom-server-01") or (inventory_hostname == "pi-grom-server-02")
 
   - name: Deploy Book API
     docker_container:
       name: book-api
-      image: docker-repo:5000/microprofile/mp-samples/book-api:rpi
+      image: docker-registry:5000/microprofile/mp-samples/book-api:rpi
       state: started
       restart: yes
       pull: true
@@ -37,11 +33,5 @@
        - "8080:8080"
       env:
         NUMBER_TARGET_URL: http://pi-grom-server-01:8081/number-api/numbers/generate
-        CATALINA_OPTS: >-
-          -Dgeronimo.opentracing.zipkin.serviceName=book-api
-          -Dgeronimo.opentracing.span.converter.zipkin.sender=http
-          -Dgeronimo.opentracing.span.converter.zipkin.http.collector=http://docker-repo:9411/api/v2/spans
-          -Dgeronimo.opentracing.span.converter.zipkin.http.bulkSendInterval=5000
-          -Dgeronimo.opentracing.span.converter.zipkin.http.useV2=true
-          -Dgeronimo.metrics.jaxrs.acceptedHosts=localhost,pi-grom-load-balancer,pi-grom-server-01,pi-grom-server-02,pi-grom-database
+        QUARKUS_DATASOURCE_URL: jdbc:postgresql://docker-registry:5432/database
     when: (inventory_hostname == "pi-grom-database")
