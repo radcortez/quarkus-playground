@@ -16,6 +16,7 @@
 
   <properties>
     <listening.port>9080</listening.port>
+    <source.jar>${project.artifactId}-exec.jar</source.jar>
   </properties>
 
   <build>

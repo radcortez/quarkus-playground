@@ -46,6 +46,7 @@
     <dependency.version.quarkus>${version.quarkus}</dependency.version.quarkus>
 
     <listening.port/>
+    <source.jar/>
   </properties>
 
   <build>
@@ -172,7 +173,7 @@
                     <inline>
                       <files>
                         <file>
-                          <source>${project.build.directory}/${project.artifactId}-exec.jar</source>
+                          <source>${project.build.directory}/${source.jar}</source>
                           <destName>${project.artifactId}.jar</destName>
                         </file>
                       </files>
@@ -198,7 +199,7 @@
                     <inline>
                       <files>
                         <file>
-                          <source>${project.build.directory}/${project.artifactId}-exec.jar</source>
+                          <source>${project.build.directory}/${source.jar}</source>
                           <destName>${project.artifactId}.jar</destName>
                         </file>
                       </files>
@@ -232,7 +233,6 @@
         <groupId>org.mapstruct</groupId>
         <artifactId>mapstruct</artifactId>
         <version>${dependency.version.mapstruct}</version>
-        <scope>provided</scope>
       </dependency>
 
       <!-- MP BOM -->

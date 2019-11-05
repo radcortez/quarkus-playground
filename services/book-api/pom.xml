@@ -11,11 +11,11 @@
   </parent>
 
   <artifactId>book-api</artifactId>
-  <packaging>war</packaging>
   <name>Samples Microprofile - Services - Book API</name>
 
   <properties>
     <listening.port>8080</listening.port>
+    <source.jar>${project.artifactId}-runner.jar</source.jar>
   </properties>
 
   <build>
@@ -44,6 +44,9 @@
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
         <version>${dependency.version.quarkus}</version>
+        <configuration>
+          <uberJar>true</uberJar>
+        </configuration>
         <executions>
           <execution>
             <goals>
