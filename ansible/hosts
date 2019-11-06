@@ -17,7 +17,7 @@ pi-thrall-server-02
 pi-grom-database
 pi-thrall-database
 
-[load-balancers]
+[balancers]
 pi-load-balancer
 pi-grom-load-balancer
 pi-thrall-load-balancer
