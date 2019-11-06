@@ -32,6 +32,9 @@
       ports:
        - "8080:8080"
       env:
-        NUMBER_TARGET_URL: http://pi-grom-server-01:8081/number-api/numbers/generate
+        "com.microprofile.samples.services.book.client.NumberApiClient/mp-rest/url": http://pi-grom-server-01:8081/number-api/
         QUARKUS_DATASOURCE_URL: jdbc:postgresql://docker-registry:5432/database
+        JAEGER_AGENT_HOST: docker-registry
+        JAEGER_AGENT_PORT: "6831"
+        JAEGER_SAMPLER_MANAGER_HOST_PORT: docker-registry:5778
     when: (inventory_hostname == "pi-grom-database")
