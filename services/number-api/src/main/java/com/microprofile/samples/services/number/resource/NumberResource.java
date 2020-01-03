@@ -23,7 +23,7 @@ public class NumberResource implements NumberApi {
         try {
             TimeUnit.MILLISECONDS.sleep(1000);
         } catch (final InterruptedException e) {
-            e.printStackTrace();
+            //
         }
 
         return prefix.toString() + "-" + (int) Math.floor((Math.random() * 9999999)) + 1;

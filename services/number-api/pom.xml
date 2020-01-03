@@ -11,7 +11,6 @@
   </parent>
 
   <artifactId>number-api</artifactId>
-  <packaging>war</packaging>
   <name>Samples Microprofile - Services - Number API</name>
 
   <properties>
@@ -21,30 +20,76 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.eclipse.microprofile</groupId>
-      <artifactId>microprofile</artifactId>
-      <type>pom</type>
-      <scope>provided</scope>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>commons-dbutils</groupId>
-      <artifactId>commons-dbutils</artifactId>
-      <version>1.7</version>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
     </dependency>
 
+    <!-- Required by Hibernate -->
     <dependency>
-      <groupId>io.opentracing</groupId>
-      <artifactId>opentracing-api</artifactId>
-      <version>0.31.0</version>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.microprofile-ext.openapi-ext</groupId>
-      <artifactId>swagger-ui</artifactId>
-      <version>1.0.2</version>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-jaxb</artifactId>
       <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-hibernate-orm</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-hibernate-validator</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-hibernate-orm-panache</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-jdbc-h2</artifactId>
+    </dependency>
+
+    <!-- For REST -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-jsonb</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-openapi</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-swagger-ui</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-health</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-rest-client</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-opentracing</artifactId>
     </dependency>
   </dependencies>
 
@@ -53,34 +98,19 @@
 
     <plugins>
       <plugin>
-        <groupId>org.apache.geronimo</groupId>
-        <artifactId>geronimo-openapi-maven-plugin</artifactId>
-        <version>1.0.11</version>
+        <groupId>io.quarkus</groupId>
+        <artifactId>quarkus-maven-plugin</artifactId>
+        <version>${dependency.version.quarkus}</version>
+        <configuration>
+          <uberJar>true</uberJar>
+        </configuration>
         <executions>
           <execution>
-            <id>generate-openapi.json</id>
-            <phase>compile</phase>
             <goals>
-              <goal>openapi.json</goal>
+              <goal>build</goal>
             </goals>
-            <configuration>
-              <output>${project.build.outputDirectory}/META-INF/openapi.json</output>
-              <prettify>true</prettify>
-              <application>com.microprofile.samples.services.number.NumberApplication</application>
-              <endpointClasses>
-                <endpointClass>com.microprofile.samples.services.number.resource.NumberApi</endpointClass>
-              </endpointClasses>
-            </configuration>
           </execution>
         </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.tomee.maven</groupId>
-        <artifactId>tomee-maven-plugin</artifactId>
-        <configuration>
-          <tomeeHttpPort>${listening.port}</tomeeHttpPort>
-        </configuration>
       </plugin>
 
       <plugin>

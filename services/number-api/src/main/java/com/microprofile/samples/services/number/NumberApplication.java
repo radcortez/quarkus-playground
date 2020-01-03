@@ -17,7 +17,7 @@ import javax.ws.rs.core.Application;
     ),
     tags = @Tag(name = "Number Resource", description = "Generate a random number with a prefix."),
     servers = {
-        @Server(url = "{scheme}://{host}:{port}/{contextRoot}", description = "App Endpoint Server",
+        @Server(url = "{scheme}://{host}:{port}/", description = "App Endpoint Server",
                 variables = {
                     @ServerVariable(name = "scheme",
                                     enumeration = {
@@ -26,8 +26,7 @@ import javax.ws.rs.core.Application;
                                     },
                                     defaultValue = "http"),
                     @ServerVariable(name = "host", enumeration = {"localhost"}, defaultValue = "localhost"),
-                    @ServerVariable(name = "port", enumeration = {"8081"}, defaultValue = "8081"),
-                    @ServerVariable(name = "contextRoot", enumeration = {"number-api"}, defaultValue = "number-api")
+                    @ServerVariable(name = "port", enumeration = {"8081"}, defaultValue = "8081")
                 })
     }
 )

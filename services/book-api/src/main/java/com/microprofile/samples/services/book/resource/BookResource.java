@@ -10,6 +10,7 @@ import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.eclipse.microprofile.metrics.annotation.Metered;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.Context;
@@ -48,6 +49,7 @@ public class BookResource implements BookApi {
     }
 
     @Override
+    @RolesAllowed("admin")
     @TraceLog
     @Counted(name = "booksCreationCount")
     @Metered(name = "booksCreationMeter")
@@ -62,6 +64,7 @@ public class BookResource implements BookApi {
     }
 
     @Override
+    @RolesAllowed("admin")
     @TraceLog
     @Counted(name = "booksUpdateCount")
     @Metered(name = "booksUpdateMeter")
@@ -76,6 +79,7 @@ public class BookResource implements BookApi {
     }
 
     @Override
+    @RolesAllowed("admin")
     @TraceLog
     @Counted(name = "booksDeleteCount")
     @Metered(name = "booksDeleteMeter")

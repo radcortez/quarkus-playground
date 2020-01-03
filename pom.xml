@@ -42,7 +42,7 @@
     <dependency.jwt.version>1.0</dependency.jwt.version>
 
     <!-- Quarkus Specifics -->
-    <version.quarkus>0.26.1</version.quarkus>
+    <version.quarkus>1.1.0.Final</version.quarkus>
     <dependency.version.quarkus>${version.quarkus}</dependency.version.quarkus>
 
     <listening.port/>
