@@ -23,7 +23,7 @@ public class BookRepository {
     }
 
     public List<Book> find() {
-        return entityManager.createQuery("SELECT m FROM Book m", Book.class).getResultList();
+        return entityManager.createQuery("SELECT b FROM Book b", Book.class).getResultList();
     }
 
     public Optional<Book> create(final Book book) {
@@ -41,5 +41,11 @@ public class BookRepository {
             entityManager.remove(book);
             return book;
         });
+    }
+
+    public Long countWithoutIsbn() {
+        return (Long) entityManager.createQuery("SELECT COUNT(b) FROM Book b WHERE b.isbn = :isbn")
+                                   .setParameter("isbn", "ISBN-FALLBACK")
+                                   .getSingleResult();
     }
 }

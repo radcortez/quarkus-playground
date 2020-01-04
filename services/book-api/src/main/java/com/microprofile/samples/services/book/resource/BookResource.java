@@ -6,11 +6,14 @@ import com.microprofile.samples.services.book.model.BookRead;
 import com.microprofile.samples.services.book.model.BookUpdate;
 import com.microprofile.samples.services.book.persistence.BookRepository;
 import com.microprofile.samples.services.book.tracer.TraceLog;
+import org.eclipse.microprofile.metrics.MetricUnits;
 import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.Gauge;
 import org.eclipse.microprofile.metrics.annotation.Metered;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 
 import javax.annotation.security.RolesAllowed;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.Context;
@@ -22,7 +25,7 @@ import static java.util.stream.Collectors.toList;
 import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static javax.ws.rs.core.Response.created;
 
-@RequestScoped
+@ApplicationScoped
 public class BookResource implements BookApi {
     @Context
     UriInfo uriInfo;
@@ -89,5 +92,10 @@ public class BookResource implements BookApi {
                              .map(book -> Response.noContent())
                              .orElse(Response.status(NOT_FOUND))
                              .build();
+    }
+
+    @Gauge(name = "booksWithoutIsbn", unit = MetricUnits.NONE)
+    public Long countWithoutIsbn() {
+        return bookRepository.countWithoutIsbn();
     }
 }

@@ -84,7 +84,7 @@ public class TokenUtils {
         long currentTimeInSecs = currentTimeInSecs();
         jwtContent.put(Claims.iat.name(), currentTimeInSecs);
         jwtContent.put(Claims.auth_time.name(), currentTimeInSecs);
-        jwtContent.put(Claims.exp.name(), currentTimeInSecs + 300);
+        jwtContent.put(Claims.exp.name(), currentTimeInSecs + 1800);
 
         jwtContent.put(Claims.upn.name(), username);
         jwtContent.put(Claims.preferred_username.name(), username);
