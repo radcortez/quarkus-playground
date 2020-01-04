@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
-@RegisterRestClient
+@RegisterRestClient(configKey = "number-api")
 public interface NumberApiClient {
     @GET
     @Path("/numbers/generate")
