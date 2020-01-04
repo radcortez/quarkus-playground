@@ -15,7 +15,7 @@
 
   <properties>
     <listening.port>8081</listening.port>
-    <source.jar>${project.artifactId}-exec.jar</source.jar>
+    <source.jar>${project.artifactId}-runner.jar</source.jar>
   </properties>
 
   <dependencies>
