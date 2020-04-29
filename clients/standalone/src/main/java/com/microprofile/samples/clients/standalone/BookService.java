@@ -1,6 +1,5 @@
 package com.microprofile.samples.clients.standalone;
 
-import org.apache.johnzon.jaxrs.jsonb.jaxrs.JsonbJaxrsProvider;
 import org.eclipse.microprofile.rest.client.annotation.RegisterProvider;
 
 import javax.ws.rs.Consumes;
@@ -17,7 +16,6 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 @Path("/books")
 @Consumes(APPLICATION_JSON)
 @Produces(APPLICATION_JSON)
-@RegisterProvider(JsonbJaxrsProvider.class)
 @RegisterProvider(OAuthAuthenticator.class)
 public interface BookService {
     @GET

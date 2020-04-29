@@ -1,7 +1,6 @@
 package com.microprofile.samples.clients.standalone;
 
 import com.github.javafaker.Faker;
-import org.apache.johnzon.jaxrs.JohnzonProvider;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 

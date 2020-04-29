@@ -113,10 +113,7 @@
       <plugin>
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
-        <version>${dependency.version.quarkus}</version>
-        <configuration>
-          <uberJar>true</uberJar>
-        </configuration>
+        <version>${dependency.quarkus.version}</version>
         <executions>
           <execution>
             <goals>

@@ -1,7 +1,6 @@
 package com.microprofile.samples.clients.standalone;
 
 import com.microprofile.samples.clients.standalone.TokenStoreClient.Token;
-import org.apache.johnzon.jaxrs.jsonb.jaxrs.JsonbJaxrsProvider;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 
 import javax.annotation.Priority;
@@ -23,7 +22,6 @@ public class OAuthAuthenticator implements ClientRequestFilter {
 
         final TokenStoreClient tokenStoreClient =
             RestClientBuilder.newBuilder()
-                             .register(JsonbJaxrsProvider.class)
                              .baseUri(URI.create("http://localhost:8080/"))
                              .build(TokenStoreClient.class);
 

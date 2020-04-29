@@ -3,8 +3,6 @@ package com.microprofile.samples.clients.standalone;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.johnzon.jaxrs.jsonb.jaxrs.JsonbJaxrsProvider;
-import org.eclipse.microprofile.rest.client.annotation.RegisterProvider;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import javax.json.bind.annotation.JsonbProperty;
@@ -19,7 +17,6 @@ import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @RegisterRestClient
-@RegisterProvider(JsonbJaxrsProvider.class)
 public interface TokenStoreClient {
     @POST
     @Path("/oauth/token")

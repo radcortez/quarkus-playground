@@ -16,28 +16,22 @@
  */
 package com.microprofile.samples.clients.simulator;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.ejb.Lock;
-import javax.ejb.LockType;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.enterprise.concurrent.ManagedExecutorService;
+import org.eclipse.microprofile.context.ManagedExecutor;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Initialized;
+import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
-@Singleton
-@Startup
-@Lock(LockType.READ)
+@ApplicationScoped
 public class Initializer {
-    @Resource
-    private ManagedExecutorService mes;
-
+    @Inject
+    private ManagedExecutor managedExecutor;
     @Inject
     private Instance<ScenarioInvoker> scenarioInvokers;
 
-    @PostConstruct
-    void postConstruct() {
-        scenarioInvokers.forEach(mes::execute);
+    public void init(@Observes @Initialized(ApplicationScoped.class) final Object init) {
+        scenarioInvokers.forEach(managedExecutor::execute);
     }
 }

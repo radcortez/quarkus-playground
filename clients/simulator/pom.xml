@@ -11,7 +11,6 @@
   </parent>
 
   <artifactId>simulator</artifactId>
-  <packaging>war</packaging>
   <name>Samples Microprofile - Clients - Simulator</name>
 
   <properties>
@@ -21,19 +20,19 @@
 
   <build>
     <finalName>${project.artifactId}</finalName>
-
     <plugins>
       <plugin>
-        <groupId>org.apache.tomee.maven</groupId>
-        <artifactId>tomee-maven-plugin</artifactId>
-        <configuration>
-          <tomeeHttpPort>${listening.port}</tomeeHttpPort>
-          <tomeeAjpPort>9009</tomeeAjpPort>
-          <tomeeShutdownPort>9005</tomeeShutdownPort>
-          <args>"-Dcom.microprofile.samples.clients.simulator.BookService/mp-rest/url=http://localhost:8080/"</args>
-        </configuration>
+        <groupId>io.quarkus</groupId>
+        <artifactId>quarkus-maven-plugin</artifactId>
+        <version>${dependency.quarkus.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>build</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
-
       <plugin>
         <groupId>io.fabric8</groupId>
         <artifactId>docker-maven-plugin</artifactId>
@@ -46,34 +45,38 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.apache.tomee</groupId>
-      <artifactId>javaee-api</artifactId>
-      <version>8.0</version>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.eclipse.microprofile</groupId>
-      <artifactId>microprofile</artifactId>
-      <type>pom</type>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.johnzon</groupId>
-      <artifactId>johnzon-jsonb</artifactId>
-      <scope>provided</scope>
+      <groupId>com.github.javafaker</groupId>
+      <artifactId>javafaker</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>com.github.javafaker</groupId>
-      <artifactId>javafaker</artifactId>
-      <version>0.16</version>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-jsonp</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-jsonb</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-rest-client</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-context-propagation</artifactId>
     </dependency>
   </dependencies>
 
