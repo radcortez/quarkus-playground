@@ -7,7 +7,6 @@ import javax.ws.rs.client.ClientRequestFilter;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
-@Provider
 @Priority(Priorities.AUTHENTICATION + 100 - 1)
 public class OAuthCredentials implements ClientRequestFilter {
     private final String username;

@@ -16,14 +16,18 @@
  */
 package com.microprofile.samples.clients.simulator;
 
+import io.quarkus.runtime.Startup;
+import io.quarkus.runtime.StartupEvent;
 import org.eclipse.microprofile.context.ManagedExecutor;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Initialized;
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+import java.util.function.Consumer;
 
+@Startup
 @ApplicationScoped
 public class Initializer {
     @Inject
@@ -31,7 +35,8 @@ public class Initializer {
     @Inject
     private Instance<ScenarioInvoker> scenarioInvokers;
 
-    public void init(@Observes @Initialized(ApplicationScoped.class) final Object init) {
+    @PostConstruct
+    public void init() {
         scenarioInvokers.forEach(managedExecutor::execute);
     }
 }
