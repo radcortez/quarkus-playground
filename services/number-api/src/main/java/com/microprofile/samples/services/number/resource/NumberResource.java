@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 @ApplicationScoped
 public class NumberResource implements NumberApi {
     @Inject
-    @ConfigProperty(name = "GENERATION_PREFIX", defaultValue = "UN")
+    @ConfigProperty(name = "generation.prefix", defaultValue = "UN")
     private GenerationPrefix prefix;
 
     @Override

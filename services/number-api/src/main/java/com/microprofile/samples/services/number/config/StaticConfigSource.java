@@ -9,7 +9,7 @@ public class StaticConfigSource implements ConfigSource {
     private static final Map<String, String> configuration = new HashMap<>();
 
     static {
-        configuration.put("GENERATION_PREFIX", "BK");
+        configuration.put("generation.prefix", "BK");
     }
 
     @Override

@@ -24,6 +24,8 @@
 
     <plugin.clean.version>3.0.0</plugin.clean.version>
     <plugin.compiler.version>3.7.0</plugin.compiler.version>
+    <plugin.surefire.version>3.0.0-M3</plugin.surefire.version>
+    <plugin.failsafe.version>3.0.0-M3</plugin.failsafe.version>
     <plugin.docker.version>0.24.0</plugin.docker.version>
 
     <dependency.lombok.version>1.18.10</dependency.lombok.version>
