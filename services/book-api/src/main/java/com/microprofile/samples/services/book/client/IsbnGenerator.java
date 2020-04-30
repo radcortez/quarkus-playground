@@ -11,7 +11,7 @@ import javax.inject.Inject;
 public class IsbnGenerator {
     @Inject
     @RestClient
-    private NumberApiClient numberApiClient;
+    NumberApiClient numberApiClient;
 
     @Fallback(IsbnGeneratorFallback.class)
     public Book generateIsbn(final Book book) {

@@ -14,7 +14,7 @@ import java.util.Optional;
 @Transactional
 public class BookRepository {
     @Inject
-    private EntityManager entityManager;
+    EntityManager entityManager;
     @Inject
     IsbnGenerator isbnGenerator;
 
