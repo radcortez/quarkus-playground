@@ -15,6 +15,10 @@ public interface BookMapper {
 
     BookRead toBookRead(Book book);
 
+    BookCreate toBookCreate(BookRead bookRead);
+
+    BookUpdate toBookUpdate(BookRead bookRead);
+
     Book toBook(BookCreate bookCreate);
 
     Book toBook(BookUpdate bookUpdate);

@@ -45,6 +45,8 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static net.minidev.json.parser.JSONParser.DEFAULT_PERMISSIVE_MODE;
 
@@ -55,6 +57,10 @@ public class TokenUtils {
 
     private TokenUtils() {
         // no-op: utility class
+    }
+
+    public static String generateTokenString(final String username, final String... groups) {
+        return generateTokenString(username, Stream.of(groups).collect(Collectors.toSet()));
     }
 
     public static String generateTokenString(final String username, final Set<String> groups) {

@@ -1,13 +1,18 @@
 package com.microprofile.samples.services.book.model;
 
+import com.microprofile.samples.services.book.mapper.BookMapper;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter(onMethod_ = {@Schema(hidden = true)})
 @Data
+@Builder(toBuilder = true)
 
 @Schema
 public class BookRead {
@@ -46,4 +51,12 @@ public class BookRead {
         example = "ISBN-123456789"
     )
     private String isbn;
+
+    public BookCreate toBookCreate() {
+        return BookMapper.INSTANCE.toBookCreate(this);
+    }
+
+    public BookUpdate toBookUpdate() {
+        return BookMapper.INSTANCE.toBookUpdate(this);
+    }
 }

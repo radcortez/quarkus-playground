@@ -2,14 +2,18 @@ package com.microprofile.samples.services.book.model;
 
 import com.microprofile.samples.services.book.entity.Book;
 import com.microprofile.samples.services.book.mapper.BookMapper;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter(onMethod_ = {@Schema(hidden = true)})
 @Data
+@Builder(toBuilder = true)
 
 @Schema(description = "The book to update")
 public class BookUpdate {

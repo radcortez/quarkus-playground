@@ -33,9 +33,10 @@ class BookRepositoryIT {
     void create() {
         final Optional<Book> book =
             bookRepository.create(Book.builder()
-                                      .author("")
-                                      .title("Uzumaki Naruto")
+                                      .author("Masashi Kishimoto")
+                                      .title("Naruto")
                                       .genre("Manga")
+                                      .year(1997)
                                       .build());
         assertTrue(book.isPresent());
         assertTrue(bookRepository.find(book.get().getId()).isPresent());
@@ -52,12 +53,12 @@ class BookRepositoryIT {
         assertTrue(book.isPresent());
 
         final Book bookUpdate = book.get();
-        bookUpdate.setYear(1987);
+        bookUpdate.setYear(1997);
 
         final Optional<Book> updated = bookRepository.update(bookUpdate.getId(), bookUpdate);
         assertTrue(updated.isPresent());
         final Book bookUpdated = updated.get();
-        assertEquals(1987, bookUpdated.getYear());
+        assertEquals(1997, bookUpdated.getYear());
     }
 
     @Test

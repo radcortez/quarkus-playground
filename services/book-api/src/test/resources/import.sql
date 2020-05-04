@@ -1,1 +1,1 @@
-insert into Book (id, author, title, year, genre, isbn) values (-1, 'x', 'x', 2020, 'x', null )
+insert into Book (id, author, title, year, genre, isbn) values (-1, 'Akira Torayama', 'Dragon Ball', 1984, 'Manga', null)
