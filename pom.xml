@@ -22,16 +22,16 @@
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <maven.compiler.source>${java.version}</maven.compiler.source>
 
-    <plugin.clean.version>3.0.0</plugin.clean.version>
-    <plugin.compiler.version>3.7.0</plugin.compiler.version>
+    <plugin.clean.version>3.1.0</plugin.clean.version>
+    <plugin.compiler.version>3.8.1</plugin.compiler.version>
     <plugin.surefire.version>3.0.0-M3</plugin.surefire.version>
     <plugin.failsafe.version>3.0.0-M3</plugin.failsafe.version>
 
-    <dependency.lombok.version>1.18.10</dependency.lombok.version>
+    <dependency.lombok.version>1.18.12</dependency.lombok.version>
     <dependency.mapstruct.version>1.3.1.Final</dependency.mapstruct.version>
     <dependency.quarkus.version>1.4.1.Final</dependency.quarkus.version>
-    <dependency.faker.version>0.13</dependency.faker.version>
-    <dependency.jose-jwt.version>4.23</dependency.jose-jwt.version>
+    <dependency.faker.version>1.0.2</dependency.faker.version>
+    <dependency.jose-jwt.version>8.16</dependency.jose-jwt.version>
 
     <listening.port/>
     <source.jar/>
