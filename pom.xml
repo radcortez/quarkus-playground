@@ -77,10 +77,9 @@
         <version>${dependency.mapstruct.version}</version>
       </dependency>
 
-      <!-- Quarkus BOM -->
       <dependency>
         <groupId>io.quarkus</groupId>
-        <artifactId>quarkus-bom</artifactId>
+        <artifactId>quarkus-universe-bom</artifactId>
         <version>${dependency.quarkus.version}</version>
         <type>pom</type>
         <scope>import</scope>
