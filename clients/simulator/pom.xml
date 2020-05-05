@@ -13,13 +13,9 @@
   <artifactId>simulator</artifactId>
   <name>Samples Microprofile - Clients - Simulator</name>
 
-  <properties>
-    <listening.port>9080</listening.port>
-    <source.jar>${project.artifactId}-exec.jar</source.jar>
-  </properties>
-
   <build>
     <finalName>${project.artifactId}</finalName>
+
     <plugins>
       <plugin>
         <groupId>io.quarkus</groupId>
@@ -32,13 +28,6 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>io.fabric8</groupId>
-        <artifactId>docker-maven-plugin</artifactId>
-        <configuration>
-          <skip>false</skip>
-        </configuration>
       </plugin>
     </plugins>
   </build>

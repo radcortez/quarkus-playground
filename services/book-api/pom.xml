@@ -13,11 +13,6 @@
   <artifactId>book-api</artifactId>
   <name>Samples Microprofile - Services - Book API</name>
 
-  <properties>
-    <listening.port>8080</listening.port>
-    <source.jar>${project.artifactId}-runner.jar</source.jar>
-  </properties>
-
   <build>
     <finalName>${project.artifactId}</finalName>
 
@@ -69,13 +64,6 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>io.fabric8</groupId>
-        <artifactId>docker-maven-plugin</artifactId>
-        <configuration>
-          <skip>false</skip>
-        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -178,7 +166,6 @@
     <dependency>
       <groupId>com.nimbusds</groupId>
       <artifactId>nimbus-jose-jwt</artifactId>
-      <version>4.23</version>
     </dependency>
 
     <!-- For Test -->
