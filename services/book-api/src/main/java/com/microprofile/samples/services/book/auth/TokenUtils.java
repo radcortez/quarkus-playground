@@ -18,13 +18,10 @@ public class TokenUtils {
     }
 
     public static String generateTokenString(final String username, final Set<String> groups) {
-        return generateTokenString("/jwt.json", username, groups);
-    }
-
-    public static String generateTokenString(final String jsonResName, final String username, final Set<String> groups) {
         long currentTimeInSecs = currentTimeInSecs();
 
-        return Jwt.claims(jsonResName)
+        return Jwt.claims()
+                  .issuer("https://konoha.books.com")
                   .issuedAt(currentTimeInSecs())
                   .claim(Claims.auth_time.name(), currentTimeInSecs)
                   .expiresAt(currentTimeInSecs + 1800)
