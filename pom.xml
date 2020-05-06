@@ -29,12 +29,8 @@
 
     <dependency.lombok.version>1.18.12</dependency.lombok.version>
     <dependency.mapstruct.version>1.3.1.Final</dependency.mapstruct.version>
-    <dependency.quarkus.version>1.4.1.Final</dependency.quarkus.version>
+    <dependency.quarkus.version>1.4.2.Final</dependency.quarkus.version>
     <dependency.faker.version>1.0.2</dependency.faker.version>
-    <dependency.jose-jwt.version>8.16</dependency.jose-jwt.version>
-
-    <listening.port/>
-    <source.jar/>
   </properties>
 
   <build>
@@ -89,12 +85,6 @@
         <groupId>com.github.javafaker</groupId>
         <artifactId>javafaker</artifactId>
         <version>${dependency.faker.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.nimbusds</groupId>
-        <artifactId>nimbus-jose-jwt</artifactId>
-        <version>${dependency.jose-jwt.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
