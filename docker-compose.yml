@@ -12,8 +12,8 @@ services:
       - POSTGRES_USER=database
       - POSTGRES_PASSWORD=password
 
-  metrics:
-    image: "prom/prometheus"
+  prometheus:
+    image: prom/prometheus
     container_name: prometheus
     ports:
       - 9090:9090
@@ -35,13 +35,17 @@ services:
       - COLLECTOR_ZIPKIN_HTTP_PORT=9411
 
   number-api:
-    image: microprofile/mp-samples/number-api:default
+    image: docker-registry:5000/radcortez/number-api
     container_name: number-api
     ports:
       - 8081:8081
+    environment:
+      - JAEGER_AGENT_HOST=jaeger
+      - JAEGER_AGENT_PORT=6831
+      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
 
   book-api:
-    image: microprofile/mp-samples/book-api:default
+    image: docker-registry:5000/radcortez/book-api
     container_name: book-api
     depends_on:
       - database
