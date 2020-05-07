@@ -14,7 +14,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Data
 @Builder(toBuilder = true)
 
-@Schema
+@Schema(name = "bookRead")
 public class BookRead {
     @Schema(
         description = "The id of the book",

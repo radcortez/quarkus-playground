@@ -15,7 +15,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Data
 @Builder(toBuilder = true)
 
-@Schema(description = "The boot to create")
+@Schema(name = "bookCreate", description = "The boot to create")
 public class BookCreate {
     @Schema(
         description = "The author of the book",

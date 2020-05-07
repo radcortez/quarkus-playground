@@ -2,6 +2,7 @@ package com.microprofile.samples.services.book.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.eclipse.microprofile.openapi.annotations.Operation;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.HeaderParam;
@@ -24,6 +25,7 @@ public class TokenEndpoint {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Operation(hidden = true)
     public Response token(@HeaderParam("Authorization") final String authorization, final Form form) {
         final BasicAuthCredentials credentials = BasicAuthCredentials.createCredentialsFromHeader(authorization);
         final String accessToken = generateTokenString(credentials.getUsername(), getGroups(form));
