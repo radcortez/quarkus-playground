@@ -3,6 +3,7 @@ package com.microprofile.samples.services.book.client;
 import com.microprofile.samples.services.book.entity.Book;
 import com.microprofile.samples.services.book.persistence.BookRepository;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
+import org.eclipse.microprofile.reactive.messaging.Message;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -14,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 @ApplicationScoped
 public class IsbnFallback {
-    private ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+    private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
     @Inject
     BookRepository bookRepository;
