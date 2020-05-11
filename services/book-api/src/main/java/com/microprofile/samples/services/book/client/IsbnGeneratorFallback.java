@@ -12,7 +12,7 @@ import javax.inject.Inject;
 @Dependent
 public class IsbnGeneratorFallback implements FallbackHandler<Book> {
     @Inject
-    @Channel("isbn-fallback")
+    @Channel("books")
     Emitter<Book> emitter;
 
     @Override

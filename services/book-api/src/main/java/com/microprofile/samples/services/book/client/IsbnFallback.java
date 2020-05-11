@@ -20,7 +20,7 @@ public class IsbnFallback {
     @Inject
     BookRepository bookRepository;
 
-    @Incoming("isbn-fallback")
+    @Incoming("books")
     public CompletionStage<Void> fallback(final Book book) {
         CompletableFuture<Void> future = new CompletableFuture<>();
         executor.schedule(() -> {

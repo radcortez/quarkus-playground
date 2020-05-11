@@ -64,10 +64,12 @@
       <artifactId>quarkus-smallrye-health</artifactId>
     </dependency>
 
+    <!-- Doesn't work with native image.
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-opentracing</artifactId>
     </dependency>
+    -->
 
     <!-- For Test -->
     <dependency>

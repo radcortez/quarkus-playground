@@ -12,6 +12,32 @@ services:
       - POSTGRES_USER=database
       - POSTGRES_PASSWORD=password
 
+  zookeeper:
+    image: strimzi/kafka:0.11.4-kafka-2.1.0
+    container_name: zookeeper
+    ports:
+      - 2181:2181
+    command: [
+      "sh", "-c",
+      "bin/zookeeper-server-start.sh config/zookeeper.properties"
+    ]
+
+  kafka:
+    image: strimzi/kafka:0.11.4-kafka-2.1.0
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092
+    command: [
+      "sh", "-c",
+      "bin/kafka-server-start.sh config/server.properties --override listeners=$${KAFKA_LISTENERS} --override advertised.listeners=$${KAFKA_ADVERTISED_LISTENERS} --override zookeeper.connect=$${KAFKA_ZOOKEEPER_CONNECT}"
+    ]
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+
   prometheus:
     image: prom/prometheus
     container_name: prometheus
@@ -49,12 +75,16 @@ services:
     container_name: book-api
     depends_on:
       - database
+      - zookeeper
+      - kafka
       - number-api
     ports:
       - 8080:8080
     environment:
       - NUMBER_API_MP_REST_URL=http://number-api:8081/
       - QUARKUS_DATASOURCE_URL=jdbc:postgresql://database:5432/database
+      - MP_MESSAGING_OUTGOING_BOOKS_BOOTSTRAP_SERVERS=kafka:9092
+      - MP_MESSAGING_INCOMING_FALLBACK_BOOTSTRAP_SERVERS=kafka:9092
       - JAEGER_AGENT_HOST=jaeger
       - JAEGER_AGENT_PORT=6831
       - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
