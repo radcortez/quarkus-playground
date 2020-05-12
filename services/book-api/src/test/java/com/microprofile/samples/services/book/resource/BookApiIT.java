@@ -10,10 +10,8 @@ import io.restassured.config.ObjectMapperConfig;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.Header;
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.util.Set;
 
 import static io.restassured.RestAssured.given;
 import static javax.ws.rs.core.HttpHeaders.ACCEPT;
@@ -28,7 +26,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @QuarkusTest
 class BookApiIT {
-    static {
+    @BeforeAll
+    static void beforeAll() {
         RestAssured.filters(
             (requestSpec, responseSpec, ctx) -> {
                 requestSpec.header(new Header(CONTENT_TYPE, APPLICATION_JSON));
