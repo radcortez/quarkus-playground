@@ -1,9 +1,8 @@
 package com.microprofile.samples.services.book.auth;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 
+import javax.json.Json;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
@@ -29,7 +28,7 @@ public class TokenEndpoint {
     public Response token(@HeaderParam("Authorization") final String authorization, final Form form) {
         final BasicAuthCredentials credentials = BasicAuthCredentials.createCredentialsFromHeader(authorization);
         final String accessToken = generateTokenString(credentials.getUsername(), getGroups(form));
-        return Response.ok(Token.token(accessToken)).build();
+        return Response.ok(Json.createObjectBuilder().add("access_token", accessToken).build()).build();
     }
 
     private Set<String> getGroups(final Form form) {
@@ -39,11 +38,5 @@ public class TokenEndpoint {
             return new HashSet<>();
         }
         return Stream.of(scope.split(" ")).collect(Collectors.toSet());
-    }
-
-    @AllArgsConstructor(staticName = "token")
-    @Data
-    public static class Token {
-        private String access_token;
     }
 }
