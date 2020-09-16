@@ -9,6 +9,7 @@ import io.restassured.response.Response;
 import io.smallrye.jwt.auth.principal.JWTCallerPrincipalFactory;
 import io.smallrye.jwt.config.JWTAuthContextInfoProvider;
 import org.eclipse.microprofile.jwt.JsonWebToken;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +25,11 @@ public class TokenEndpointIT {
     @BeforeAll
     static void beforeAll() {
         RestAssured.config = RestAssured.config().objectMapperConfig(new ObjectMapperConfig(new JsonbObjectMapper()));
+    }
+
+    @AfterAll
+    static void afterAll() {
+        RestAssured.reset();
     }
 
     @Inject

@@ -10,6 +10,7 @@ import io.restassured.config.ObjectMapperConfig;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.Header;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -38,6 +39,11 @@ class BookApiIT {
             new ResponseLoggingFilter());
 
         RestAssured.config = RestAssured.config().objectMapperConfig(new ObjectMapperConfig(new JsonbObjectMapper()));
+    }
+
+    @AfterAll
+    static void afterAll() {
+        RestAssured.reset();
     }
 
     @Test
