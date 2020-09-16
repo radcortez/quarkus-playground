@@ -1,0 +1,35 @@
+name: MicroProfile Samples Build
+
+on:
+  push:
+    branches: 
+      - master
+    paths-ignore:
+      - '.gitignore'
+      - 'CODEOWNERS'
+      - 'LICENSE'
+      - 'NOTICE'
+      - 'README*'
+  pull_request:
+    paths-ignore:
+      - '.gitignore'
+      - 'CODEOWNERS'
+      - 'LICENSE'
+      - 'NOTICE'
+      - 'README*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        name: checkout
+
+      - uses: actions/setup-java@v1.3.0
+        name: set up jdk ${{matrix.java}}
+        with:
+          java-version: 11
+
+      - name: build with maven
+        run: mvn verify
