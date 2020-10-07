@@ -6,7 +6,7 @@ in applications development.
 ## Pre Requisites
 
 * [OpenJDK 11](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)
-* [GraalVM 19.3.1](https://github.com/oracle/graal/releases) (for native image)
+* [GraalVM 20.2.0 - JDK 11](https://github.com/graalvm/graalvm-ce-builds/releases) (for native image)
 * [Maven 3.6.3](https://maven.apache.org/download.cgi)
 * [Docker](https://hub.docker.com/search/?type=edition&offering=community)
 
