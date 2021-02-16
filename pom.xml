@@ -27,28 +27,15 @@
     <plugin.surefire.version>3.0.0-M5</plugin.surefire.version>
     <plugin.failsafe.version>3.0.0-M5</plugin.failsafe.version>
 
-    <dependency.lombok.version>1.18.16</dependency.lombok.version>
-    <dependency.mapstruct.version>1.4.1.Final</dependency.mapstruct.version>
-    <dependency.quarkus.version>1.9.2.Final</dependency.quarkus.version>
+    <dependency.lombok.version>1.18.18</dependency.lombok.version>
+    <dependency.mapstruct.version>1.4.2.Final</dependency.mapstruct.version>
+    <dependency.quarkus.version>1.11.0.Final</dependency.quarkus.version>
     <dependency.faker.version>1.0.2</dependency.faker.version>
   </properties>
 
   <build>
     <pluginManagement>
       <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>${plugin.clean.version}</version>
-          <configuration>
-            <filesets>
-              <fileset>
-                <directory>.distribution</directory>
-              </fileset>
-            </filesets>
-          </configuration>
-        </plugin>
-
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -75,7 +62,7 @@
 
       <dependency>
         <groupId>io.quarkus</groupId>
-        <artifactId>quarkus-universe-bom</artifactId>
+        <artifactId>quarkus-bom</artifactId>
         <version>${dependency.quarkus.version}</version>
         <type>pom</type>
         <scope>import</scope>

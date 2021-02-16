@@ -29,9 +29,12 @@ spec:
     spec:
       containers:
         - name: zookeeper
-          image: strimzi/kafka:0.11.4-kafka-2.1.0
+          image: strimzi/kafka:0.19.0-kafka-2.5.0
           ports:
             - containerPort: 2181
+          env:
+            - name: LOG_DIR
+              value: /tmp/logs
           args:
             - sh
             - -c
@@ -68,10 +71,12 @@ spec:
     spec:
       containers:
         - name: kafka
-          image: strimzi/kafka:0.11.4-kafka-2.1.0
+          image: strimzi/kafka:0.19.0-kafka-2.5.0
           ports:
             - containerPort: 9092
           env:
+            - name: LOG_DIR
+              value: /tmp/logs
             - name: KAFKA_ADVERTISED_LISTENERS
               value: PLAINTEXT://kafka:9092
             - name: KAFKA_LISTENERS

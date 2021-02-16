@@ -7,13 +7,13 @@ services:
     ports:
       - 5432:5432
     environment:
-      - ALLOW_IP_RANGE='0.0.0.0/0'
-      - POSTGRES_DB=database
-      - POSTGRES_USER=database
-      - POSTGRES_PASSWORD=password
+      ALLOW_IP_RANGE: "0.0.0.0/0"
+      POSTGRES_DB: database
+      POSTGRES_USER: database
+      POSTGRES_PASSWORD: password
 
   zookeeper:
-    image: strimzi/kafka:0.11.4-kafka-2.1.0
+    image: strimzi/kafka:0.19.0-kafka-2.5.0
     container_name: zookeeper
     ports:
       - 2181:2181
@@ -21,9 +21,11 @@ services:
       "sh", "-c",
       "bin/zookeeper-server-start.sh config/zookeeper.properties"
     ]
+    environment:
+      LOG_DIR: /tmp/logs
 
   kafka:
-    image: strimzi/kafka:0.11.4-kafka-2.1.0
+    image: strimzi/kafka:0.19.0-kafka-2.5.0
     container_name: kafka
     depends_on:
       - zookeeper
@@ -34,6 +36,7 @@ services:
       "bin/kafka-server-start.sh config/server.properties --override listeners=$${KAFKA_LISTENERS} --override advertised.listeners=$${KAFKA_ADVERTISED_LISTENERS} --override zookeeper.connect=$${KAFKA_ZOOKEEPER_CONNECT}"
     ]
     environment:
+      LOG_DIR: /tmp/logs
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -58,7 +61,7 @@ services:
       - 6831:6831/udp
       - 6832:6832/udp
     environment:
-      - COLLECTOR_ZIPKIN_HTTP_PORT=9411
+      COLLECTOR_ZIPKIN_HTTP_PORT: 9411
 
   number-api:
     image: docker-registry:5000/radcortez/number-api
@@ -66,9 +69,9 @@ services:
     ports:
       - 8081:8081
     environment:
-      - JAEGER_AGENT_HOST=jaeger
-      - JAEGER_AGENT_PORT=6831
-      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
+      JAEGER_AGENT_HOST: jaeger
+      JAEGER_AGENT_PORT: 6831
+      JAEGER_SAMPLER_MANAGER_HOST_PORT: jaeger:5778
 
   book-api:
     image: docker-registry:5000/radcortez/book-api
@@ -81,10 +84,9 @@ services:
     ports:
       - 8080:8080
     environment:
-      - NUMBER_API_MP_REST_URL=http://number-api:8081/
-      - QUARKUS_DATASOURCE_URL=jdbc:postgresql://database:5432/database
-      - MP_MESSAGING_OUTGOING_BOOKS_BOOTSTRAP_SERVERS=kafka:9092
-      - MP_MESSAGING_INCOMING_FALLBACK_BOOTSTRAP_SERVERS=kafka:9092
-      - JAEGER_AGENT_HOST=jaeger
-      - JAEGER_AGENT_PORT=6831
-      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
+      NUMBER_API_MP_REST_URL: http://number-api:8081/
+      QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://database:5432/database
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      JAEGER_AGENT_HOST: jaeger
+      JAEGER_AGENT_PORT: 6831
+      JAEGER_SAMPLER_MANAGER_HOST_PORT: jaeger:5778
