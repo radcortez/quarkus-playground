@@ -46,8 +46,7 @@ import static org.eclipse.microprofile.openapi.annotations.enums.SchemaType.NUMB
                     clientCredentials = @OAuthFlow(
                         tokenUrl = "/oauth/token",
                         scopes = {
-                            @OAuthScope(name = "admin"),
-                            @OAuthScope(name = "writer"),
+                            @OAuthScope(name = "admin", description = "Administrator")
                         }
                     )
                 )
@@ -55,7 +54,7 @@ import static org.eclipse.microprofile.openapi.annotations.enums.SchemaType.NUMB
         },
         parameters = {
             @Parameter(
-                name = "bookId",
+                name = "id",
                 description = "Id of the Book to perform the operation",
                 required = true,
                 example = "1",

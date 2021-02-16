@@ -47,7 +47,7 @@ public interface BookApi {
     @APIResponse(responseCode = "500", ref = "internalError")
     Response get(
         @PathParam("id")
-        @Parameter(ref = "bookId", schema = @Schema(type = STRING))
+        @Parameter(ref = "id")
         Long id);
 
     @GET
@@ -98,7 +98,7 @@ public interface BookApi {
     @APIResponse(responseCode = "500", ref = "internalError")
     Response update(
         @PathParam("id")
-        @Parameter(ref = "bookId", schema = @Schema(type = NUMBER))
+        @Parameter(ref = "id")
             Long id,
             BookUpdate bookUpdate);
 
@@ -116,6 +116,6 @@ public interface BookApi {
     @APIResponse(responseCode = "500", ref = "internalError")
     Response delete(
         @PathParam("id")
-        @Parameter(ref = "bookId", schema = @Schema(type = NUMBER))
+        @Parameter(ref = "id")
             Long id);
 }
