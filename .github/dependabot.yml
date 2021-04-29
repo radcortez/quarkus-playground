@@ -1,0 +1,38 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: io.quarkus:quarkus-maven-plugin
+    versions:
+    - 1.11.1.Final
+    - 1.11.2.Final
+    - 1.11.3.Final
+    - 1.11.3.Final
+    - 1.12.0.Final
+    - 1.12.2.Final
+    - 1.13.0.Final
+    - 1.13.1.Final
+    - 1.13.2.Final
+  - dependency-name: io.quarkus:quarkus-bom
+    versions:
+    - 1.11.3.Final
+    - 1.12.0.Final
+    - 1.12.2.Final
+    - 1.13.0.Final
+    - 1.13.1.Final
+    - 1.13.2.Final
+  - dependency-name: io.quarkus:quarkus-universe-bom
+    versions:
+    - 1.11.1.Final
+    - 1.11.2.Final
+    - 1.11.3.Final
+  - dependency-name: org.mapstruct:mapstruct
+    versions:
+    - 1.4.2.Final
+  - dependency-name: org.projectlombok:lombok
+    versions:
+    - 1.18.18
