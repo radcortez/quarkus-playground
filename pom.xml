@@ -29,7 +29,7 @@
 
     <dependency.lombok.version>1.18.18</dependency.lombok.version>
     <dependency.mapstruct.version>1.4.2.Final</dependency.mapstruct.version>
-    <dependency.quarkus.version>2.0.0.Alpha2</dependency.quarkus.version>
+    <dependency.quarkus.version>2.0.0.CR2</dependency.quarkus.version>
     <dependency.faker.version>1.0.2</dependency.faker.version>
   </properties>
 
