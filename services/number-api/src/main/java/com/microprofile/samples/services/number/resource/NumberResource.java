@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class NumberResource implements NumberApi {
     @Inject
     @ConfigProperty(name = "generation.prefix", defaultValue = "UN")
-    private GenerationPrefix prefix;
+    GenerationPrefix prefix;
 
     @Override
     public Response generate() {

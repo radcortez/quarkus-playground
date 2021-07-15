@@ -4,6 +4,7 @@ import org.eclipse.microprofile.config.spi.ConfigSource;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class StaticConfigSource implements ConfigSource {
     private static final Map<String, String> configuration = new HashMap<>();
@@ -20,6 +21,10 @@ public class StaticConfigSource implements ConfigSource {
     @Override
     public Map<String, String> getProperties() {
         return configuration;
+    }
+
+    @Override public Set<String> getPropertyNames() {
+        return configuration.keySet();
     }
 
     @Override
