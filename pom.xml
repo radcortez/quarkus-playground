@@ -30,6 +30,7 @@
     <dependency.lombok.version>1.18.20</dependency.lombok.version>
     <dependency.mapstruct.version>1.4.2.Final</dependency.mapstruct.version>
     <dependency.quarkus.version>2.2.3.Final</dependency.quarkus.version>
+    <dependency.quarkiverse.microprofile.version>2.2.3.Final</dependency.quarkiverse.microprofile.version>
     <dependency.faker.version>1.0.2</dependency.faker.version>
   </properties>
 
@@ -66,6 +67,12 @@
         <version>${dependency.quarkus.version}</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>io.quarkiverse.microprofile</groupId>
+        <artifactId>quarkus-microprofile</artifactId>
+        <version>${dependency.quarkiverse.microprofile.version}</version>
       </dependency>
 
       <dependency>
