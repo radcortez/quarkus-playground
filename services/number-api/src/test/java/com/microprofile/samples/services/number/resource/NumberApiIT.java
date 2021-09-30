@@ -1,12 +1,12 @@
 package com.microprofile.samples.services.number.resource;
 
-import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.junit.QuarkusIntegrationTest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
-@QuarkusTest
+@QuarkusIntegrationTest
 class NumberApiIT {
     @Test
     void name() {
