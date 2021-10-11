@@ -55,23 +55,37 @@ services:
     ports:
       - 5778:5778
       - 9411:9411
-      - 16686:16686
+      - 14250:14250
       - 14268:14268
+      - 16686:16686
       - 5775:5775/udp
       - 6831:6831/udp
       - 6832:6832/udp
     environment:
       COLLECTOR_ZIPKIN_HTTP_PORT: 9411
 
+  otel-collector:
+    image: otel/opentelemetry-collector:latest
+    container_name: otel-collector
+    depends_on:
+      - jaeger
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - 13133:13133
+      - 4317:4317
+      - 55680:55680
+
   number-api:
     image: docker-registry:5000/radcortez/number-api
     container_name: number-api
+    depends_on:
+      - otel-collector
     ports:
       - 8081:8081
     environment:
-      JAEGER_AGENT_HOST: jaeger
-      JAEGER_AGENT_PORT: 6831
-      JAEGER_SAMPLER_MANAGER_HOST_PORT: jaeger:5778
+      QUARKUS_OPENTELEMETRY_TRACER_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4317
 
   book-api:
     image: docker-registry:5000/radcortez/book-api
@@ -80,6 +94,7 @@ services:
       - database
       - zookeeper
       - kafka
+      - otel-collector
       - number-api
     ports:
       - 8080:8080
@@ -87,6 +102,4 @@ services:
       NUMBER_API_MP_REST_URL: http://number-api:8081/
       QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://database:5432/database
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      JAEGER_AGENT_HOST: jaeger
-      JAEGER_AGENT_PORT: 6831
-      JAEGER_SAMPLER_MANAGER_HOST_PORT: jaeger:5778
+      QUARKUS_OPENTELEMETRY_TRACER_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4317

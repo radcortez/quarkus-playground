@@ -1,15 +1,16 @@
 package com.microprofile.samples.services.book.tracer;
 
-import io.opentracing.Tracer;
+import io.opentelemetry.api.trace.Tracer;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
+import javax.annotation.Priority;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import java.util.HashMap;
 
 @Interceptor
+@Priority(Interceptor.Priority.APPLICATION + 1)
 @TraceLog
 public class TraceLogInterceptor {
     @Inject
@@ -19,10 +20,7 @@ public class TraceLogInterceptor {
 
     @AroundInvoke
     public Object traceLog(final InvocationContext ctx) throws Exception {
-        final HashMap<String, Object> info = new HashMap<>();
-        info.put("user", jsonWebToken.getName());
-
-        tracer.activeSpan().log(info);
+        tracer.spanBuilder("book-api-user").setAttribute("user", jsonWebToken.getName()).startSpan().end();
         return ctx.proceed();
     }
 }
