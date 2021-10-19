@@ -114,7 +114,7 @@ mvn verify -Dquarkus.container-image.build=true -Dquarkus.kubernetes.deploy=true
 Use Swagger-UI to access the applications REST endpoint and invoke the APIs:
 
 * [Book API](http://localhost:8080/swagger-ui/#/)  
-* [Number API](http://localhost:8081/swagger-ui/#/)  
+* [Number API](http://localhost:8090/swagger-ui/#/)  
 
 For Authentication and Authorization in `book-api` you need to call `Authorize` in the Swagger interface to generate a 
 `JWT`. Any `client_id`, and `client_secret` is acceptable.

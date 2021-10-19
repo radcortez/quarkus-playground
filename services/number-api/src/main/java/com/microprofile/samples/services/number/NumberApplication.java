@@ -26,7 +26,7 @@ import javax.ws.rs.core.Application;
                                     },
                                     defaultValue = "http"),
                     @ServerVariable(name = "host", enumeration = {"localhost"}, defaultValue = "localhost"),
-                    @ServerVariable(name = "port", enumeration = {"8081"}, defaultValue = "8081")
+                    @ServerVariable(name = "port", enumeration = {"8090"}, defaultValue = "8090")
                 })
     }
 )
