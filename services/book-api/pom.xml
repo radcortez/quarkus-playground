@@ -110,6 +110,11 @@
     </dependency>
 
     <dependency>
+      <groupId>io.opentelemetry.instrumentation</groupId>
+      <artifactId>opentelemetry-jdbc</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>io.quarkiverse.microprofile</groupId>
       <artifactId>quarkus-microprofile</artifactId>
       <exclusions>
@@ -167,6 +172,12 @@
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.smallrye.reactive</groupId>
+      <artifactId>smallrye-reactive-messaging-in-memory</artifactId>
       <scope>test</scope>
     </dependency>
 

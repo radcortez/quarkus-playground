@@ -1,6 +1,6 @@
 package com.microprofile.samples.services.book.tracer;
 
-import io.opentelemetry.api.trace.Tracer;
+import io.opentelemetry.api.trace.Span;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import javax.annotation.Priority;
@@ -15,12 +15,10 @@ import javax.interceptor.InvocationContext;
 public class TraceLogInterceptor {
     @Inject
     JsonWebToken jsonWebToken;
-    @Inject
-    Tracer tracer;
 
     @AroundInvoke
     public Object traceLog(final InvocationContext ctx) throws Exception {
-        tracer.spanBuilder("book-api-user").setAttribute("user", jsonWebToken.getName()).startSpan().end();
+        Span.current().setAttribute("user", jsonWebToken.getName());
         return ctx.proceed();
     }
 }

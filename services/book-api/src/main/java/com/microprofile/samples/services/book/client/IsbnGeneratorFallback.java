@@ -1,10 +1,16 @@
 package com.microprofile.samples.services.book.client;
 
 import com.microprofile.samples.services.book.entity.Book;
+import io.opentelemetry.api.trace.Span;
+import io.opentelemetry.context.Context;
+import io.opentelemetry.extension.annotations.WithSpan;
+import io.smallrye.reactive.messaging.TracingMetadata;
 import org.eclipse.microprofile.faulttolerance.ExecutionContext;
 import org.eclipse.microprofile.faulttolerance.FallbackHandler;
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
+import org.eclipse.microprofile.reactive.messaging.Message;
+import org.eclipse.microprofile.reactive.messaging.Metadata;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
@@ -12,14 +18,15 @@ import javax.inject.Inject;
 @Dependent
 public class IsbnGeneratorFallback implements FallbackHandler<Book> {
     @Inject
-    @Channel("books")
+    @Channel("fallback")
     Emitter<Book> emitter;
 
     @Override
+    @WithSpan
     public Book handle(final ExecutionContext executionContext) {
-        final Book book = (Book) executionContext.getParameters()[0];
+        Book book = (Book) executionContext.getParameters()[0];
         book.setIsbn("ISBN-FALLBACK");
-        emitter.send(book);
+        emitter.send(Message.of(book, Metadata.of(TracingMetadata.withCurrent(Context.current()))));
         return book;
     }
 }

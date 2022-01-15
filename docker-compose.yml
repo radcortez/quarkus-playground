@@ -52,6 +52,8 @@ services:
   jaeger:
     image: jaegertracing/all-in-one:1.14
     container_name: jaeger
+    depends_on:
+      - otel-collector
     ports:
       - 5778:5778
       - 9411:9411
@@ -67,8 +69,6 @@ services:
   otel-collector:
     image: otel/opentelemetry-collector:latest
     container_name: otel-collector
-    depends_on:
-      - jaeger
     command: ["--config=/etc/otel-collector-config.yaml"]
     volumes:
       - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
