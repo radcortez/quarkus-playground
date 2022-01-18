@@ -26,6 +26,7 @@
     <plugin.compiler.version>3.9.0</plugin.compiler.version>
     <plugin.surefire.version>3.0.0-M5</plugin.surefire.version>
     <plugin.failsafe.version>3.0.0-M5</plugin.failsafe.version>
+    <failsafe.useModulePath>false</failsafe.useModulePath>
 
     <dependency.lombok.version>1.18.22</dependency.lombok.version>
     <dependency.mapstruct.version>1.4.2.Final</dependency.mapstruct.version>
