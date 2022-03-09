@@ -5,13 +5,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.microprofile.samples</groupId>
+    <groupId>com.radcortez.quarkus.playground</groupId>
     <artifactId>clients</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>standalone</artifactId>
-  <name>Samples Microprofile - Clients - Standalone</name>
+  <name>Quarkus - Playground - Clients - Standalone</name>
 
   <build>
     <finalName>${project.artifactId}</finalName>

@@ -1,4 +1,4 @@
-name: MicroProfile Samples Build
+name: Quarkus Playground Build
 
 on:
   push:

@@ -1,1 +1,1 @@
-com.microprofile.samples.services.number.config.GenerationPrefixConverter
+com.radcortez.quarkus.playground.number.config.GenerationPrefixConverter

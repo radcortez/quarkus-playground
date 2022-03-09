@@ -5,13 +5,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.microprofile.samples</groupId>
+    <groupId>com.radcortez.quarkus.playground</groupId>
     <artifactId>services</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>book-api</artifactId>
-  <name>Samples Microprofile - Services - Book API</name>
+  <name>Quarkus - Playground - Services - Book API</name>
 
   <build>
     <finalName>${project.artifactId}</finalName>

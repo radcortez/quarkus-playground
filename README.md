@@ -1,7 +1,7 @@
-# MicroProfile Samples
+# Quarkus Playground
 
-The purpose of this Github repository is to showcase typical use cases of [MicroProfile](https://microprofile.io) APIs 
-in applications development.  
+The purpose of this Github repository is to showcase typical use cases of [Quarkus](https://quarkus.io) in applications 
+development.  
 
 ## Pre Requisites
 
@@ -20,9 +20,9 @@ API to retrieve the ISBN of the book.
 * standalone - A standalone client to call the Book API.
 * simulator - A client simulator that generates random requests to the Book API and simulate traffic.
 
-## MicroProfile APIs
+## SmallRye APIs
 
-The following MicroProfile APIs can be found through the project:
+The following SmallRye APIs can be found through the project:
 
 * Config (to generate the prefix of the Number API generation)
 * OpenAPI (to document the REST API of both Number API and Book API)
@@ -37,7 +37,7 @@ The following MicroProfile APIs can be found through the project:
 ## Libraries and Infra
 
 The project uses [Quarkus](https://quarkus.io) as the Java stack, and the built in [SmallRye](https://smallrye.io) 
-components as the [MicroProfile](https://microprofile.io) implementations.
+components.
 
 The required infrastructure provided by either Docker or Kubernetes includes:
 
@@ -163,6 +163,5 @@ mvn verify -Pnative -Dquarkus.native.container-build=true -Dquarkus.container-im
 
 ## Resources
 
-* [MicroProfile](https://microprofile.io) 
 * [Quarkus](https://quarkus.io)
 * [SmallRye](https://smallrye.io)
