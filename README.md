@@ -1,7 +1,7 @@
 # Quarkus Playground
 
-The purpose of this Github repository is to showcase typical use cases of [Quarkus](https://quarkus.io) in applications 
-development.  
+The purpose of this Github repository is to showcase typical use cases of [Quarkus](https://quarkus.io) in applications
+development.
 
 ## Pre Requisites
 
@@ -12,7 +12,7 @@ development.
 
 ## Project Structure
 
-The project is a backend for a book store. It provides a REST API to Create, Read, Update and Delete books, and a REST 
+The project is a backend for a book store. It provides a REST API to Create, Read, Update and Delete books, and a REST
 API to retrieve the ISBN of the book.
 
 * number-api - A service to generate configurable Numbers.
@@ -36,12 +36,12 @@ The following SmallRye APIs can be found through the project:
 
 ## Libraries and Infra
 
-The project uses [Quarkus](https://quarkus.io) as the Java stack, and the built in [SmallRye](https://smallrye.io) 
+The project uses [Quarkus](https://quarkus.io) as the Java stack, and the built in [SmallRye](https://smallrye.io)
 components.
 
 The required infrastructure provided by either Docker or Kubernetes includes:
 
-* Postgres Database 
+* Postgres Database
 * Kafka
 * Jaeger
 * Prometheus
@@ -59,12 +59,12 @@ Use Maven to build the project with the following command from the project root:
 ```bash
 mvn verify -Dquarkus.container-image.build=true
 ```
- 
+
 ## Run
 
 ### With Docker
 
-The easiest way to run the entire system is to use `docker-compose`. This will run the apps, plus all the required 
+The easiest way to run the entire system is to use `docker-compose`. This will run the apps, plus all the required
 infrastructure. Run the following command from the project root:
 
 ```bash
@@ -79,14 +79,14 @@ docker-compose down
 
 ### With Java
 
-The infrastructure is still required to run the applications properly. They can also be set up manually in the running 
+The infrastructure is still required to run the applications properly. They can also be set up manually in the running
 host, or use `docker-compose` to start only the required infrastructure:
 
 ```bash
 docker-compose up database zookeeper kafka prometheus jaeger
 ```
 
-To execute `number-api` and `book-api` directly, run the following command from each module root: 
+To execute `number-api` and `book-api` directly, run the following command from each module root:
 
 ```bash
 java -jar target/number-api-runner.jar
@@ -96,27 +96,27 @@ java -jar target/book-api-runner.jar
 
 ### With Kubernetes
 
-The infrastructure to run in Kubernetes is available in the `.kubernetes` folder. To start the infrastructure run: 
+The infrastructure to run in Kubernetes is available in the `.kubernetes` folder. To start the infrastructure run:
 
 ```bash
 kubectl apply -f .kubernetes
 ```
 
-Quarkus is able to generate the Kubernetes deployment files and deploy the application directly. This requires a Maven 
+Quarkus is able to generate the Kubernetes deployment files and deploy the application directly. This requires a Maven
 build to generate the deployment descriptors:
 
  ```bash
-mvn verify -Dquarkus.container-image.build=true -Dquarkus.kubernetes.deploy=true 
+mvn verify -Dquarkus.container-image.build=true -Dquarkus.kubernetes.deploy=true
 ```
 
 ## Test the Applications
 
 Use Swagger-UI to access the applications REST endpoint and invoke the APIs:
 
-* [Book API](http://localhost:8080/swagger-ui/#/)  
-* [Number API](http://localhost:8090/swagger-ui/#/)  
+* [Book API](http://localhost:8080/swagger-ui/#/)
+* [Number API](http://localhost:8090/swagger-ui/#/)
 
-For Authentication and Authorization in `book-api` you need to call `Authorize` in the Swagger interface to generate a 
+For Authentication and Authorization in `book-api` you need to call `Authorize` in the Swagger interface to generate a
 `JWT`. Any `client_id`, and `client_secret` is acceptable.
 
 To check Metris and Tracing information:
@@ -130,7 +130,7 @@ Install GraalVM Native Image binary with:
 
 ```bash
 gu install native-image
-``` 
+```
 
 Set up an environment variable `GRAALVM_HOME` pointing to the GraalVM installation folder.
 
@@ -138,7 +138,7 @@ Set up an environment variable `GRAALVM_HOME` pointing to the GraalVM installati
 mvn package -Pnative
 ```
 
-This is going to generate a binary executable for each module. To execute `number-api` and `book-api` as native, run 
+This is going to generate a binary executable for each module. To execute `number-api` and `book-api` as native, run
 the following command from each module root:
 
 ```bash
