@@ -28,7 +28,7 @@
     <plugin.failsafe.version>3.0.0-M5</plugin.failsafe.version>
     <failsafe.useModulePath>false</failsafe.useModulePath>
 
-    <dependency.lombok.version>1.18.22</dependency.lombok.version>
+    <dependency.lombok.version>1.18.24</dependency.lombok.version>
     <dependency.mapstruct.version>1.4.2.Final</dependency.mapstruct.version>
     <dependency.quarkus.version>2.7.3.Final</dependency.quarkus.version>
     <dependency.quarkiverse.microprofile.version>2.7.2.Final</dependency.quarkiverse.microprofile.version>
