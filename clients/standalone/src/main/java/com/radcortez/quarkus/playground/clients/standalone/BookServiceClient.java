@@ -32,7 +32,7 @@ public class BookServiceClient {
         final Book book = Book.builder()
                 .author(faker.book().author())
                 .title(faker.book().title())
-                .year(faker.number().numberBetween(1900, 2019))
+                .publishYear(faker.number().numberBetween(1900, 2019))
                 .genre(faker.book().genre())
                 .build();
 

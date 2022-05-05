@@ -33,7 +33,7 @@ public class BookCreate {
         description = "The publishing year of the book",
         example = "2020"
     )
-    private Integer year;
+    private Integer publishYear;
 
     @Schema(
         description = "The genre of the book",

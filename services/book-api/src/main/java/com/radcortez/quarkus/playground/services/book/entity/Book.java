@@ -27,15 +27,15 @@ public class Book {
     private Long id;
     private String author;
     private String title;
-    private Integer year;
+    private Integer publishYear;
     private String genre;
     private String isbn;
 
     @Builder
-    public Book(final String author, final String title, final Integer year, final String genre, final String isbn) {
+    public Book(final String author, final String title, final Integer publishYear, final String genre, final String isbn) {
         this.author = author;
         this.title = title;
-        this.year = year;
+        this.publishYear = publishYear;
         this.genre = genre;
         this.isbn = isbn;
     }

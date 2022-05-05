@@ -36,7 +36,7 @@ class BookRepositoryTest {
                                       .author("Masashi Kishimoto")
                                       .title("Naruto")
                                       .genre("Manga")
-                                      .year(1997)
+                                      .publishYear(1997)
                                       .build());
         assertTrue(book.isPresent());
         assertTrue(bookRepository.find(book.get().getId()).isPresent());
@@ -53,12 +53,12 @@ class BookRepositoryTest {
         assertTrue(book.isPresent());
 
         final Book bookUpdate = book.get();
-        bookUpdate.setYear(1997);
+        bookUpdate.setPublishYear(1997);
 
         final Optional<Book> updated = bookRepository.update(bookUpdate.getId(), bookUpdate);
         assertTrue(updated.isPresent());
         final Book bookUpdated = updated.get();
-        assertEquals(1997, bookUpdated.getYear());
+        assertEquals(1997, bookUpdated.getPublishYear());
     }
 
     @Test

@@ -70,7 +70,7 @@ class BookApiIT {
                       .title("Dragon Ball")
                       .author("Akira Torayama")
                       .genre("Manga")
-                      .year(1984)
+                      .publishYear(1984)
                       .build();
 
         given()
@@ -89,7 +89,7 @@ class BookApiIT {
             .statusCode(OK.getStatusCode())
             .extract().as(BookRead.class);
 
-        final BookUpdate bookUpdate = book.toBookUpdate().toBuilder().year(2000).build();
+        final BookUpdate bookUpdate = book.toBookUpdate().toBuilder().publishYear(2000).build();
         final BookRead bookRead = given()
             .header("Authorization", "Bearer " + TokenUtils.generateTokenString("admin", "admin"))
             .body(bookUpdate)
@@ -97,7 +97,7 @@ class BookApiIT {
             .then()
             .statusCode(OK.getStatusCode())
             .extract().as(BookRead.class);
-        assertEquals(2000, bookRead.getYear());
+        assertEquals(2000, bookRead.getPublishYear());
     }
 
     @Test
@@ -107,7 +107,7 @@ class BookApiIT {
                       .title("Dragon Ball")
                       .author("Akira Torayama")
                       .genre("Manga")
-                      .year(1984)
+                      .publishYear(1984)
                       .build();
 
         final BookRead createdBook = given()
