@@ -5,9 +5,9 @@ development.
 
 ## Pre Requisites
 
-* [OpenJDK 11](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)
-* [GraalVM 21 - JDK 11](https://github.com/graalvm/graalvm-ce-builds/releases) (for native image)
-* [Maven 3.6.3](https://maven.apache.org/download.cgi)
+* [OpenJDK 11](https://adoptium.net/temurin/releases/?version=11)
+* [GraalVM 22.1 - JDK 11](https://github.com/graalvm/graalvm-ce-builds/releases) (for native image)
+* [Maven 3.8.6](https://maven.apache.org/download.cgi)
 * [Docker](https://hub.docker.com/search/?type=edition&offering=community)
 
 ## Project Structure
@@ -96,7 +96,15 @@ java -jar target/book-api-runner.jar
 
 ### With Kubernetes
 
-The infrastructure to run in Kubernetes is available in the `.kubernetes` folder. To start the infrastructure run:
+The infrastructure to run in Kubernetes is available in the `.kubernetes` folder. 
+
+Set the default Kubernetes namespace:
+
+```bash
+kubectl config set-context --current --namespace=default
+```
+
+To start the infrastructure run:
 
 ```bash
 kubectl apply -f .kubernetes
