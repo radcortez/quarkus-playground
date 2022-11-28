@@ -173,3 +173,4 @@ mvn verify -Pnative -Dquarkus.native.container-build=true -Dquarkus.container-im
 
 * [Quarkus](https://quarkus.io)
 * [SmallRye](https://smallrye.io)
+* [Developer Joy with Quarkus](https://docs.google.com/presentation/d/1W7NS7psVN5r35G-ItOaW9_4DWKDXFSRQ8ND928xtKHc/edit?usp=sharing)
