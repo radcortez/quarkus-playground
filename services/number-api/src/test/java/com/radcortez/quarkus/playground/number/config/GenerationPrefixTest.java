@@ -2,10 +2,12 @@ package com.radcortez.quarkus.playground.number.config;
 
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Disabled
 class GenerationPrefixTest {
     @Test
     void prefix() {
