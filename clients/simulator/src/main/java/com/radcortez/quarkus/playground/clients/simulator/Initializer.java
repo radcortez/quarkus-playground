@@ -19,10 +19,10 @@ package com.radcortez.quarkus.playground.clients.simulator;
 import io.quarkus.runtime.Startup;
 import org.eclipse.microprofile.context.ManagedExecutor;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Instance;
-import javax.inject.Inject;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Instance;
+import jakarta.inject.Inject;
 
 @Startup
 @ApplicationScoped

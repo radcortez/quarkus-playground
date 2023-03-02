@@ -4,14 +4,14 @@ import com.github.javafaker.Faker;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 
-import javax.json.JsonObject;
-import javax.ws.rs.core.Response;
+import jakarta.json.JsonObject;
+import jakarta.ws.rs.core.Response;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import static com.radcortez.quarkus.playground.clients.standalone.OAuthCredentials.oauthCredentials;
-import static javax.ws.rs.core.Response.Status.CREATED;
-import static javax.ws.rs.core.Response.Status.OK;
+import static jakarta.ws.rs.core.Response.Status.CREATED;
+import static jakarta.ws.rs.core.Response.Status.OK;
 
 public class BookServiceClient {
     public static void main(String[] args) throws MalformedURLException {

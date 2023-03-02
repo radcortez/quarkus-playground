@@ -16,9 +16,9 @@
  */
 package com.radcortez.quarkus.playground.clients.simulator;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.ws.rs.core.Response;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

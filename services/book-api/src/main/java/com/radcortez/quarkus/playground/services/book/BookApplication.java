@@ -21,10 +21,10 @@ import org.eclipse.microprofile.openapi.annotations.security.OAuthScope;
 import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import jakarta.ws.rs.ApplicationPath;
+import jakarta.ws.rs.core.Application;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.eclipse.microprofile.openapi.annotations.enums.ParameterIn.PATH;
 import static org.eclipse.microprofile.openapi.annotations.enums.SchemaType.NUMBER;
 

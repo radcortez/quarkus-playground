@@ -3,9 +3,9 @@ package com.radcortez.quarkus.playground.number.resource;
 import com.radcortez.quarkus.playground.number.config.GenerationPrefix;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.ws.rs.core.Response;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.core.Response;
 import java.util.concurrent.TimeUnit;
 
 @ApplicationScoped

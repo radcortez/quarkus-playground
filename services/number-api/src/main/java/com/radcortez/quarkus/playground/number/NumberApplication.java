@@ -6,8 +6,8 @@ import org.eclipse.microprofile.openapi.annotations.servers.Server;
 import org.eclipse.microprofile.openapi.annotations.servers.ServerVariable;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import jakarta.ws.rs.ApplicationPath;
+import jakarta.ws.rs.core.Application;
 
 @ApplicationPath("/")
 @OpenAPIDefinition(

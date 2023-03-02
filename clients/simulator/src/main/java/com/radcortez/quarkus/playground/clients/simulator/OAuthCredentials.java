@@ -1,9 +1,9 @@
 package com.radcortez.quarkus.playground.clients.simulator;
 
-import javax.annotation.Priority;
-import javax.ws.rs.Priorities;
-import javax.ws.rs.client.ClientRequestContext;
-import javax.ws.rs.client.ClientRequestFilter;
+import jakarta.annotation.Priority;
+import jakarta.ws.rs.Priorities;
+import jakarta.ws.rs.client.ClientRequestContext;
+import jakarta.ws.rs.client.ClientRequestFilter;
 import java.io.IOException;
 
 @Priority(Priorities.AUTHENTICATION + 100 - 1)

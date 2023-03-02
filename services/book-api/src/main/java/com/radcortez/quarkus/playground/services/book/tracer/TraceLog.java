@@ -1,6 +1,6 @@
 package com.radcortez.quarkus.playground.services.book.tracer;
 
-import javax.interceptor.InterceptorBinding;
+import jakarta.interceptor.InterceptorBinding;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
