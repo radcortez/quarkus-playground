@@ -1,6 +1,6 @@
 package com.radcortez.quarkus.playground.number.config;
 
-public enum GenerationPrefix {
+public enum Prefix {
     UN,
     BK,
     MV,

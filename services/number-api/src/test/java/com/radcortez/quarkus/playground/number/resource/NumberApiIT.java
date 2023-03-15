@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 @QuarkusIntegrationTest
 class NumberApiIT {
     @Test
-    void name() {
+    void generate() {
         given().get("/numbers/generate").then().statusCode(200).body(Matchers.startsWith("BK"));
     }
 }
