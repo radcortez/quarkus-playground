@@ -29,7 +29,7 @@
     <failsafe.useModulePath>false</failsafe.useModulePath>
 
     <dependency.lombok.version>1.18.26</dependency.lombok.version>
-    <dependency.mapstruct.version>1.5.3.Final</dependency.mapstruct.version>
+    <dependency.mapstruct.version>1.5.5.Final</dependency.mapstruct.version>
     <dependency.quarkus.version>3.0.0.Alpha5</dependency.quarkus.version>
     <dependency.quarkiverse.microprofile.version>3.0.0.Alpha3</dependency.quarkiverse.microprofile.version>
     <dependency.faker.version>1.0.2</dependency.faker.version>
