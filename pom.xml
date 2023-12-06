@@ -25,7 +25,7 @@
     <plugin.clean.version>3.1.0</plugin.clean.version>
     <plugin.compiler.version>3.11.0</plugin.compiler.version>
     <plugin.surefire.version>3.1.2</plugin.surefire.version>
-    <plugin.failsafe.version>3.1.2</plugin.failsafe.version>
+    <plugin.failsafe.version>3.2.2</plugin.failsafe.version>
     <failsafe.useModulePath>false</failsafe.useModulePath>
 
     <dependency.lombok.version>1.18.30</dependency.lombok.version>
