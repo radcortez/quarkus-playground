@@ -2,18 +2,16 @@ name: Quarkus Playground Build
 
 on:
   push:
-    branches: 
-      - master
+    branches:
+      - main
     paths-ignore:
       - '.gitignore'
-      - 'CODEOWNERS'
       - 'LICENSE'
       - 'NOTICE'
       - 'README*'
   pull_request:
     paths-ignore:
       - '.gitignore'
-      - 'CODEOWNERS'
       - 'LICENSE'
       - 'NOTICE'
       - 'README*'
@@ -23,13 +21,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         name: checkout
 
-      - uses: actions/setup-java@v1
-        name: set up jdk ${{matrix.java}}
+      - uses: actions/setup-java@v4
+        name: set up jdk 17
         with:
-          java-version: 11
+          distribution: 'temurin'
+          java-version: 17
+          cache: 'maven'
+          cache-dependency-path: '**/pom.xml'
 
       - name: build with maven
         run: mvn verify
