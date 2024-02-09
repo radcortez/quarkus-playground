@@ -54,22 +54,6 @@
     <dependency>
       <groupId>io.quarkiverse.microprofile</groupId>
       <artifactId>quarkus-microprofile</artifactId>
-      <exclusions>
-        <!-- OpenTracing is mutually exclusive with OpenTelemetry -->
-        <exclusion>
-          <groupId>io.quarkus</groupId>
-          <artifactId>quarkus-smallrye-opentracing</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>io.quarkus</groupId>
-          <artifactId>quarkus-smallrye-opentracing-deployment</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-opentelemetry</artifactId>
     </dependency>
 
     <dependency>
