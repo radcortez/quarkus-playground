@@ -28,9 +28,9 @@ import jakarta.inject.Inject;
 @ApplicationScoped
 public class Initializer {
     @Inject
-    private ManagedExecutor managedExecutor;
+    ManagedExecutor managedExecutor;
     @Inject
-    private Instance<ScenarioInvoker> scenarioInvokers;
+    Instance<ScenarioInvoker> scenarioInvokers;
 
     @PostConstruct
     public void init() {

@@ -1,6 +1,6 @@
 package com.radcortez.quarkus.playground.clients.standalone;
 
-import com.github.javafaker.Faker;
+import net.datafaker.Faker;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 

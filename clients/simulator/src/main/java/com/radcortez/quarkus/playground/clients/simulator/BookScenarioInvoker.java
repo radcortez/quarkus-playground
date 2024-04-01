@@ -1,6 +1,6 @@
 package com.radcortez.quarkus.playground.clients.simulator;
 
-import com.github.javafaker.Faker;
+import net.datafaker.Faker;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -19,10 +19,10 @@ import static java.util.Collections.unmodifiableList;
 public class BookScenarioInvoker extends ScenarioInvoker {
     @Inject
     @RestClient
-    private BookService bookService;
+    BookService bookService;
 
     @Inject
-    private Faker faker;
+    Faker faker;
 
     @Override
     protected List<Supplier<Response>> getEndpoints() {

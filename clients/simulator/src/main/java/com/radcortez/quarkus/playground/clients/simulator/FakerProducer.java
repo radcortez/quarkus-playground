@@ -16,11 +16,10 @@
  */
 package com.radcortez.quarkus.playground.clients.simulator;
 
-import com.github.javafaker.Faker;
-
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Produces;
 import jakarta.enterprise.inject.spi.InjectionPoint;
+import net.datafaker.Faker;
 
 @ApplicationScoped
 public class FakerProducer {

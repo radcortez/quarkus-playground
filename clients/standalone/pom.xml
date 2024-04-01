@@ -39,8 +39,8 @@
     </dependency>
 
     <dependency>
-      <groupId>com.github.javafaker</groupId>
-      <artifactId>javafaker</artifactId>
+      <groupId>net.datafaker</groupId>
+      <artifactId>datafaker</artifactId>
     </dependency>
 
     <dependency>
@@ -55,7 +55,7 @@
 
     <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-rest-client</artifactId>
+      <artifactId>quarkus-resteasy-client</artifactId>
     </dependency>
   </dependencies>
 
