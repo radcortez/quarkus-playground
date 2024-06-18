@@ -23,7 +23,7 @@ import jakarta.persistence.SequenceGenerator;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id")
-    @SequenceGenerator(name = "id", sequenceName = "id")
+    @SequenceGenerator(name = "id", sequenceName = "id", allocationSize = 1)
     private Long id;
     private String author;
     private String title;
