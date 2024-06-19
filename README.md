@@ -5,10 +5,12 @@ development.
 
 ## Pre Requisites
 
-* [OpenJDK 11](https://adoptium.net/temurin/releases/?version=11)
-* [GraalVM 22.1 - JDK 11](https://github.com/graalvm/graalvm-ce-builds/releases) (for native image)
-* [Maven 3.8.6](https://maven.apache.org/download.cgi)
+* [OpenJDK 17](https://adoptium.net/temurin/releases/?version=17)
+* [GraalVM 22.3 - JDK 17](https://www.graalvm.org/release-notes/22_3/) (for native image)
+* [Maven 3.9.6](https://maven.apache.org/download.cgi)
 * [Docker](https://hub.docker.com/search/?type=edition&offering=community)
+
+:information_source: **Use [SDKMAN!](https://sdkman.io) to manage Java and Maven versions**
 
 ## Project Structure
 
