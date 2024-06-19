@@ -141,6 +141,12 @@
       <artifactId>quarkus-messaging-kafka</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>io.quarkiverse.quinoa</groupId>
+      <artifactId>quarkus-quinoa</artifactId>
+      <version>2.3.8</version>
+    </dependency>
+
     <!-- For Test -->
     <dependency>
       <groupId>io.quarkus</groupId>

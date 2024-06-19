@@ -1,0 +1,12 @@
+---
+const response = await fetch('http://localhost:8080/books');
+const books = await response.json();
+---
+
+<h1>Books</h1>
+
+<ul>
+  {books.map(item => (
+    <li>{item.title} by {item.author}</li>
+  ))}
+</ul>
