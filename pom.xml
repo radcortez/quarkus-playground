@@ -20,7 +20,7 @@
 
     <plugin.clean.version>3.1.0</plugin.clean.version>
     <plugin.compiler.version>3.13.0</plugin.compiler.version>
-    <plugin.surefire.version>3.3.0</plugin.surefire.version>
+    <plugin.surefire.version>3.3.1</plugin.surefire.version>
     <plugin.failsafe.version>3.3.0</plugin.failsafe.version>
     <failsafe.useModulePath>false</failsafe.useModulePath>
 
