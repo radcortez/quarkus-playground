@@ -2,7 +2,7 @@ package com.radcortez.quarkus.playground.services.book.client;
 
 import com.radcortez.quarkus.playground.services.book.entity.Book;
 import io.opentelemetry.context.Context;
-import io.opentelemetry.extension.annotations.WithSpan;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import io.smallrye.reactive.messaging.TracingMetadata;
 import org.eclipse.microprofile.faulttolerance.ExecutionContext;
 import org.eclipse.microprofile.faulttolerance.FallbackHandler;

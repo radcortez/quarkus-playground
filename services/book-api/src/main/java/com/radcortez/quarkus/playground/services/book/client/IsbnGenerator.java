@@ -2,7 +2,7 @@ package com.radcortez.quarkus.playground.services.book.client;
 
 import com.radcortez.quarkus.playground.services.book.entity.Book;
 import com.radcortez.quarkus.playground.services.book.persistence.BookRepository;
-import io.opentelemetry.extension.annotations.WithSpan;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
