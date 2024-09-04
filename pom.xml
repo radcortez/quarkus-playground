@@ -26,7 +26,7 @@
 
     <dependency.lombok.version>1.18.34</dependency.lombok.version>
     <dependency.mapstruct.version>1.6.0</dependency.mapstruct.version>
-    <dependency.quarkus.version>3.13.2</dependency.quarkus.version>
+    <dependency.quarkus.version>3.14.2</dependency.quarkus.version>
     <dependency.quarkiverse.microprofile.version>3.3.0</dependency.quarkiverse.microprofile.version>
 
     <dependency.faker.version>2.3.1</dependency.faker.version>
