@@ -30,11 +30,10 @@ The following SmallRye APIs can be found through the project:
 * OpenAPI (to document the REST API of both Number API and Book API)
 * JWT (to authenticate and authorize calls that manage books)
 * Fault Tolerance (to handle ISBN book generation if Number API cannot be called)
-* Open Tracing (to trace calls between Book API and Number API)
 * Reactive Messaging (to store Books that require ISBN book generation due to failure)
-* Metrics (to record call statistics and count how many books require ISBN)
 * Health (to monitor health of the Number API)
 * REST Client (to call Book API with a standalone client)
+* Telemetry (to trace calls and record statistics between Book API and Number API)
 
 ## Libraries and Infra
 
