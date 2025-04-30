@@ -30,7 +30,7 @@
     <dependency.quarkiverse.microprofile.version>3.4.0</dependency.quarkiverse.microprofile.version>
 
     <dependency.faker.version>2.4.3</dependency.faker.version>
-    <dependency.flyway-junit.version>2.1.0</dependency.flyway-junit.version>
+    <dependency.flyway-junit.version>2.2.0</dependency.flyway-junit.version>
   </properties>
 
   <build>
