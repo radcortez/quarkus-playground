@@ -6,11 +6,6 @@ import com.radcortez.quarkus.playground.services.book.model.BookRead;
 import com.radcortez.quarkus.playground.services.book.model.BookUpdate;
 import com.radcortez.quarkus.playground.services.book.persistence.BookRepository;
 import com.radcortez.quarkus.playground.services.book.tracer.TraceLog;
-import org.eclipse.microprofile.metrics.MetricUnits;
-import org.eclipse.microprofile.metrics.annotation.Counted;
-import org.eclipse.microprofile.metrics.annotation.Gauge;
-import org.eclipse.microprofile.metrics.annotation.Metered;
-import org.eclipse.microprofile.metrics.annotation.Timed;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -53,9 +48,6 @@ public class BookResource implements BookApi {
     @Override
     @RolesAllowed("admin")
     @TraceLog
-    @Counted(name = "booksCreationCount")
-    @Metered(name = "booksCreationMeter")
-    @Timed(name = "booksCreationTime")
     public Response create(final BookCreate bookCreate) {
         return bookRepository.create(bookCreate.toBook())
                              .map(Book::toBookRead)
@@ -68,9 +60,6 @@ public class BookResource implements BookApi {
     @Override
     @RolesAllowed("admin")
     @TraceLog
-    @Counted(name = "booksUpdateCount")
-    @Metered(name = "booksUpdateMeter")
-    @Timed(name = "booksUpdateTime")
     public Response update(final Long id, final BookUpdate bookUpdate) {
         return bookRepository.update(id, bookUpdate.toBook())
                              .map(Book::toBookRead)
@@ -83,9 +72,6 @@ public class BookResource implements BookApi {
     @Override
     @RolesAllowed("admin")
     @TraceLog
-    @Counted(name = "booksDeleteCount")
-    @Metered(name = "booksDeleteMeter")
-    @Timed(name = "booksDeleteTime")
     public Response delete(final Long id) {
         return bookRepository.delete(id)
                              .map(book -> Response.noContent())
@@ -93,7 +79,6 @@ public class BookResource implements BookApi {
                              .build();
     }
 
-    @Gauge(name = "booksWithoutIsbn", unit = MetricUnits.NONE)
     public Long countWithoutIsbn() {
         return bookRepository.countWithoutIsbn();
     }
