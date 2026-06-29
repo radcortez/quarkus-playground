@@ -80,6 +80,11 @@
       <artifactId>mapstruct</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>io.quarkiverse.mapstruct</groupId>
+      <artifactId>quarkus-mapstruct</artifactId>
+    </dependency>
+
     <!-- Required by Hibernate -->
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -124,6 +129,12 @@
     <dependency>
       <groupId>io.quarkiverse.microprofile</groupId>
       <artifactId>quarkus-microprofile</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-observability-devservices-lgtm</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
