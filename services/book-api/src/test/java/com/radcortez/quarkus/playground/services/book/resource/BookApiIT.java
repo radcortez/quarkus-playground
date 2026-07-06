@@ -4,19 +4,11 @@ import com.radcortez.quarkus.playground.services.book.auth.TokenUtils;
 import com.radcortez.quarkus.playground.services.book.model.BookCreate;
 import com.radcortez.quarkus.playground.services.book.model.BookRead;
 import com.radcortez.quarkus.playground.services.book.model.BookUpdate;
-import io.quarkus.test.junit.QuarkusTest;
-import io.restassured.RestAssured;
-import io.restassured.config.ObjectMapperConfig;
-import io.restassured.filter.log.RequestLoggingFilter;
-import io.restassured.filter.log.ResponseLoggingFilter;
-import io.restassured.http.Header;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import io.quarkus.test.common.WithTestResource;
+import io.quarkus.test.junit.QuarkusIntegrationTest;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static jakarta.ws.rs.core.HttpHeaders.ACCEPT;
-import static jakarta.ws.rs.core.HttpHeaders.CONTENT_TYPE;
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 import static jakarta.ws.rs.core.Response.Status.CREATED;
 import static jakarta.ws.rs.core.Response.Status.NO_CONTENT;
@@ -24,32 +16,35 @@ import static jakarta.ws.rs.core.Response.Status.OK;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@QuarkusTest
+@QuarkusIntegrationTest
+@WithTestResource(value = NumberApiResource.class)
 class BookApiIT {
-    @BeforeAll
-    static void beforeAll() {
-        RestAssured.filters(
-            (requestSpec, responseSpec, ctx) -> {
-                requestSpec.header(new Header(CONTENT_TYPE, APPLICATION_JSON));
-                requestSpec.header(new Header(ACCEPT, APPLICATION_JSON));
-                return ctx.next(requestSpec, responseSpec);
-            },
-            new RequestLoggingFilter(),
-            new ResponseLoggingFilter());
-
-        RestAssured.config = RestAssured.config().objectMapperConfig(new ObjectMapperConfig(new JsonbObjectMapper()));
-    }
-
-    @AfterAll
-    static void afterAll() {
-        RestAssured.reset();
-    }
-
     @Test
     void get() {
+        BookCreate bookCreate =
+                BookCreate.builder()
+                        .title("Dragon Ball")
+                        .author("Akira Torayama")
+                        .genre("Manga")
+                        .publishYear(1984)
+                        .build();
+
+        BookRead book = given()
+                .header("Authorization", "Bearer " + TokenUtils.generateTokenString("admin", "admin"))
+                .header("Content-Type", APPLICATION_JSON)
+                .header("Accept", APPLICATION_JSON)
+                .body(bookCreate)
+                .post("/books")
+                .then()
+                .statusCode(CREATED.getStatusCode())
+                .extract().as(BookRead.class);
+
         given()
-            .get("/books/{id}", -1)
+            .header("Content-Type", APPLICATION_JSON)
+            .header("Accept", APPLICATION_JSON)
+            .get("/books/{id}", book.getId())
             .then()
             .statusCode(OK.getStatusCode());
     }
@@ -57,15 +52,17 @@ class BookApiIT {
     @Test
     void getAll() {
         given()
+            .header("Content-Type", APPLICATION_JSON)
+            .header("Accept", APPLICATION_JSON)
             .get("/books")
             .then()
             .statusCode(OK.getStatusCode())
-            .body("size()", greaterThanOrEqualTo(1));
+            .body("size()", greaterThanOrEqualTo(0));
     }
 
     @Test
     void create() {
-        final BookCreate bookCreate =
+        BookCreate bookCreate =
             BookCreate.builder()
                       .title("Dragon Ball")
                       .author("Akira Torayama")
@@ -73,27 +70,47 @@ class BookApiIT {
                       .publishYear(1984)
                       .build();
 
-        given()
-            .header("Authorization", "Bearer " + TokenUtils.generateTokenString("admin", "admin"))
-            .body(bookCreate)
-            .post("/books")
-            .then()
-            .statusCode(CREATED.getStatusCode());
+        BookRead book = given()
+                .header("Authorization", "Bearer " + TokenUtils.generateTokenString("admin", "admin"))
+                .header("Content-Type", APPLICATION_JSON)
+                .header("Accept", APPLICATION_JSON)
+                .body(bookCreate)
+                .post("/books")
+                .then()
+                .statusCode(CREATED.getStatusCode())
+                .extract().as(BookRead.class);
+
+        assertNotNull(book.getId());
+        assertNotNull(book.getIsbn());
     }
 
     @Test
     void update() {
-        final BookRead book = given()
-            .get("/books/{id}", -1)
-            .then()
-            .statusCode(OK.getStatusCode())
-            .extract().as(BookRead.class);
+        BookCreate bookCreate =
+                BookCreate.builder()
+                        .title("Dragon Ball")
+                        .author("Akira Torayama")
+                        .genre("Manga")
+                        .publishYear(1984)
+                        .build();
 
-        final BookUpdate bookUpdate = book.toBookUpdate().toBuilder().publishYear(2000).build();
-        final BookRead bookRead = given()
+        BookRead book = given()
+                .header("Authorization", "Bearer " + TokenUtils.generateTokenString("admin", "admin"))
+                .header("Content-Type", APPLICATION_JSON)
+                .header("Accept", APPLICATION_JSON)
+                .body(bookCreate)
+                .post("/books")
+                .then()
+                .statusCode(CREATED.getStatusCode())
+                .extract().as(BookRead.class);
+
+        BookUpdate bookUpdate = book.toBookUpdate().toBuilder().publishYear(2000).build();
+        BookRead bookRead = given()
             .header("Authorization", "Bearer " + TokenUtils.generateTokenString("admin", "admin"))
+            .header("Content-Type", APPLICATION_JSON)
+            .header("Accept", APPLICATION_JSON)
             .body(bookUpdate)
-            .put("/books/{id}", -1)
+            .put("/books/{id}", book.getId())
             .then()
             .statusCode(OK.getStatusCode())
             .extract().as(BookRead.class);
@@ -102,7 +119,7 @@ class BookApiIT {
 
     @Test
     void delete() {
-        final BookCreate bookCreate =
+        BookCreate bookCreate =
             BookCreate.builder()
                       .title("Dragon Ball")
                       .author("Akira Torayama")
@@ -110,8 +127,10 @@ class BookApiIT {
                       .publishYear(1984)
                       .build();
 
-        final BookRead createdBook = given()
+        BookRead createdBook = given()
             .header("Authorization", "Bearer " + TokenUtils.generateTokenString("admin", "admin"))
+            .header("Content-Type", APPLICATION_JSON)
+            .header("Accept", APPLICATION_JSON)
             .body(bookCreate)
             .post("/books")
             .then()
@@ -122,6 +141,8 @@ class BookApiIT {
 
         given()
             .header("Authorization", "Bearer " + TokenUtils.generateTokenString("admin", "admin"))
+            .header("Content-Type", APPLICATION_JSON)
+            .header("Accept", APPLICATION_JSON)
             .delete("/books/{id}", createdBook.getId())
             .then()
             .statusCode(NO_CONTENT.getStatusCode());

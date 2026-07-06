@@ -5,6 +5,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 @ApplicationScoped
 public class NumberResource implements NumberApi {
     @Inject
@@ -16,6 +18,8 @@ public class NumberResource implements NumberApi {
     }
 
     String generateNumber() {
-        return numberConfig.generation().prefix() + "-" + (int) Math.floor((Math.random() * 9999999)) + 1;
+        long min = (long) Math.pow(10, numberConfig.generation().length() - 1);
+        long max = (long) Math.pow(10, numberConfig.generation().length());
+        return numberConfig.generation().prefix() + "-" + ThreadLocalRandom.current().nextLong(min, max);
     }
 }

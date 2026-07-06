@@ -17,7 +17,12 @@ public class IsbnGenerator {
 
     @Fallback(IsbnGeneratorFallback.class)
     public Book generateIsbn(final Book book) {
-        book.setIsbn(numberApiClient.generateNumber());
+        String isbn = numberApiClient.generateNumber();
+        if (isbn != null) {
+            book.setIsbn(isbn);
+        } else {
+            fallbackIsbn(book);
+        }
         return book;
     }
 

@@ -34,6 +34,9 @@
 
     <dependency.faker.version>2.7.0</dependency.faker.version>
     <dependency.flyway-junit.version>2.2.0</dependency.flyway-junit.version>
+
+    <skipSurefire>false</skipSurefire>
+    <skipITs>false</skipITs>
   </properties>
 
   <build>
@@ -64,6 +67,7 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${plugin.surefire.version}</version>
           <configuration>
+            <skip>${skipSurefire}</skip>
             <systemPropertyVariables>
               <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
               <maven.home>${maven.home}</maven.home>

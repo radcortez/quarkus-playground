@@ -10,5 +10,8 @@ public interface NumberConfig {
     interface Generation {
         @WithDefault("BK")
         Prefix prefix();
+
+        @WithDefault("7")
+        int length();
     }
 }

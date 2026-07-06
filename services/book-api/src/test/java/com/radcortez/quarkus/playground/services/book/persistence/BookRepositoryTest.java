@@ -1,23 +1,38 @@
 package com.radcortez.quarkus.playground.services.book.persistence;
 
+import com.radcortez.flyway.test.annotation.DataSource;
+import com.radcortez.flyway.test.annotation.FlywayTest;
+import com.radcortez.quarkus.playground.services.book.FlywayTestDataSourceProvider;
+import com.radcortez.quarkus.playground.services.book.client.IsbnGenerator;
 import com.radcortez.quarkus.playground.services.book.entity.Book;
+import com.radcortez.quarkus.playground.services.book.persistence.BookRepositoryTest.H2TestProfile;
+import io.quarkus.test.junit.mockito.InjectSpy;
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.h2.H2DatabaseTestResource;
 import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.junit.QuarkusTestProfile;
+import io.quarkus.test.junit.TestProfile;
 import org.junit.jupiter.api.Test;
 
 import jakarta.inject.Inject;
+
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.verify;
 
 @QuarkusTest
-@QuarkusTestResource(H2DatabaseTestResource.class)
+@QuarkusTestResource(value = H2DatabaseTestResource.class, restrictToAnnotatedClass = true)
+@TestProfile(H2TestProfile.class)
+@FlywayTest(@DataSource(FlywayTestDataSourceProvider.class))
 class BookRepositoryTest {
     @Inject
     BookRepository bookRepository;
+    @InjectSpy
+    IsbnGenerator isbnGenerator;
 
     @Test
     void find() {
@@ -31,7 +46,7 @@ class BookRepositoryTest {
 
     @Test
     void create() {
-        final Optional<Book> book =
+        Optional<Book> book =
             bookRepository.create(Book.builder()
                                       .author("Masashi Kishimoto")
                                       .title("Naruto")
@@ -40,11 +55,13 @@ class BookRepositoryTest {
                                       .build());
         assertTrue(book.isPresent());
         assertTrue(bookRepository.find(book.get().getId()).isPresent());
+        assertNotNull(book.get().getIsbn());
+        verify(isbnGenerator).generateIsbn(book.get());
     }
 
     @Test
     void update() {
-        final Optional<Book> book =
+        Optional<Book> book =
             bookRepository.create(Book.builder()
                                       .author("")
                                       .title("Uzumaki Naruto")
@@ -52,12 +69,12 @@ class BookRepositoryTest {
                                       .build());
         assertTrue(book.isPresent());
 
-        final Book bookUpdate = book.get();
+        Book bookUpdate = book.get();
         bookUpdate.setPublishYear(1997);
 
-        final Optional<Book> updated = bookRepository.update(bookUpdate.getId(), bookUpdate);
+        Optional<Book> updated = bookRepository.update(bookUpdate.getId(), bookUpdate);
         assertTrue(updated.isPresent());
-        final Book bookUpdated = updated.get();
+        Book bookUpdated = updated.get();
         assertEquals(1997, bookUpdated.getPublishYear());
     }
 
@@ -67,5 +84,12 @@ class BookRepositoryTest {
 
     @Test
     void countWithoutIsbn() {
+    }
+
+    public static class H2TestProfile implements QuarkusTestProfile {
+        @Override
+        public String getConfigProfile() {
+            return "test,h2";
+        }
     }
 }
